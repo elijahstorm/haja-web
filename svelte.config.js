@@ -1,20 +1,25 @@
-import adapter from '@sveltejs/adapter-static'; // was adapter-auto
+import adapter from "@sveltejs/adapter-static"
+import preprocess from "svelte-preprocess"
 
-const dev = process.env.NODE_ENV === 'development';
+const dev = process.env.NODE_ENV === "development"
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	preprocess: preprocess(),
 	kit: {
+		methodOverride: {
+			allowed: ["POST", "PUT", "DELETE"]
+		},
 		adapter: adapter({
-			pages: 'docs',
-			assets: 'docs'
+			pages: "docs",
+			assets: "docs",
+			hostineSite: "data",
+			fallback: "index.html"
 		}),
 		paths: {
-			base: dev ? '' : '/your-repo-name',
-		},
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+			base: dev ? "" : "/your-repo-name"
+		}
 	}
-};
+}
 
-export default config;
+export default config

@@ -6,9 +6,10 @@
 	import session from "$lib/firebase/session"
 	import type { UserInfo } from "firebase/auth"
 	import Icon from "@iconify/svelte"
+	import { base } from "$app/paths"
 
 	const login = () => {
-		if (browser) goto("/login")
+		if (browser) goto(`${base}/login`)
 	}
 
 	let loggedIn: UserInfo

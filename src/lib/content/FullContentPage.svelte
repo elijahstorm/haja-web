@@ -10,6 +10,7 @@
 	import { myId } from "$lib/firebase/auth"
 	import type { TeamContentConfig } from "$lib/content/team/TeamContent"
 	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
+	import { base } from "$app/paths"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let amount: number = 10
@@ -31,7 +32,7 @@
 	}
 
 	const edit = () => {
-		if (browser) goto(`/${isTeam ? "team" : "user"}/${source}/edit`)
+		if (browser) goto(`${base}/${isTeam ? "team" : "user"}/${source}/edit`)
 	}
 </script>
 

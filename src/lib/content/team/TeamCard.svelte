@@ -4,6 +4,7 @@
 	import { goto } from "$app/navigation"
 	import UserIconList from "../user/UserIconList.svelte"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
+	import { base } from "$app/paths"
 
 	export let team: TeamContentConfig | string
 
@@ -22,7 +23,7 @@
 	const view = () => {
 		if (typeof team === "string") return
 
-		if (browser) goto(`/team/${team.id}`)
+		if (browser) goto(`${base}/team/${team.id}`)
 	}
 </script>
 

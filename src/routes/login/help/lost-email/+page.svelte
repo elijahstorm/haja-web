@@ -6,6 +6,7 @@
 	import session from "$lib/firebase/session"
 	import { goto } from "$app/navigation"
 	import { browser } from "$app/env"
+	import { base } from "$app/paths"
 
 	const callback = async (form) => {
 		started = true
@@ -23,7 +24,7 @@
 
 	session.subscribe(async ({ user, ready }) => {
 		if (user && ready) {
-			if (browser) goto("/me")
+			if (browser) goto(`${base}/me`)
 		}
 	})
 </script>

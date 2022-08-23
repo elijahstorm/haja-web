@@ -33,7 +33,7 @@
 		loggedIn = user && ready ? true : false
 
 		if (!loggedIn && requestLink === "") {
-			if (browser) goto("/login")
+			if (browser) goto(`${base}/login`)
 		}
 	})
 </script>

@@ -15,7 +15,7 @@
 
 	session.subscribe(async ({ user, ready }) => {
 		if (user && ready) {
-			if (browser) goto("/me")
+			if (browser) goto(`${base}/me`)
 		}
 	})
 </script>

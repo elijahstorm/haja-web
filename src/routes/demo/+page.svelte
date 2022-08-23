@@ -20,7 +20,7 @@
 		style = ""
 
 	const next = () => {
-		if (shown == images.length - 1) if (browser) goto("/login")
+		if (shown == images.length - 1) if (browser) goto(`${base}/login`)
 
 		shown++
 	}

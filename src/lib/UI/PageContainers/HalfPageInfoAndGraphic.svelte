@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths"
 	import Logo from "$lib/UI/Branding/Logo.svelte"
 
 	const icons = {
@@ -13,8 +14,6 @@
 	}
 
 	export let icon: keyof typeof icons = "events"
-
-	const src = icons[icon]
 </script>
 
 <div class="container">
@@ -23,8 +22,8 @@
 			<Logo url={"/haja/logo_horizontal_white.png"} height={200} />
 		</div>
 		<div class="bottom-logo">
-			<img src="/icon/blob.svg" alt="white background" />
-			<img {src} alt="haja-icon" />
+			<img src="{base}/icon/blob.svg" alt="white background" />
+			<img src={base + icons[icon]} alt="haja-icon" />
 		</div>
 	</div>
 
@@ -33,7 +32,7 @@
 			<Logo url={"/haja/logo_horizontal_full.png"} height={100} />
 		</div>
 		<slot />
-		<img {src} alt="haja-icon" />
+		<img src={base + icons[icon]} alt="haja-icon" />
 	</div>
 </div>
 

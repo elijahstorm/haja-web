@@ -5,6 +5,7 @@
 	import type { TodoContentConfig } from "./TodoContent"
 	import Icon from "@iconify/svelte"
 	import { onMount } from "svelte"
+	import { base } from "$app/paths"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -53,7 +54,7 @@
 	}
 
 	const share = () => {
-		const value = `https://haja-web.herokuapp.com/todo/${source}-${isTeam ? 1 : 0}/${id}`
+		const value = `${base}/todo/${source}-${isTeam ? 1 : 0}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
 			props: { value }

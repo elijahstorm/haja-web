@@ -4,12 +4,12 @@
 	import InlineTodoEditor from "./InlineTodoEditor.svelte"
 	import { fade } from "svelte/transition"
 	import Icon from "@iconify/svelte"
+	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 
 	export let todo: TodoContentConfig
 	export let source: string
 	export let isTeam: boolean
 
-	const img404 = "/404.png"
 	const width = 30
 
 	let shown = false
@@ -75,7 +75,7 @@
 </script>
 
 {#if todo.status == "[broken]"}
-	<img src={img404} alt="todo not found" />
+	<FallbackImage alt="todo not found" />
 {:else if todo.status != "[deleted]"}
 	<div class="flex" out:fade>
 		<div class="icon" on:click|preventDefault={toggleDone}>
@@ -95,7 +95,9 @@
 			{:else}
 				<div class="todo flex column" on:click={toggleShowInlineEditor}>
 					<p class="bold">{todo.title}</p>
-					<p class="caption">todo.caption</p>
+					{#if todo.caption != ""}
+						<p class="caption">{todo.caption}</p>
+					{/if}
 					{#if shown}
 						<p class="date">{timeStr} : {dateStr}</p>
 					{/if}

@@ -11,11 +11,16 @@ const config = {
 			allowed: ["POST", "PUT", "DELETE"]
 		},
 		adapter: adapter({
-			pages: "docs",
-			assets: "docs",
+			pages: "build",
+			assets: "build",
 			hostineSite: "data",
+			precompress: false,
 			fallback: "index.html"
 		}),
+		prerender: {
+			default: true
+		},
+		trailingSlash: "always",
 		paths: {
 			base: dev ? "" : "/haja-web"
 		}

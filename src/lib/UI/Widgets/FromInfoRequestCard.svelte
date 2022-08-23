@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths"
 	import DataInput from "./DataInput.svelte"
 
 	export let inputs = [
@@ -95,7 +96,7 @@
 	<div class="bottom content">
 		<slot name="bottom">
 			<span> New to Haja? </span>
-			<a href="/login/signup">Sign up</a>
+			<a href="{base}/login/signup">Sign up</a>
 		</slot>
 	</div>
 </section>

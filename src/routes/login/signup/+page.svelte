@@ -5,6 +5,7 @@
 	import session from "$lib/firebase/session"
 	import { goto } from "$app/navigation"
 	import { browser } from "$app/env"
+	import { base } from "$app/paths"
 
 	const callback = async (form) => {
 		const { error } = await newUser(form["email"], form["password"])
@@ -48,7 +49,7 @@
 		<div slot="help">Start using Haja today! Enter your email and create a new password</div>
 		<div slot="bottom">
 			<span> Already have an account? </span>
-			<a href="/login">Login</a>
+			<a href="{base}/login">Login</a>
 		</div>
 	</FormInfoRequestCard>
 </SmallCenterContentOverBackground>

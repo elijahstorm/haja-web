@@ -2,7 +2,7 @@
 	import Header from "$lib/UI/Header.svelte"
 
 	export let backBtn: boolean = true
-	export let logoLink: string = null
+	export let logoLink: string = "/"
 </script>
 
 <section>

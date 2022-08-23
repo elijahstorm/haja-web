@@ -1,4 +1,9 @@
+<script>
+	import { base } from "$app/paths"
+</script>
+
 <svelte:head>
+	<link rel="stylesheet" href="{base}/app.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 	<link

@@ -1,15 +1,16 @@
 <script lang="ts">
+	import { base } from "$app/paths"
 	import Casing from "$lib/UI/PageContainers/Casing.svelte"
 	import Grid from "$lib/UI/Widgets/Grid.svelte"
 	import Modal from "$lib/UI/Widgets/Modal.svelte"
 
 	const imgs = [
-		"showcase/todos1.png",
-		"showcase/10.jpg",
-		"showcase/11-3.jpg",
-		"showcase/11-8.jpg",
-		"showcase/todos2.png",
-		"showcase/11-12.jpg"
+		"/showcase/todos1.png",
+		"/showcase/10.jpg",
+		"/showcase/11-3.jpg",
+		"/showcase/11-8.jpg",
+		"/showcase/todos2.png",
+		"/showcase/11-12.jpg"
 	]
 
 	const cols = 3
@@ -18,7 +19,7 @@
 
 <Casing logoLink={"/demo"} backBtn={false}>
 	<div>
-		<a href="/demo">Let's Do Together -- Today!</a>
+		<a href="{base}/demo">Let's Do Together -- Today!</a>
 	</div>
 
 	<p>
@@ -45,7 +46,7 @@
 	<div>
 		<Grid {cols} {gap} items={imgs} let:item let:index>
 			<Modal caption={item}>
-				<img src={item} alt="showcase image {index}" />
+				<img src={base + item} alt="showcase image {index}" />
 			</Modal>
 		</Grid>
 	</div>

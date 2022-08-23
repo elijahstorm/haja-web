@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from "$app/env"
 	import { goto } from "$app/navigation"
+	import { base } from "$app/paths"
 	import { onMount } from "svelte"
 
 	const images = [
@@ -40,7 +41,13 @@
 	</div>
 	>
 	{#each images as image, index}
-		<img bind:this={img} {style} class:shown={shown == index} src={image.src} alt={image.alt} />
+		<img
+			bind:this={img}
+			{style}
+			class:shown={shown == index}
+			src={base + image.src}
+			alt={image.alt}
+		/>
 	{/each}
 </section>
 

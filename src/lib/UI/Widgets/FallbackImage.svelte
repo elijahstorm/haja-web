@@ -1,12 +1,14 @@
 <script lang="ts">
-	export let fallback: string = "/404.png"
-	export let src: string | undefined
+	import { base } from "$app/paths"
+
+	export let fallback: string = `${base}/404.png`
+	export let src: string = fallback
 	export let alt: string
 
 	const handleError = (e) => (e.target.src = fallback)
 </script>
 
-<img src={src ?? fallback} {alt} on:error={handleError} />
+<img {src} {alt} on:error={handleError} />
 
 <style>
 	img {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from "$app/env"
 	import { goto } from "$app/navigation"
+	import { base } from "$app/paths"
 	import { myId } from "$lib/firebase/auth"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 	import { getUser, type UserContentConfig } from "./UserContent"
@@ -8,12 +9,12 @@
 	export let user: UserContentConfig | null = null
 	export let size: number = 2
 
+	$: href = base + (user ? `/user/${user.id}` : "/me")
+	$: style = `width: ${size}rem; height: ${size}rem;`
+
 	const myHome = () => {
 		if (browser) goto(href)
 	}
-
-	$: href = user ? `/user/${user.id}` : "/me"
-	$: style = `width: ${size}rem; height: ${size}rem;`
 </script>
 
 <div on:click={myHome} class="profile" {style}>

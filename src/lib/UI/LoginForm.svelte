@@ -3,6 +3,7 @@
 	import { loginWithInfo, loginWithGoogle, loginWithFacebook } from "$lib/firebase/auth"
 	import { fade } from "svelte/transition"
 	import Icon from "@iconify/svelte"
+	import { base } from "$app/paths"
 
 	export let shadow = false
 
@@ -40,7 +41,7 @@
 			<div class="header">
 				<span> Login to </span>
 
-				<img class="logo" src="/haja/logo_horizontal_full.png" alt="haja" />
+				<img class="logo" src="{base}/haja/logo_horizontal_full.png" alt="haja" />
 			</div>
 
 			{#if errorReport}
@@ -70,9 +71,9 @@
 
 			<p class="help">
 				Help finding your
-				<a href="/login/help/lost-email">an ID</a>
+				<a href="{base}/login/help/lost-email">an ID</a>
 				or
-				<a href="/login/help/forgot-password">password</a>
+				<a href="{base}/login/help/forgot-password">password</a>
 			</p>
 		</div>
 	</form>

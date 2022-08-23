@@ -5,6 +5,7 @@
 	import { goto } from "$app/navigation"
 	import { updatePassword } from "firebase/auth"
 	import { browser } from "$app/env"
+	import { base } from "$app/paths"
 
 	// export let validation: string
 	// export let error: string
@@ -73,6 +74,6 @@
 		</FormInfoRequestCard>
 	{:else}
 		<span>Password updated. </span>
-		<a href="/login">Login</a>
+		<a href="{base}/login">Login</a>
 	{/if}
 </SmallCenterContentOverBackground>

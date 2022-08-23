@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from "$app/paths"
 	import { getUser } from "$lib/content/user/UserContent"
 	import UserContent from "$lib/content/user/UserContent.svelte"
 	import { myId } from "$lib/firebase/auth"
@@ -15,7 +16,7 @@
 		{:else}
 			<UserContent {user}>
 				<div>
-					<a href="/team">
+					<a href="{base}/team">
 						<button class="button color primary"> My Teams </button>
 					</a>
 				</div>

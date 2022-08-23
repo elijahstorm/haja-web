@@ -11,10 +11,6 @@
 </div>
 
 <style>
-	:global(body) {
-		font-family: Roboto;
-	}
-
 	.container {
 		display: flex;
 		background-color: var(--bg);

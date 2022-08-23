@@ -37,10 +37,6 @@
 </div>
 
 <style>
-	:global(body) {
-		font-family: Roboto;
-	}
-
 	.container {
 		position: absolute;
 		left: 0;

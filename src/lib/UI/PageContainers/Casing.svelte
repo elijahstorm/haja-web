@@ -14,10 +14,6 @@
 </section>
 
 <style>
-	:global(body) {
-		font-family: Roboto;
-	}
-
 	section {
 		display: flex;
 		flex-direction: row;

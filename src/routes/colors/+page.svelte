@@ -34,7 +34,7 @@
 	const textRender = (font: typeof fonts) => `${index++}: ${font}`
 
 	const styleRender = (color: typeof colors, font: typeof fonts) =>
-		`color: ${color}; font-family: ${fontRender(font)}, sans-serif;`
+		`color: ${color}; font-family: ${fontRender(font)}, sans-serif !important;`
 </script>
 
 <svelte:head>

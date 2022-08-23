@@ -20,8 +20,10 @@ body {
 	background: var(--bg);
 	color: var(--text);
 	letter-spacing: 0.6px;
-	font-family: Roboto;
-	/* font-family: Noto Sans KR; */
+}
+
+* {
+	font-family: Roboto !important;
 }
 
 img {

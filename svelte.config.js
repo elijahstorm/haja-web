@@ -11,8 +11,8 @@ const config = {
 			allowed: ["POST", "PUT", "DELETE"]
 		},
 		adapter: adapter({
-			pages: "build",
-			assets: "build",
+			pages: "docs",
+			assets: "docs",
 			hostineSite: "data",
 			precompress: false,
 			fallback: "index.html"

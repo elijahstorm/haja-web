@@ -7,9 +7,6 @@ const dev = process.env.NODE_ENV === "development"
 const config = {
 	preprocess: preprocess(),
 	kit: {
-		methodOverride: {
-			allowed: ["POST", "PUT", "DELETE"]
-		},
 		adapter: adapter({
 			pages: "docs",
 			assets: "docs",
@@ -17,9 +14,6 @@ const config = {
 			precompress: false,
 			fallback: "index.html"
 		}),
-		prerender: {
-			default: true
-		},
 		trailingSlash: "always",
 		paths: {
 			base: dev ? "" : "/haja-web"

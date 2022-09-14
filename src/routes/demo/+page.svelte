@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from "$app/env"
+	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import { base } from "$app/paths"
 	import { onMount } from "svelte"
@@ -29,7 +29,11 @@
 		style = `width: ${(img.offsetHeight * 6) / 9}px;`
 	}
 
-	onMount(resize)
+	onMount(() => {
+		resize()
+
+		setTimeout(resize, 500)
+	})
 </script>
 
 <svelte:window on:resize={resize} />

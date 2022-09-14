@@ -4,7 +4,7 @@
 	import session from "$lib/firebase/session"
 	import { goto } from "$app/navigation"
 	import { updatePassword } from "firebase/auth"
-	import { browser } from "$app/env"
+	import { browser } from "$app/environment"
 	import { base } from "$app/paths"
 
 	// export let validation: string

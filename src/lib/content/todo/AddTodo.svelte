@@ -49,6 +49,8 @@
 			isTeam,
 			content,
 			type
+		}).then((response) => {
+			content.id = response.id
 		})
 	}
 

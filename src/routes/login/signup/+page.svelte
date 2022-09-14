@@ -4,7 +4,7 @@
 	import { newUser } from "$lib/firebase/auth"
 	import session from "$lib/firebase/session"
 	import { goto } from "$app/navigation"
-	import { browser } from "$app/env"
+	import { browser } from "$app/environment"
 	import { base } from "$app/paths"
 
 	const callback = async (form) => {

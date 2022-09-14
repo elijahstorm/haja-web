@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { TeamContentConfig } from "./TeamContent"
-	import { browser } from "$app/env"
+	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import UserIconList from "../user/UserIconList.svelte"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
@@ -21,6 +21,7 @@
 	const src = picture
 
 	const view = () => {
+		console.log(team)
 		if (typeof team === "string") return
 
 		if (browser) goto(`${base}/team/${team.id}`)

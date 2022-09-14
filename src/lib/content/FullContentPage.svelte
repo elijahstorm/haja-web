@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from "$app/env"
+	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import type { UserContentConfig } from "$lib/content/user/UserContent"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"

@@ -71,7 +71,7 @@
 		max-height: 100%;
 	}
 	p {
-		margin: 1rem 2rem;
+		margin: 1rem 0;
 		text-indent: 2rem;
 	}
 

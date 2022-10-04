@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FormInfoRequestCard from "$lib/UI/Widgets/FromInfoRequestCard.svelte"
+	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import session from "$lib/firebase/session"
 	import { goto } from "$app/navigation"

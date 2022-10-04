@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FormInfoRequestCard from "$lib/UI/Widgets/FromInfoRequestCard.svelte"
+	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { lostPassword } from "$lib/firebase/auth"
 	import InfoCard from "$lib/UI/Widgets/InfoCard.svelte"

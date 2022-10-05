@@ -12,9 +12,9 @@
 	]
 
 	export let error: string = ""
-	export let callback: (form) => Promise<string | null> = async (form) => ""
+	export let callback: (form: HTMLFormElement) => Promise<string | null> = async (form) => ""
 
-	let formElement
+	let formElement: HTMLFormElement
 
 	$: requestSent = false
 	$: attempted = false
@@ -165,7 +165,6 @@
 		width: 100%;
 		border-radius: 0.5rem;
 		font-size: 0.9rem;
-		margin-top: 0.5rem;
 		text-transform: uppercase;
 		color: white;
 		background: #0081c6;

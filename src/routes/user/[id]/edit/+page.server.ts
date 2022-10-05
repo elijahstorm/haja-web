@@ -1,7 +1,7 @@
+import type { PageServerLoad } from "./$types"
 import { getUser } from "$lib/content/user/UserContent"
 
-/** @type {import('./[id]').PageServerLoad} */
-export async function load({ params }) {
+export const load: PageServerLoad = async ({ params }) => {
 	let error: string | null = null
 
 	let user = await getUser({

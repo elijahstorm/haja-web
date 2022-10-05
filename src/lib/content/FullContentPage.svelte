@@ -1,20 +1,18 @@
 <script lang="ts">
-	import { browser } from "$app/environment"
-	import { goto } from "$app/navigation"
 	import type { UserContentConfig } from "$lib/content/user/UserContent"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 	import InfoCard from "$lib/UI/Widgets/InfoCard.svelte"
 	import TodoList from "$lib/content/todo/TodoList.svelte"
 	import { getTodoList } from "$lib/content/todo/TodoList"
-	import GlassyButton from "$lib/UI/Widgets/GlassyButton.svelte"
-	import { myId } from "$lib/firebase/auth"
+	import session from "$lib/firebase/session"
 	import type { TeamContentConfig } from "$lib/content/team/TeamContent"
 	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
-	import { base } from "$app/paths"
+	import EditButton from "$lib/UI/Widgets/EditButton.svelte"
+	import type { AllContentTypes } from "./Content"
 
 	export let entity: UserContentConfig | TeamContentConfig
-	export let amount: number = 10
 	export let isTeam: boolean = false
+	export let amount: number = 100
 	export let background: string = null
 
 	const WEEK = 604800000
@@ -22,17 +20,15 @@
 
 	const { id, title, caption, picture } = entity
 	const source = id
-	$: src = background ?? picture
+
+	let promise = new Promise<AllContentTypes>((resolve) => resolve(entity))
 
 	let date
-
+	$: myId = $session?.user?.uid
+	$: src = background ?? picture
 	$: dateRange = {
 		start: new Date(($date?.selected ?? new Date()) - WEEK),
 		end: new Date(($date?.selected ?? new Date()) + DAY)
-	}
-
-	const edit = () => {
-		if (browser) goto(`${base}/${isTeam ? "team" : "user"}/${source}/edit`)
 	}
 </script>
 
@@ -51,9 +47,9 @@
 			<FallbackImage {src} alt={`${isTeam ? "team" : "user"} ${title}`} />
 		</div>
 		<div class="overlay">&nbsp;</div>
-		{#if isTeam || source === myId()}
+		{#if isTeam || source === myId}
 			<div class="btn">
-				<GlassyButton callback={edit} />
+				<EditButton entity={promise} {isTeam} />
 			</div>
 		{/if}
 	</div>
@@ -105,10 +101,13 @@
 		align-self: flex-start;
 		justify-self: flex-end;
 		margin: 1rem;
+		overflow: hidden;
+	}
+	:global(.background > .btn > button) {
 		opacity: 0;
 		transition: opacity 0.7s ease;
 	}
-	.background:hover > .btn {
+	:global(.background:hover > .btn > button) {
 		opacity: 0.8;
 	}
 	.background > .overlay {

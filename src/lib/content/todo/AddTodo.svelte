@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { TodoColor, TodoContentConfig } from "./TodoContent"
-	import { myId } from "$lib/firebase/auth"
 	import { uploadDocument } from "$lib/firebase/firestore"
 	import Icon from "@iconify/svelte"
+	import session from "$lib/firebase/session"
 
-	export let source: string = myId()
+	$: myId = $session?.user?.uid
+
+	export let source: string = myId
 	export let isTeam: boolean = false
 	export let callback: (todo: TodoContentConfig) => void = (_) => {}
 

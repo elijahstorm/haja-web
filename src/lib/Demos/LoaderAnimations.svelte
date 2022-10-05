@@ -25,7 +25,8 @@
 		Diamonds,
 		Clock
 	} from "svelte-loading-spinners"
-	export let name: any
+
+	export let name: any = "default"
 
 	let color: string = "#FF3E00"
 	let size: string = "60"

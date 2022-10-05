@@ -22,17 +22,11 @@
 	.container {
 		width: 100%;
 		max-width: 900px;
-		padding: 64px 184px;
+		padding: 32px 32px 64px 32px;
 		overflow: hidden;
 		word-wrap: break-word;
 	}
 	.padding-bottom {
 		padding-bottom: var(--default-padding);
-	}
-
-	@media only screen and (max-width: 50em) {
-		.container {
-			padding: 64px 7%;
-		}
 	}
 </style>

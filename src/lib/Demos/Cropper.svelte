@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Cropper from "svelte-easy-crop"
 
 	let crop = { x: 0, y: 0 }

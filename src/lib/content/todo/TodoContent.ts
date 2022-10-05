@@ -2,8 +2,15 @@ import { getDocument } from "$lib/firebase/firestore"
 import type { Timestamp } from "firebase/firestore"
 import type { ContentConfig } from "../Content"
 
+type RGB = `rgb(${number}, ${number}, ${number})`
+type HSL = `hsl(${number}%, ${number}%, ${number}%)`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+type Color = RGB | RGBA | HEX | HSL
+
 export type TodoStatus = "todo" | "done" | "[broken]" | "[deleted]"
-export type TodoColor = "" | "var(--primary)" | `#${any}`
+export type TodoColor = "" | "var(--primary)" | Color
 
 export interface TodoContentConfig extends ContentConfig {
 	color?: TodoColor

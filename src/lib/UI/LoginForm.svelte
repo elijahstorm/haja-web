@@ -50,10 +50,10 @@
 				<div class="error">&nbsp;</div>
 			{/if}
 
-			<label for="email"><b>Email</b></label>
+			<label for="email">Email</label>
 			<input type="email" placeholder="Email" required bind:value={email} />
 
-			<label for="psw"><b>Password</b></label>
+			<label for="psw">Password</label>
 			<input type="password" placeholder="Password" required bind:value={password} />
 
 			<button type="submit">Login</button>
@@ -73,8 +73,8 @@
 					<a href="{base}/login/signup">Sign up</a>
 				</p>
 				<p class="help">
-					<span> Lost your </span>
-					<a href="{base}/login/help/lost-email">ID?</a>
+					<span> Can't log in? </span>
+					<a href="{base}/login/help/lost-email">Recover account</a>
 				</p>
 				<!-- Removed because this action is not allowed -->
 				<!-- <p class="help">
@@ -100,6 +100,9 @@
 		letter-spacing: 0px;
 	}
 
+	label {
+		font-size: 0.9rem;
+	}
 	input[type="email"],
 	input[type="password"] {
 		width: 100%;
@@ -125,15 +128,14 @@
 	button {
 		background-color: var(--primary);
 		color: white;
+		font-size: 0.9rem;
 		padding: 0.8rem 20px;
 		margin: 0.5rem 0 0.5rem 0;
-		text-transform: uppercase;
-		font-weight: bold;
-		line-height: 1.5rem;
+		line-height: 1.3rem;
 		border: none;
 		cursor: pointer;
 		width: 100%;
-		border-radius: 3rem;
+		border-radius: 2rem;
 		transition: 0.3s;
 		box-shadow: 0px 6px 7px 2px var(--primary-o);
 	}
@@ -173,12 +175,13 @@
 	}
 
 	.help {
+		font-size: 0.9rem;
 		margin-top: 1rem;
 	}
 
 	.header {
 		margin: 1rem 0;
-		font-size: 22px;
+		font-size: 0.9rem;
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
@@ -203,7 +206,6 @@
 
 	.bottom {
 		border-top: 1px solid #ddd;
-		font-weight: bold;
 		padding: 1rem 0;
 	}
 	.bottom a {

@@ -1,7 +1,7 @@
+import type { PageServerLoad } from "./$types"
 import { getTeam } from "$lib/content/team/TeamContent"
 
-/** @type {import('./[id]').PageServerLoad} */
-export const load = async ({ params }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	let error: string | null = null
 
 	let team = await getTeam({

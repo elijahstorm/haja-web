@@ -1,9 +1,9 @@
+import type { PageServerLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { getUser } from "$lib/content/user/UserContent"
 import { pipe } from "$lib/utils"
 
-/** @type {import('./[id]').PageServerLoad} */
-export async function load({ params }) {
+export const load: PageServerLoad = async ({ params }) => {
 	const prefilteredData = await getUser({
 		id: params.id
 	})

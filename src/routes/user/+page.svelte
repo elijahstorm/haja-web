@@ -1,5 +1,8 @@
 <script lang="ts">
+	import Casing from "$lib/UI/PageContainers/Casing.svelte"
 	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
 </script>
 
-<ProtectedPage>Friends list will show here</ProtectedPage>
+<ProtectedPage>
+	<Casing>Friends list will show here</Casing>
+</ProtectedPage>

@@ -1,5 +1,6 @@
-/** @type {import('./[id]').PageServerLoad} */
-export async function load({ params }) {
+import type { PageServerLoad } from "./$types"
+
+export const load: PageServerLoad = async ({ params }) => {
 	let error: string | null = null
 
 	const { requestLink } = params

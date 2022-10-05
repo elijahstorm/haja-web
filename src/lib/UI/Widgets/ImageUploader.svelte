@@ -80,7 +80,7 @@
 			{#if state == "ready"}
 				<Icon {icon} {width} />
 			{:else if state == "uploading"}
-				<Loader loadingStyle="bar" />
+				<Loader />
 			{:else if state == "failed"}
 				<Icon icon={"akar-icons:triangle-alert-fill"} {width} color={"var(--error)"} />
 				<p class="error">{status}</p>

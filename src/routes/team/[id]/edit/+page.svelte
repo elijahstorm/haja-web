@@ -1,5 +1,6 @@
 <script lang="ts">
 	import EditableContentPage from "$lib/content/EditableContentPage.svelte"
+	import Casing from "$lib/UI/PageContainers/Casing.svelte"
 	import type { TeamContentConfig } from "src/lib/content/team/TeamContent"
 
 	export let data
@@ -9,4 +10,8 @@
 	$: ({ team } = data)
 </script>
 
-<EditableContentPage bind:content={team} {errors} isTeam={true}>editng team!</EditableContentPage>
+<Casing>
+	<EditableContentPage bind:content={team} {errors} isTeam={true}
+		>editng team!</EditableContentPage
+	>
+</Casing>

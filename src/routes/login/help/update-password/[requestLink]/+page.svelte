@@ -1,14 +1,9 @@
 <script lang="ts">
 	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
-	import session from "$lib/firebase/session"
-	import { goto } from "$app/navigation"
 	import { updatePassword } from "firebase/auth"
-	import { browser } from "$app/environment"
 	import { base } from "$app/paths"
 
-	// export let validation: string
-	// export let error: string
 	export let data
 
 	let { requestLink } = data
@@ -16,26 +11,10 @@
 
 	const callback = async (form) => {
 		return "Not handled in broswer. Please check your email for the next step."
-
-		if (loggedIn) {
-		} else {
-		}
-
-		await updatePassword(form["password"], requestLink)
-
-		success = true
 	}
 
 	$: success = false
 	$: loggedIn = false
-
-	session.subscribe(async ({ user, ready }) => {
-		loggedIn = user && ready ? true : false
-
-		if (!loggedIn && requestLink === "") {
-			if (browser) goto(`${base}/login`)
-		}
-	})
 </script>
 
 <SmallCenterContentOverBackground>

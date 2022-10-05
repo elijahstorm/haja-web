@@ -13,9 +13,7 @@
 	}
 
 	let loggedIn: UserInfo
-	session.subscribe(async ({ user, ready }) => {
-		loggedIn = user
-	})
+	$: loggedIn = $session.user
 </script>
 
 <section>

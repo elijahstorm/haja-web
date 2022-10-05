@@ -2,13 +2,14 @@
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import { base } from "$app/paths"
-	import { myId } from "$lib/firebase/auth"
+	import session from "$lib/firebase/session"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 	import { getUser, type UserContentConfig } from "./UserContent"
 
 	export let user: UserContentConfig | null = null
 	export let size: number = 2
 
+	$: myId = $session?.user?.uid
 	$: href = base + (user ? `/user/${user.id}` : "/me")
 	$: style = `width: ${size}rem; height: ${size}rem;`
 
@@ -19,7 +20,7 @@
 
 <div on:click={myHome} class="profile" {style}>
 	{#if user == null}
-		{#await getUser({ id: myId() }) then user}
+		{#await getUser({ id: myId }) then user}
 			{#if typeof user !== "string"}
 				<FallbackImage src={user.picture} alt="user profile" fallback="/icon/person.svg" />
 			{/if}

@@ -1,5 +1,5 @@
 <!-- App.svelte -->
-<script>
+<script lang="ts">
 	import { Toasts, addToast } from "as-toast"
 </script>
 
@@ -7,7 +7,8 @@
 
 <button
 	on:click={() => {
-		addToast("Hello World")
+		addToast("Hello zWorld", "info")
+		addToast("Hello World", "warn")
 	}}
 >
 	add toast

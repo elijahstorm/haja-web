@@ -1,5 +1,4 @@
-<script>
-	import { onMount } from "svelte"
+<script lang="ts">
 	import InfiniteLoading from "svelte-infinite-loading"
 
 	const api = "https://hn.algolia.com/api/v1/search_by_date?tags=story"
@@ -22,58 +21,26 @@
 	}
 </script>
 
-<div id="app">
-	<header class="hacker-news-header">
-		<a target="_blank" href="http://www.ycombinator.com/">
-			<img src="https://news.ycombinator.com/y18.gif" alt="Logo" />
-		</a>
-		<span>Hacker News</span>
-	</header>
+{#each list as item, index}
+	<div class="hacker-news-item" data-num={index + 1}>
+		<a target="_blank" href={item.url}>{item.title}</a>
+		<p>
+			<span>{item.points}</span>
+			points by
+			<a target="_blank" href="https://news.ycombinator.com/user?id={item.author}"
+				>{item.author}</a
+			>
+			|
+			<a target="_blank" href="https://news.ycombinator.com/item?id={item.objectID}"
+				>{item.num_comments} comments</a
+			>
+		</p>
+	</div>
+{/each}
 
-	{#each list as item, index}
-		<div class="hacker-news-item" data-num={index + 1}>
-			<a target="_blank" href={item.url}>{item.title}</a>
-			<p>
-				<span>{item.points}</span>
-				points by
-				<a target="_blank" href="https://news.ycombinator.com/user?id={item.author}"
-					>{item.author}</a
-				>
-				|
-				<a target="_blank" href="https://news.ycombinator.com/item?id={item.objectID}"
-					>{item.num_comments} comments</a
-				>
-			</p>
-		</div>
-	{/each}
-
-	<InfiniteLoading on:infinite={infiniteHandler} />
-</div>
+<InfiniteLoading on:infinite={infiniteHandler} />
 
 <style>
-	:global(body) {
-		padding-top: 28px;
-		background-color: #f6f6ef;
-	}
-	.hacker-news-header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		padding: 4px 20px;
-		line-height: 14px;
-		background-color: #f60;
-	}
-	.hacker-news-header img {
-		border: 1px solid #fff;
-		vertical-align: middle;
-	}
-	.hacker-news-header span {
-		font-family: Verdana, Geneva, sans-serif;
-		font-size: 14px;
-		font-weight: bold;
-		vertical-align: middle;
-	}
 	.hacker-news-item {
 		margin: 10px 0;
 		padding: 0 10px 0 40px;

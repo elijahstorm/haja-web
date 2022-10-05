@@ -2,9 +2,6 @@
 	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { newUser } from "$lib/firebase/auth"
-	import session from "$lib/firebase/session"
-	import { goto } from "$app/navigation"
-	import { browser } from "$app/environment"
 	import { base } from "$app/paths"
 
 	const callback = async (form) => {
@@ -12,12 +9,6 @@
 
 		return error
 	}
-
-	session.subscribe(async ({ user, ready }) => {
-		if (user && ready) {
-			if (browser) goto(`${base}/me`)
-		}
-	})
 </script>
 
 <SmallCenterContentOverBackground>

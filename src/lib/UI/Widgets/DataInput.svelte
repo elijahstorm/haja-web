@@ -14,7 +14,6 @@
 </script>
 
 <div class="input-container">
-	<label for={name}>{text}</label>
 	{#if icon != ""}
 		<div class="input-icon icon-username" style={iconHref} />
 	{/if}
@@ -32,7 +31,7 @@
 <style>
 	.input-container {
 		position: relative;
-		margin-bottom: 0.5rem;
+		margin: 1rem 0 1rem 0;
 	}
 	.input-icon {
 		position: absolute;
@@ -66,13 +65,9 @@
 			rgba(212, 212, 212, 0) 100%
 		);
 	}
-	label {
-		font-size: 0.8rem;
-	}
 	input {
 		border: 1px solid var(--primary);
 		padding: 1rem;
-		margin: 0.5rem 0 0 0;
 		border-radius: 0.5rem;
 		font-size: 0.9rem;
 		width: calc(100% - 2.2rem);

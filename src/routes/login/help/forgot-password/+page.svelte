@@ -3,24 +3,16 @@
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { lostPassword } from "$lib/firebase/auth"
 	import InfoCard from "$lib/UI/Widgets/InfoCard.svelte"
-	import { goto } from "$app/navigation"
-	import session from "$lib/firebase/session"
-	import { browser } from "$app/environment"
-	import { base } from "$app/paths"
 
-	const callback = async (form) => {
+	const callback = async (form: HTMLFormElement) => {
 		formSent = lostPassword(form["email"].value)
 		started = true
+
+		return ""
 	}
 
-	let formSent
+	let formSent: Promise<{ error?: string }>
 	$: started = false
-
-	session.subscribe(async ({ user, ready }) => {
-		if (user && ready) {
-			if (browser) goto(`${base}/me`)
-		}
-	})
 </script>
 
 <SmallCenterContentOverBackground>

@@ -19,7 +19,7 @@
 <div class="container">
 	<div class="left">
 		<div class="logo">
-			<Logo url={"/haja/logo_horizontal_white.png"} height={200} />
+			<Logo url={`${base}/haja/logo_horizontal_white.png`} height={200} />
 		</div>
 		<div class="bottom-logo">
 			<img src="{base}/icon/blob.svg" alt="white background" />
@@ -29,7 +29,7 @@
 
 	<div class="right">
 		<div class="logo small">
-			<Logo url={"/haja/logo_horizontal_full.png"} height={100} />
+			<Logo url={`${base}/haja/logo_horizontal_full.png`} height={100} />
 		</div>
 		<slot />
 		<img src={base + icons[icon]} alt="haja-icon" />
@@ -59,8 +59,6 @@
 		flex: 2;
 		max-width: 600px;
 		background-color: var(--primary);
-		/* border-right: #191919 solid 1px; */
-		/* box-shadow: 6px 0px 20px 18px rgb(0 0 0 / 12%); */
 		user-select: none;
 		-webkit-user-select: none;
 	}
@@ -86,7 +84,7 @@
 		overflow-y: auto;
 	}
 	.logo {
-		margin: 0 auto 1rem auto;
+		margin: 0 auto;
 		width: 100%;
 		max-width: 200px;
 		max-height: 100%;
@@ -99,8 +97,8 @@
 	.logo.small,
 	.right > img:last-of-type {
 		max-width: 300px;
+		display: none;
 		opacity: 0;
-		margin-bottom: 2rem;
 	}
 	.right > img:last-of-type {
 		display: none;
@@ -112,6 +110,7 @@
 		}
 		.logo.small,
 		.right > img:last-of-type {
+			display: block;
 			opacity: 1;
 		}
 		.right > img:last-of-type {

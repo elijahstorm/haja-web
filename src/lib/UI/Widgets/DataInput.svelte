@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { base } from "$app/paths"
+
 	export let text: string
 	export let name: string
 	export let id: string
@@ -8,7 +10,7 @@
 	export let required: boolean = false
 	export let attempted: boolean = false
 
-	$: iconHref = `background: url(${icon}); background-size: 1.5rem auto; background-repeat: repeat;`
+	$: iconHref = `background: url(${base}${icon}); background-size: 1.5rem auto; background-repeat: repeat;`
 </script>
 
 <div class="input-container">

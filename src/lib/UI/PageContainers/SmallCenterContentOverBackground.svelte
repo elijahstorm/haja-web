@@ -1,13 +1,16 @@
 <script lang="ts">
+	import { base } from "$app/paths"
 	import Logo from "$lib/UI/Branding/Logo.svelte"
 </script>
 
 <div class="container">
 	<div class="logo">
-		<Logo url={"/haja/logo_horizontal_white.png"} height={200} />
+		<Logo url={`${base}/haja/logo_horizontal_white.png`} height={200} />
 	</div>
 
-	<slot />
+	<div class="content">
+		<slot />
+	</div>
 </div>
 
 <style>
@@ -15,8 +18,8 @@
 		display: flex;
 		background-color: var(--bg);
 		padding: 1rem 4rem 4rem 4rem;
-		display: flex;
 		height: 100vh;
+		overflow-y: auto;
 		flex-direction: column;
 		flex: 2;
 		background-color: var(--primary);

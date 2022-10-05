@@ -39,8 +39,6 @@
 	<form class:attempted on:submit|preventDefault={submit}>
 		<div class="container">
 			<div class="header">
-				<span> Login to </span>
-
 				<img class="logo" src="{base}/haja/logo_horizontal_full.png" alt="haja" />
 			</div>
 
@@ -69,12 +67,21 @@
 				</div>
 			</div>
 
-			<p class="help">
-				Help finding your
-				<a href="{base}/login/help/lost-email">an ID</a>
-				or
-				<a href="{base}/login/help/forgot-password">password</a>
-			</p>
+			<div class="bottom">
+				<p class="help">
+					<span> New to Haja? </span>
+					<a href="{base}/login/signup">Sign up</a>
+				</p>
+				<p class="help">
+					<span> Lost your </span>
+					<a href="{base}/login/help/lost-email">ID?</a>
+				</p>
+				<!-- Removed because this action is not allowed -->
+				<!-- <p class="help">
+					<span> Lost your </span>
+					<a href="{base}/login/help/forgot-password">password?</a>
+				</p> -->
+			</div>
 		</div>
 	</form>
 </section>
@@ -119,7 +126,7 @@
 		background-color: var(--primary);
 		color: white;
 		padding: 0.8rem 20px;
-		margin: 2rem 0 0.5rem 0;
+		margin: 0.5rem 0 0.5rem 0;
 		text-transform: uppercase;
 		font-weight: bold;
 		line-height: 1.5rem;
@@ -137,11 +144,12 @@
 
 	.container {
 		padding: 1rem;
+		margin-bottom: 5rem;
 	}
 
 	.error {
 		color: red;
-		margin: 1rem 0;
+		margin: 0 0 1rem 0;
 	}
 
 	.providers {
@@ -166,22 +174,11 @@
 
 	.help {
 		margin-top: 1rem;
-		font-weight: 300;
-	}
-	.help > a {
-		color: var(--primary);
-		text-decoration: none;
-		border-bottom: 1px solid;
-		border-bottom-color: var(--transparent);
-		transition: border-bottom-color 0.3s;
-	}
-	.help > a:hover {
-		border-bottom-color: var(--primary);
 	}
 
 	.header {
-		margin: 1rem 0 2rem 0;
-		font-size: 20px;
+		margin: 1rem 0;
+		font-size: 22px;
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
@@ -190,11 +187,33 @@
 		align-self: center;
 	}
 
+	@media only screen and (max-width: 37.5em) {
+		.header {
+			display: none;
+		}
+	}
+
 	.logo {
 		width: 6rem;
 	}
 
 	form {
 		background-color: var(--bg);
+	}
+
+	.bottom {
+		border-top: 1px solid #ddd;
+		font-weight: bold;
+		padding: 1rem 0;
+	}
+	.bottom a {
+		color: var(--primary);
+		text-decoration: none;
+		border-bottom: 1px transparent;
+		border-bottom-color: var(--transparent);
+		transition: border-bottom-color 0.3s;
+	}
+	.bottom a:hover {
+		border-bottom: 1px solid;
 	}
 </style>

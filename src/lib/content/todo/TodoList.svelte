@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import InfiniteLoading from "svelte-infinite-loading"
 	import AddTodo from "./AddTodo.svelte"
 	import type { TodoContentConfig } from "./TodoContent"
 	import TodoContent from "./TodoContent.svelte"

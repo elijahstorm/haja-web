@@ -19,7 +19,7 @@
 </script>
 
 {#if open}
-	<section on:click={close} in:fade={animation}>
+	<section on:click={close} on:keypress={close} in:fade={animation}>
 		<content in:scale={animation}>
 			<slot {open} />
 		</content>
@@ -29,7 +29,7 @@
 	</section>
 {/if}
 
-<div on:click={activate}>
+<div on:click={activate} on:keypress={activate}>
 	<slot {open} />
 </div>
 

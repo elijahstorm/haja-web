@@ -1,33 +1,48 @@
 <script lang="ts">
 	import type { AllContentTypes } from "$lib/content/Content"
 	import EditableContentPage from "$lib/content/EditableContentPage.svelte"
-	import DraggableDraw from "svelte-draggable-draw"
+	import DraggableModal from "./DraggableModal.svelte"
 	import GlassyButton from "./GlassyButton.svelte"
 
 	export let entity: Promise<AllContentTypes>
 	export let isTeam: boolean = false
 
-	let visible = true
-	let maxVH = 90
+	let maxVH = 70
 	let minVH = 65
 
-	function toggleVisible() {
-		visible = !visible
+	const save = (action: VoidFunction) => () => {
+		// todo: save stuff
+		action()
 	}
 
-	const save = () => {
-		// if (browser) goto(`${base}/${isTeam ? "team" : "user"}/${source}/edit`)
+	const keypress = (action: VoidFunction) => (e: KeyboardEvent) => {
+		e.stopPropagation()
+		e.preventDefault()
+		if (e.key === "Enter") {
+			action()
+		}
 	}
 </script>
 
-<GlassyButton callback={toggleVisible} />
+<DraggableModal let:update {maxVH} {minVH}>
+	<div slot="button">
+		<GlassyButton callback={update("open")} />
+	</div>
 
-<DraggableDraw bind:visible {maxVH} {minVH}>
-	<span slot="left" on:click={toggleVisible}>Cancel</span>
-	<span slot="right" class="primary" on:click={save}>Submit</span>
+	<span
+		slot="left"
+		on:click|stopPropagation={update("closed")}
+		on:keypress={keypress(update("closed"))}>Cancel</span
+	>
+	<span
+		slot="right"
+		class="primary"
+		on:click|stopPropagation={save(update("closed"))}
+		on:keypress={keypress(save(update("closed")))}>Submit</span
+	>
 
 	<EditableContentPage bind:content={entity} {isTeam} />
-</DraggableDraw>
+</DraggableModal>
 
 <style>
 	.primary {

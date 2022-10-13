@@ -63,7 +63,7 @@
 	}
 </script>
 
-<div class="flex" class:editing on:click={add}>
+<div class="flex" class:editing on:click={add} on:keydown={add}>
 	<div>
 		<Icon {icon} color={style} {width} />
 	</div>

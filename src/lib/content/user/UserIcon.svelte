@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div on:click={myHome} class="profile" {style}>
+<div on:click={myHome} on:keydown={myHome} class="profile" {style}>
 	{#if user == null}
 		{#await getUser({ id: myId }) then user}
 			{#if typeof user !== "string"}

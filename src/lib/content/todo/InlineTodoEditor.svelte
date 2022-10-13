@@ -6,6 +6,7 @@
 	import Icon from "@iconify/svelte"
 	import { onMount } from "svelte"
 	import { base } from "$app/paths"
+	import { addToast } from "as-toast"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -60,6 +61,7 @@
 			props: { value }
 		})
 		app.$destroy()
+		addToast("Link copied!")
 	}
 
 	const changeColor = (color: typeof colors[number]) => {
@@ -107,7 +109,7 @@
 {#if shown}
 	<div class="flex">
 		{#each icons as icon}
-			<div on:click={icon.action}>
+			<div on:click={icon.action} on:keydown={icon.action}>
 				{#if icon.action === cal}
 					<div class="remove-defaults">
 						<Datepicker bind:store={updateDate}>
@@ -128,6 +130,7 @@
 					class="color"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
+					on:keydown={() => changeColor(color)}
 				/>
 			{/each}
 		</div>
@@ -137,6 +140,7 @@
 					class="color"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
+					on:keydown={() => changeColor(color)}
 				/>
 			{/each}
 		</div>
@@ -147,6 +151,7 @@
 					class="color"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
+					on:keydown={() => changeColor(color)}
 				/>
 			{/each}
 		</div>

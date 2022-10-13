@@ -78,7 +78,11 @@
 	<FallbackImage alt="todo not found" />
 {:else if todo.status != "[deleted]"}
 	<div class="flex" out:fade>
-		<div class="icon" on:click|preventDefault={toggleDone}>
+		<div
+			class="icon"
+			on:click|preventDefault={toggleDone}
+			on:keydown|preventDefault={toggleDone}
+		>
 			<Icon {color} {width} {icon} />
 		</div>
 		<div class="flex column">
@@ -93,7 +97,11 @@
 					autofocus
 				/>
 			{:else}
-				<div class="todo flex column" on:click={toggleShowInlineEditor}>
+				<div
+					class="todo flex column"
+					on:click={toggleShowInlineEditor}
+					on:keydown={toggleShowInlineEditor}
+				>
 					<p class="bold">{todo.title}</p>
 					{#if todo.caption != ""}
 						<p class="caption">{todo.caption}</p>

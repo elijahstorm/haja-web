@@ -19,15 +19,15 @@
 <section>
 	{#if loggedIn}
 		<UserIcon />
-		<div on:click={() => signOut()} class="button color primary">
+		<button on:click={() => signOut()} class="button color primary">
 			<span class="hide-on-small">Logout</span>
 			<Icon icon={"fe:logout"} width={22} />
-		</div>
+		</button>
 	{:else}
-		<div on:click={login} class="button color primary">
+		<button on:click={login} class="button color primary">
 			<span>Login</span>
 			<Icon icon={"akar-icons:google-fill"} width={22} />
-		</div>
+		</button>
 	{/if}
 </section>
 
@@ -38,7 +38,7 @@
 		flex-direction: row;
 		gap: 1rem;
 	}
-	section > div {
+	button {
 		display: flex;
 		height: max-content;
 	}
@@ -46,7 +46,7 @@
 		padding-right: calc(var(--default-padding) / 2);
 		padding-top: 2px;
 	}
-	section > div > * {
+	button > * {
 		align-self: center;
 	}
 	.button {

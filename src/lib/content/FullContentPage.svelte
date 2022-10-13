@@ -103,12 +103,17 @@
 		margin: 1rem;
 		overflow: hidden;
 	}
-	:global(.background > .btn > button) {
+	:global(.background > .btn button) {
 		opacity: 0;
 		transition: opacity 0.7s ease;
 	}
-	:global(.background:hover > .btn > button) {
+	:global(.background:hover > .btn button) {
 		opacity: 0.8;
+	}
+	@media only screen and (max-width: 31.25rem) {
+		:global(.background > .btn button) {
+			opacity: 1;
+		}
 	}
 	.background > .overlay {
 		background-image: linear-gradient(transparent, transparent, #fff2, #fffb, var(--bg));

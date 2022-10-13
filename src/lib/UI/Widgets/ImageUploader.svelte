@@ -4,6 +4,11 @@
 	import Icon from "@iconify/svelte"
 	import FallbackImage from "./FallbackImage.svelte"
 	import Loader from "./Loader.svelte"
+	import Cropper from "svelte-easy-crop"
+
+	let crop = { x: 0, y: 0 }
+	let zoom = 1
+	let image = "https://cdn1-www.dogtime.com/assets/uploads/2011/03/puppy-development.jpg"
 
 	const fallback = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"
 
@@ -73,7 +78,7 @@
 <section>
 	<h1>Change {alt}</h1>
 
-	<div class="image-uploader-container" on:click={open}>
+	<div class="image-uploader-container" on:click={open} on:keypress={open}>
 		<FallbackImage {src} {alt} {fallback} />
 
 		<div class="upload" class:status={state != "ready"}>
@@ -93,6 +98,7 @@
 	<input type="file" {accept} on:change={onFileSelected} bind:this={fileinput} />
 </section>
 
+<!-- <Cropper {image} bind:crop bind:zoom /> -->
 <style>
 	section {
 		display: flex;

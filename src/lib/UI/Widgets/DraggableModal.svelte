@@ -24,7 +24,6 @@
 	}
 
 	const toggle = () => {
-		console.log({ state })
 		if (state === "closed") {
 			open()
 		} else if (state === "open") {
@@ -34,11 +33,12 @@
 		}
 	}
 
-	let firstTouchLocation = 0
 	const convertTouchToClientY = (e: TouchEvent) => {
 		const [touch] = e.touches
-		return touch.clientY
+		return touch?.clientY ?? 0
 	}
+
+	let firstTouchLocation = 0
 
 	const touchstart = (e: TouchEvent) =>
 		pipe(
@@ -132,16 +132,6 @@
 		flex-direction: column;
 		justify-content: flex-end;
 		align-items: center;
-
-		/*
-		nov 28
-		may 25
-		mwt
-		6:30 - 9:30
-		first half is with instructor
-		second half is project based and teamwork focused
-		$10,745
-		*/
 	}
 
 	.container.full .card {

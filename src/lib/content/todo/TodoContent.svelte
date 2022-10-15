@@ -2,7 +2,7 @@
 	import type { TodoContentConfig } from "./TodoContent"
 	import { updateDocument } from "$lib/firebase/firestore"
 	import InlineTodoEditor from "./InlineTodoEditor.svelte"
-	import { fade } from "svelte/transition"
+	import { fade, fly } from "svelte/transition"
 	import Icon from "@iconify/svelte"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 
@@ -107,7 +107,13 @@
 						<p class="caption">{todo.caption}</p>
 					{/if}
 					{#if shown}
-						<p class="date">{timeStr} : {dateStr}</p>
+						<p
+							class="date"
+							in:fly={{ y: -50, duration: 300 }}
+							out:fly={{ y: -50, duration: 300 }}
+						>
+							{timeStr} : {dateStr}
+						</p>
 					{/if}
 				</div>
 				<InlineTodoEditor bind:todo bind:editing {shown} {source} {isTeam} />

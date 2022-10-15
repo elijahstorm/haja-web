@@ -9,9 +9,10 @@
 
 	let maxVH = 70
 	let minVH = 65
+	let requestSave
 
 	const save = (action: VoidFunction) => () => {
-		// todo: save stuff
+		requestSave()
 		action()
 	}
 
@@ -41,7 +42,7 @@
 		on:keypress={keypress(save(update("closed")))}>Submit</span
 	>
 
-	<EditableContentPage bind:content={entity} {isTeam} />
+	<EditableContentPage bind:content={entity} {isTeam} bind:requestSave />
 </DraggableModal>
 
 <style>

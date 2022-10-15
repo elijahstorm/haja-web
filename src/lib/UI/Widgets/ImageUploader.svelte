@@ -4,6 +4,7 @@
 	import Icon from "@iconify/svelte"
 	import FallbackImage from "./FallbackImage.svelte"
 	import Loader from "./Loader.svelte"
+	import ImageGradientOverlay from "./Helpers/ImageGradientOverlay.svelte"
 	import Cropper from "svelte-easy-crop"
 
 	let crop = { x: 0, y: 0 }
@@ -23,11 +24,20 @@
 
 	const accept = ".jpg, .jpeg, .png, .svg"
 	const icon = "akar-icons:cloud-upload"
+	const failedIcon = "akar-icons:triangle-alert-fill"
+	const finishedIcon = "ic:round-cloud-done"
 	const width = "3rem"
 
 	let fileinput
+	let fileName = ""
+	let fileType = ""
 	let status = null
 	let state: "ready" | "uploading" | "finished" | "failed" = "ready"
+
+	$: {
+		fileName = decodeURIComponent(src).split("/").pop().split("?").shift()
+		fileType = `.${src.split(".").pop().split("?").shift()}`
+	}
 
 	const onFileSelected = async (e) => {
 		const blob = e.target.files[0]
@@ -76,10 +86,11 @@
 </script>
 
 <section>
-	<h1>Change {alt}</h1>
-
 	<div class="image-uploader-container" on:click={open} on:keypress={open}>
 		<FallbackImage {src} {alt} {fallback} />
+		<!-- <Cropper {image} bind:crop bind:zoom /> -->
+
+		<ImageGradientOverlay title="Your {dest}" info={""} {fileType} {fileName} {state} />
 
 		<div class="upload" class:status={state != "ready"}>
 			{#if state == "ready"}
@@ -87,10 +98,10 @@
 			{:else if state == "uploading"}
 				<Loader />
 			{:else if state == "failed"}
-				<Icon icon={"akar-icons:triangle-alert-fill"} {width} color={"var(--error)"} />
+				<Icon icon={failedIcon} {width} color={"var(--error)"} />
 				<p class="error">{status}</p>
 			{:else if state == "finished"}
-				<Icon icon={"ic:round-cloud-done"} {width} color={"var(--primary)"} />
+				<Icon icon={finishedIcon} {width} color={"var(--primary)"} />
 			{/if}
 		</div>
 	</div>
@@ -98,20 +109,19 @@
 	<input type="file" {accept} on:change={onFileSelected} bind:this={fileinput} />
 </section>
 
-<!-- <Cropper {image} bind:crop bind:zoom /> -->
 <style>
 	section {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-flow: column;
-	}
-
-	h1 {
-		margin: 2rem 0;
+		flex: 1 1 50%;
 	}
 
 	.image-uploader-container {
+		height: 300px;
+		overflow: clip;
+		border-radius: 0.5rem;
 		position: relative;
 		cursor: pointer;
 		display: grid;
@@ -128,6 +138,7 @@
 	}
 
 	.upload {
+		z-index: 5;
 		cursor: pointer;
 		opacity: 0;
 		transition: 0.7s ease;

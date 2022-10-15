@@ -7,6 +7,7 @@
 	import { onMount } from "svelte"
 	import { base } from "$app/paths"
 	import { addToast } from "as-toast"
+	import { fly, scale } from "svelte/transition"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -107,7 +108,7 @@
 <svelte:window on:resize={resize} />
 
 {#if shown}
-	<div class="flex">
+	<div class="flex" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
 		{#each icons as icon}
 			<div on:click={icon.action} on:keydown={icon.action}>
 				{#if icon.action === cal}
@@ -145,7 +146,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex">
+		<div class="flex" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
 			{#each colors as color (color)}
 				<div
 					class="color"

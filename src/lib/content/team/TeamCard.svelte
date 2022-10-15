@@ -21,14 +21,13 @@
 	const src = picture
 
 	const view = () => {
-		console.log(team)
 		if (typeof team === "string") return
 
 		if (browser) goto(`${base}/team/${team.id}`)
 	}
 </script>
 
-<div class="card" on:click={view}>
+<div class="card" on:click={view} on:keypress={view}>
 	<div class="grid">
 		{#if typeof team !== "string"}
 			<div class="background">

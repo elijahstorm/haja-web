@@ -4,6 +4,10 @@
 
 	let state: "closed" | "open" | "full" = "closed"
 
+	$: {
+		document.body.style.overflow = state === "closed" ? "inherit" : "hidden"
+	}
+
 	export let maxVH = 90
 	export let minVH = 85
 
@@ -44,10 +48,6 @@
 		pipe(
 			() => e,
 			convertTouchToClientY,
-			(y) => {
-				console.log({ y })
-				return y
-			},
 			(clientY) => (firstTouchLocation = clientY)
 		)
 
@@ -136,7 +136,6 @@
 
 	.container.full .card {
 		max-height: 100vh !important;
-		min-height: 100vh !important;
 	}
 
 	.card {

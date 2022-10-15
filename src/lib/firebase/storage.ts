@@ -14,15 +14,10 @@ export const uploadFile: (
 		blob: ArrayBuffer
 	}
 ) => Promise<UploadResult> = ({ blob, id, source = null, type = null, isTeam = false }) =>
-	pipe(api({ id, source, type, isTeam }), log, connect(ref), upload(uploadBytes, blob))
+	pipe(api({ id, source, type, isTeam }), connect(ref), upload(uploadBytes, blob))
 
 export const uploadFileAndGetUrl: (
 	data: StoreLocation & {
 		blob: ArrayBuffer
 	}
 ) => Promise<string> = async (data) => getDownloadURL(await (await uploadFile(data)).ref)
-
-const log = (value) => {
-	console.log(value)
-	return value
-}

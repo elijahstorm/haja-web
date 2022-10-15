@@ -15,14 +15,9 @@
 
 	export let date
 
-	const add = (amt) => {
-		console.log($date?.selected)
-		date.add(1, amt)
-	}
+	const add = (amt) => date.add(1, amt)
 
-	const sub = (amt) => {
-		date.add(-1, amt)
-	}
+	const sub = (amt) => date.add(-1, amt)
 </script>
 
 <section class="flex">

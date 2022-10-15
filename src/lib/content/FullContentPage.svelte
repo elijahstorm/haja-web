@@ -35,7 +35,7 @@
 <section>
 	<div class="header">
 		<div class="description">
-			<p>{caption == "" ? "something differenctxs" : caption}</p>
+			<p>{caption}</p>
 			<slot />
 		</div>
 

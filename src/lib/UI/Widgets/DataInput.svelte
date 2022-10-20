@@ -70,7 +70,7 @@
 		padding: 1rem;
 		border-radius: 0.5rem;
 		font-size: 0.9rem;
-		width: calc(100% - 2.2rem);
+		width: calc(100% - 2.125rem);
 	}
 	input.push {
 		padding-left: 3.5rem;

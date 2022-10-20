@@ -8,6 +8,7 @@
 	import { base } from "$app/paths"
 	import { addToast } from "as-toast"
 	import { fly, scale } from "svelte/transition"
+	import { page } from "$app/stores"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -56,7 +57,9 @@
 	}
 
 	const share = () => {
-		const value = `${base}/todo/${source}-${isTeam ? 1 : 0}/${id}`
+		const value = `${$page.url.toString().split(base)[0]}${base}/todo/${source}-${
+			isTeam ? 1 : 0
+		}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
 			props: { value }
@@ -132,7 +135,11 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
-				/>
+				>
+					{#if `#${color}` === todo.color}
+						<Icon icon="akar-icons:check" color="var(--bg)" />
+					{/if}
+				</div>
 			{/each}
 		</div>
 		<div class="flex">
@@ -153,7 +160,11 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
-				/>
+				>
+					{#if `#${color}` === todo.color}
+						<Icon icon="akar-icons:check" color="var(--bg)" />
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/if}
@@ -172,5 +183,8 @@
 	.color {
 		overflow: hidden;
 		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 </style>

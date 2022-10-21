@@ -69,6 +69,24 @@ export const newUser = (email: string, password: string) =>
 
 		// auto-onboarding content for the user to experiment with
 
+		const editTodoPrompt: TodoContentConfig = {
+			contentType: "todo",
+			id: "",
+			title: "Oops, there's a typo in this toxdo...",
+			caption: "Tap on the text, and then press edit to fix it",
+			status: "todo",
+			type: "from_haja",
+			date: new Date(new Date().setSeconds(new Date().getSeconds() - 2))
+		}
+		const editActionContent: TodoContentConfig = {
+			contentType: "todo",
+			id: "",
+			title: "Customize your profile and add your favorite images!",
+			caption: "You can add a caption to your profile and each team you've created",
+			status: "todo",
+			type: "from_haja",
+			date: new Date(new Date().setSeconds(new Date().getSeconds() - 1))
+		}
 		const welcomeContent: TodoContentConfig = {
 			contentType: "todo",
 			id: "",
@@ -87,24 +105,6 @@ export const newUser = (email: string, password: string) =>
 			type: "from_haja",
 			date: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
 		}
-		const editActionContent: TodoContentConfig = {
-			contentType: "todo",
-			id: "",
-			title: "Customize your profile and add your favorite images!",
-			caption: "You can add a caption to your profile and each team you've created",
-			status: "todo",
-			type: "from_haja",
-			date: new Date(new Date().setSeconds(new Date().getSeconds() + 1))
-		}
-		const editTodoPrompt: TodoContentConfig = {
-			contentType: "todo",
-			id: "",
-			title: "Oops, there's a typo in this toxdo...",
-			caption: "Tap on the text, and then press edit to fix it",
-			status: "todo",
-			type: "from_haja",
-			date: new Date(new Date().setSeconds(new Date().getSeconds() + 2))
-		}
 		const uploadOrderList = [
 			welcomeContent,
 			editActionContent,
@@ -122,14 +122,16 @@ export const newUser = (email: string, password: string) =>
 				caption: "Edit your profile"
 			}
 		})
-		uploadOrderList.map((content) =>
-			uploadDocument({
+
+		for (let i = 0; i < uploadOrderList.length; i++) {
+			const content = uploadOrderList[i]
+			await uploadDocument({
 				source,
 				isTeam,
 				content,
 				type: "todo"
 			})
-		)
+		}
 
 		session.update((session) => ({ ...session, waitingCreationFlow: false }))
 	})

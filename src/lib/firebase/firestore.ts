@@ -25,12 +25,6 @@ import { pipe } from "$lib/utils"
 
 const db = getFirestore(firebaseApp)
 
-export type StoreLocation = {
-	id?: string
-	source?: string
-	isTeam?: boolean
-	type?: string
-}
 export const api: (data: StoreLocation) => () => string = ({
 	source = null,
 	isTeam = false,
@@ -89,17 +83,27 @@ export const uploadDocument: (
 	}
 ) => Promise<DocumentReference<DocumentData>> = ({
 	content,
+	id = null,
 	source = null,
 	type = null,
 	isTeam = false,
 	timestamp = "created"
 }) =>
-	pipe(
-		api({ source, type, isTeam }),
-		connect(collection),
-		clense(content, timestamp),
-		upload(addDoc)
-	)
+	id === null
+		? addDoc(
+				collection(db, api({ source, type, isTeam, id })()),
+				clense(content, timestamp)().content
+		  )
+		: setDoc(doc(db, api({ source, type, isTeam, id })()), clense(content, timestamp)().content)
+
+// pipe(
+// 	api({ source, type, isTeam, id }),
+// 	connect(id === null ? collection : doc),
+// 	clense(content, timestamp),
+// 	upload(id === null ? addDoc : setDoc)
+// )
+
+///HpVx7Nyyak72Pb4
 
 export const updateDocument: (
 	data: StoreLocation & {

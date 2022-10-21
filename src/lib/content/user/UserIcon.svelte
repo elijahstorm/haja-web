@@ -22,11 +22,15 @@
 	{#if user == null}
 		{#await getUser({ id: myId }) then user}
 			{#if typeof user !== "string"}
-				<FallbackImage src={user.picture} alt="user profile" fallback="/icon/person.svg" />
+				<FallbackImage
+					src={user.picture}
+					alt="user profile"
+					fallback="{base}/icon/person.svg"
+				/>
 			{/if}
 		{/await}
 	{:else}
-		<FallbackImage src={user?.picture} alt="user profile" fallback="/icon/person.svg" />
+		<FallbackImage src={user?.picture} alt="user profile" fallback="{base}/icon/person.svg" />
 	{/if}
 </div>
 

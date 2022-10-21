@@ -1,3 +1,4 @@
+import { base } from "$app/paths"
 import { getDocument } from "$lib/firebase/firestore"
 import type { ContentConfig } from "../Content"
 
@@ -31,15 +32,17 @@ export const getUser: (input: { id: string }) => Promise<UserContentConfig | str
 		return {
 			contentType: "user",
 			id: data.id ?? doc.id,
-			title: data.title?.trim(),
-			caption: data.caption?.trim(),
+			title: data.title?.trim() ?? "Anon",
+			caption: data.caption?.trim() ?? "",
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
-			background: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.background}`,
-			email: data.email,
-			pronouns: data.pronouns,
-			private: data.private,
-			verified: data.verified,
-			following: data.following
+			background: !data.background
+				? `${base}/placeholders/5183000.jpg`
+				: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.background}`,
+			email: data.email ?? "",
+			pronouns: data.pronouns ?? "",
+			private: data.private ?? false,
+			verified: data.verified ?? false,
+			following: data.following ?? []
 		}
 	}
 

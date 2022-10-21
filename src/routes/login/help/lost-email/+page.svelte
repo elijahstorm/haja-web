@@ -6,7 +6,7 @@
 
 	const callback = async (form) => {
 		started = true
-		formSent = lostPassword(form["email"])
+		formSent = lostPassword(form["email"].value)
 		return ""
 	}
 

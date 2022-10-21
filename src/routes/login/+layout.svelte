@@ -5,7 +5,7 @@
 	import session from "$lib/firebase/session"
 
 	$: {
-		if ($session.user && $session.ready) {
+		if (!$session.waitingCreationFlow && $session.user && $session.ready) {
 			if (browser) goto(`${base}/me`)
 		}
 	}

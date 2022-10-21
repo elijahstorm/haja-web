@@ -51,7 +51,7 @@ export const getTodo: (input: {
 			title: data.title?.trim(),
 			caption: data.caption?.trim(),
 			color:
-				data.color == ""
+				!data.color || data.color === ""
 					? "var(--primary)"
 					: `#${data.color.substring(2) + data.color.substring(0, 2)}`,
 			date: data.date.toDate(),

@@ -16,9 +16,8 @@
 <style>
 	.container {
 		display: flex;
-		background-color: var(--bg);
 		padding: 1rem 4rem 4rem 4rem;
-		height: 100vh;
+		min-height: 100vh;
 		overflow-y: auto;
 		flex-direction: column;
 		flex: 2;

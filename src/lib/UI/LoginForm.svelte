@@ -31,7 +31,7 @@
 	const facebook = async (e) => {
 		const { error } = await loginWithFacebook()
 		errorReport = error
-		errorReport = "facebook not started"
+		errorReport = "Facebook Login is not implemented or not supported/enabled."
 	}
 </script>
 
@@ -59,10 +59,10 @@
 			<button type="submit">Login</button>
 
 			<div class="providers">
-				<div class="icon" on:click={google}>
+				<div class="icon" on:click={google} on:keydown={google}>
 					<Icon icon="akar-icons:google-fill" width />
 				</div>
-				<div class="icon" on:click={facebook}>
+				<div class="icon" on:click={facebook} on:keydown={facebook}>
 					<Icon icon="akar-icons:facebook-fill" />
 				</div>
 			</div>

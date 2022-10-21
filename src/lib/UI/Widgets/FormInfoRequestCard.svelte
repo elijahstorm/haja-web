@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths"
 	import DataInput from "./DataInput.svelte"
+	import Loader from "./Loader.svelte"
 
 	export let inputs = [
 		{
@@ -15,6 +16,7 @@
 	export let callback: (form: HTMLFormElement) => Promise<string | null> = async (form) => ""
 
 	let formElement: HTMLFormElement
+	let actionError: Promise<string>
 
 	$: requestSent = false
 	$: attempted = false
@@ -27,8 +29,14 @@
 			return false
 		}
 
+		actionError = callback(formElement)
+		error = (await actionError) ?? ""
+
+		if (error != "") {
+			return false
+		}
+
 		requestSent = true
-		error = (await callback(formElement)) ?? ""
 	}
 
 	const validateForm = (): string => {
@@ -51,54 +59,65 @@
 </script>
 
 <section>
-	<div class="content">
-		<h1>
-			<slot name="title">Reset Password</slot>
-		</h1>
-
-		{#if error !== ""}
-			<div class="error">
-				{error}
+	{#if actionError}
+		{#await actionError}
+			<div class="loader">
+				<Loader />
 			</div>
-		{:else}
-			<p>
-				<slot name="help">
-					Enter your email address below and we'll send you a link to reset your password.
-				</slot>
-			</p>
-		{/if}
+		{:then error}
+			{error === "" ? "Finished! Taking you to your profile..." : error}
+		{/await}
+	{:else}
+		<div class="content">
+			<h1>
+				<slot name="title">Reset Password</slot>
+			</h1>
 
-		<div class="form-container">
-			<form bind:this={formElement} on:submit|preventDefault={sendRequest}>
-				{#each inputs as input}
-					<DataInput
-						text={input.text}
-						name={input.id}
-						id={input.id}
-						type={input.type}
-						icon={input.icon}
-						{attempted}
-						required
-					/>
-				{/each}
+			{#if error !== ""}
+				<div class="error">
+					{error}
+				</div>
+			{:else}
+				<p>
+					<slot name="help">
+						Enter your email address below and we'll send you a link to reset your
+						password.
+					</slot>
+				</p>
+			{/if}
 
-				{#if requestSent}
-					<button disabled> Request Sent </button>
-				{:else}
-					<button type="submit">
-						<slot name="button">Reset Password</slot>
-					</button>
-				{/if}
-			</form>
+			<div class="form-container">
+				<form bind:this={formElement} on:submit|preventDefault={sendRequest}>
+					{#each inputs as input}
+						<DataInput
+							text={input.text}
+							name={input.id}
+							id={input.id}
+							type={input.type}
+							icon={input.icon}
+							{attempted}
+							required
+						/>
+					{/each}
+
+					{#if requestSent}
+						<button disabled> Request Sent </button>
+					{:else}
+						<button type="submit">
+							<slot name="button">Reset Password</slot>
+						</button>
+					{/if}
+				</form>
+			</div>
 		</div>
-	</div>
 
-	<div class="bottom content">
-		<slot name="bottom">
-			<span> New to Haja? </span>
-			<a href="{base}/login/signup">Sign up</a>
-		</slot>
-	</div>
+		<div class="bottom content">
+			<slot name="bottom">
+				<span> New to Haja? </span>
+				<a href="{base}/login/signup">Sign up</a>
+			</slot>
+		</div>
+	{/if}
 </section>
 
 <style>
@@ -152,6 +171,13 @@
 		border-radius: 0.5rem;
 		font-size: 0.9rem;
 		margin-top: 1.5rem;
+	}
+
+	.loader {
+		height: 300px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.form-container {

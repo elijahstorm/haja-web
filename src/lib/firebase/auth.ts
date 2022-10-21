@@ -15,7 +15,6 @@ import session from "./session"
 import { ErrorMessaging } from "./errors"
 import { uploadDocument } from "./firestore"
 import type { TodoContentConfig } from "$lib/content/todo/TodoContent"
-import type { UserContentConfig } from "$lib/content/user/UserContent"
 
 const auth = getAuth()
 
@@ -63,18 +62,17 @@ export const loginWithInfo = (email: string, password: string) =>
 	})
 export const newUser = (email: string, password: string) =>
 	loginPipe(async () => {
+		session.update((session) => ({ ...session, waitingCreationFlow: true }))
+
 		await createUserWithEmailAndPassword(auth, email, password)
 		await sendEmailVerification(auth.currentUser)
 
-		const userContent: UserContentConfig = {
-			contentType: "user",
-			email,
-			id: await awaitMyId()
-		}
+		// auto-onboarding content for the user to experiment with
+
 		const welcomeContent: TodoContentConfig = {
 			contentType: "todo",
 			id: "",
-			title: `Welcome to Haja! Get started by tapping (+) Add`,
+			title: "Welcome to Haja! Get started by tapping (+) Add",
 			caption: "We are glad to help you :)",
 			status: "todo",
 			type: "from_haja",
@@ -87,26 +85,53 @@ export const newUser = (email: string, password: string) =>
 			caption: "Thanks for using Haja for 1 year :)",
 			status: "todo",
 			type: "from_haja",
-			date: new Date()
+			date: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
 		}
+		const editActionContent: TodoContentConfig = {
+			contentType: "todo",
+			id: "",
+			title: "Customize your profile and add your favorite images!",
+			caption: "You can add a caption to your profile and each team you've created",
+			status: "todo",
+			type: "from_haja",
+			date: new Date(new Date().setSeconds(new Date().getSeconds() + 1))
+		}
+		const editTodoPrompt: TodoContentConfig = {
+			contentType: "todo",
+			id: "",
+			title: "Oops, there's a typo in this toxdo...",
+			caption: "Tap on the text, and then press edit to fix it",
+			status: "todo",
+			type: "from_haja",
+			date: new Date(new Date().setSeconds(new Date().getSeconds() + 2))
+		}
+		const uploadOrderList = [
+			welcomeContent,
+			editActionContent,
+			editTodoPrompt,
+			aniversaryContent
+		]
+		const source = await awaitMyId()
+		const isTeam = false
 
-		uploadDocument({
-			isTeam: false,
-			id: await awaitMyId(),
-			content: userContent
+		await uploadDocument({
+			id: source,
+			isTeam,
+			content: {
+				email,
+				caption: "Edit your profile"
+			}
 		})
-		uploadDocument({
-			source: await awaitMyId(),
-			isTeam: false,
-			content: welcomeContent,
-			type: "todo"
-		})
-		uploadDocument({
-			source: await awaitMyId(),
-			isTeam: false,
-			content: aniversaryContent,
-			type: "todo"
-		})
+		uploadOrderList.map((content) =>
+			uploadDocument({
+				source,
+				isTeam,
+				content,
+				type: "todo"
+			})
+		)
+
+		session.update((session) => ({ ...session, waitingCreationFlow: false }))
 	})
 export const changePassword = (password: string, requestLink?: string) =>
 	loginPipe(async () => {
@@ -122,8 +147,9 @@ export const signOut = () => {
 }
 
 onAuthStateChanged(auth, (user) => {
-	session.set({
+	session.update((session) => ({
+		...session,
 		user,
 		ready: true
-	})
+	}))
 })

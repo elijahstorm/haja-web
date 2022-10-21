@@ -9,6 +9,7 @@
 	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
 	import EditButton from "$lib/UI/Widgets/EditButton.svelte"
 	import type { AllContentTypes } from "./Content"
+	import { base } from "$app/paths"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let isTeam: boolean = false
@@ -60,7 +61,7 @@
 
 	<div class="card">
 		<InfoCard>
-			<p slot="title">{title}'s todos!</p>
+			<p slot="title">{title ?? "unknown"}'s todos!</p>
 
 			<DateInput bind:date />
 

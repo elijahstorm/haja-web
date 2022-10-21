@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import AddTodo from "./AddTodo.svelte"
 	import type { TodoContentConfig } from "./TodoContent"
 	import TodoContent from "./TodoContent.svelte"
@@ -10,24 +9,6 @@
 	export let locked: boolean = false
 
 	let push = false
-	let page = 1
-	let list = todos
-
-	const api = `${base}/api/todos&source=${source}&isTeam=${isTeam}`
-
-	function infiniteHandler({ detail: { loaded, complete } }) {
-		fetch(`${api}&page=${page}`)
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.hits.length) {
-					page += 1
-					list = [...list, ...data.hits]
-					loaded()
-				} else {
-					complete()
-				}
-			})
-	}
 
 	const callback = (todo: TodoContentConfig) => {
 		if (typeof todos === "string") return
@@ -50,7 +31,7 @@
 	{todos}
 {:else if todos.length == 0}
 	<p>No todos yet!</p>
-{:else}
+{:else if todos}
 	<div class:push>
 		{#each todos as todo (todo.id)}
 			<div class="todo">

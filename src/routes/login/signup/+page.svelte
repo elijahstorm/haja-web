@@ -5,7 +5,7 @@
 	import { base } from "$app/paths"
 
 	const callback = async (form) => {
-		const { error } = await newUser(form["email"], form["password"])
+		const { error } = await newUser(form["email"].value, form["password"].value)
 
 		return error
 	}

@@ -103,8 +103,6 @@ export const uploadDocument: (
 // 	upload(id === null ? addDoc : setDoc)
 // )
 
-///HpVx7Nyyak72Pb4
-
 export const updateDocument: (
 	data: StoreLocation & {
 		content: SendContentConfig

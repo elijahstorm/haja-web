@@ -15,7 +15,7 @@ const config = {
 			fallback: "index.html"
 		}),
 		paths: {
-			base: dev ? "" : "/haja-web"
+			base: "/haja-web"
 		}
 	}
 }

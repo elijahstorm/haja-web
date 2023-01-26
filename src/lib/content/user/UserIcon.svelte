@@ -26,11 +26,17 @@
 					src={user.picture}
 					alt="user profile"
 					fallback="{base}/icon/person.svg"
+					cover
 				/>
 			{/if}
 		{/await}
 	{:else}
-		<FallbackImage src={user?.picture} alt="user profile" fallback="{base}/icon/person.svg" />
+		<FallbackImage
+			src={user?.picture}
+			alt="user profile"
+			fallback="{base}/icon/person.svg"
+			cover
+		/>
 	{/if}
 </div>
 

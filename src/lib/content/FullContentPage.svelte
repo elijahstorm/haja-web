@@ -45,7 +45,7 @@
 
 	<div class="background">
 		<div>
-			<FallbackImage {src} alt={`${isTeam ? "team" : "user"} ${title}`} />
+			<FallbackImage {src} alt={`${isTeam ? "team" : "user"} ${title}`} cover />
 		</div>
 		<div class="overlay">&nbsp;</div>
 		{#if isTeam || source === myId}

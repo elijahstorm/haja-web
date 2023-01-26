@@ -57,9 +57,7 @@
 	}
 
 	const share = () => {
-		const value = `${$page.url.toString().split(base)[0]}${base}/todo/${source}-${
-			isTeam ? 1 : 0
-		}/${id}`
+		const value = `${$page.url.origin}${base}/todo/${source}-${isTeam ? 1 : 0}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
 			props: { value }
@@ -68,7 +66,7 @@
 		addToast("Link copied!")
 	}
 
-	const changeColor = (color: typeof colors[number]) => {
+	const changeColor = (color: (typeof colors)[number]) => {
 		todo.color = `#${color}`
 		updateDocument({
 			type: "todo",

@@ -13,23 +13,23 @@
 	},
 	"devDependencies": {
 		"@iconify/svelte": "^3.0.1",
-		"@sveltejs/adapter-static": "^1.0.0",
-		"@sveltejs/kit": "^1.0.0",
+		"@sveltejs/adapter-static": "^1.0.5",
+		"@sveltejs/kit": "^1.2.10",
 		"as-toast": "^1.1.0",
-		"prettier": "^2.8.1",
+		"prettier": "^2.8.3",
 		"prettier-plugin-svelte": "^2.9.0",
-		"svelte": "^3.55.0",
-		"svelte-adapter-firebase": "^0.14.4",
+		"svelte": "^3.55.1",
+		"svelte-adapter-firebase": "^0.15.0",
 		"svelte-calendar": "^3.1.6",
-		"svelte-check": "^2.10.2",
+		"svelte-check": "^3.0.3",
 		"svelte-loading-spinners": "0.3.4",
-		"svelte-preprocess": "^5.0.0",
+		"svelte-preprocess": "^5.0.1",
 		"tslib": "^2.4.1",
 		"typescript": "~4.9.4",
-		"vite": "^4.0.1"
+		"vite": "^4.0.4"
 	},
 	"dependencies": {
-		"firebase": "^9.15.0",
+		"firebase": "^9.16.0",
 		"svelte-easy-crop": "^1.0.8",
 		"svelte-fa": "^3.0.3"
 	},

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import GoogleSpin from "svelte-loading-spinners/dist/ts/GoogleSpin.svelte"
+	import { GoogleSpin } from "svelte-loading-spinners"
 
 	export let size: number = 3
 	export let top: number = 0

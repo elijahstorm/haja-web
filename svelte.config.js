@@ -1,4 +1,4 @@
-import adapter from "@sveltejs/adapter-static"
+import adapter from "@sveltejs/adapter-auto"
 import preprocess from "svelte-preprocess"
 
 const dev = process.env.NODE_ENV === "development"
@@ -15,7 +15,7 @@ const config = {
 			fallback: "index.html"
 		}),
 		paths: {
-			base: "/haja-web"
+			base: dev ? "" : "/haja-web"
 		}
 	}
 }

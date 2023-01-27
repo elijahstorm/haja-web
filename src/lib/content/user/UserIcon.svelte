@@ -10,7 +10,7 @@
 	export let size: number = 2
 
 	$: myId = $session?.user?.uid
-	$: href = base + (user ? `/user/${user.id}` : "/me")
+	$: href = base + (user ? `/user/${user.id}` : "/")
 	$: style = `width: ${size}rem; height: ${size}rem;`
 
 	const myHome = () => {

@@ -19,11 +19,8 @@
 				{user}
 			{:else}
 				<UserContent {user}>
-					<div>
-						<a href="{base}/team">
-							<button class="button color primary"> My Teams </button>
-						</a>
-					</div>
+					<a class="button color primary" href="{base}/team"> My Teams </a>
+					<a class="button color primary" href="{base}/team"> Create A New Team </a>
 				</UserContent>
 			{/if}
 		{/await}
@@ -31,7 +28,9 @@
 </ProtectedPage>
 
 <style>
-	div {
-		margin: 1rem 0;
+	.button {
+		margin: 0.25rem 0.25rem;
+		border: 1px #555 solid;
+		font-size: small;
 	}
 </style>

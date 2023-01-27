@@ -1,3 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.btn {
+		@apply self-start mt-2 px-5 py-3 inline-block rounded-lg uppercase tracking-wider font-semibold text-sm lg:text-lg sm:text-base sm:mt-4 transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-50;
+	}
+	.btn-primary {
+		@apply bg-brand-500 text-white focus:ring-brand-500 focus:bg-brand-400 hover:bg-brand-400 active:bg-brand-600;
+	}
+	.btn-secondary {
+		@apply bg-gray-300 text-gray-800 focus:ring-gray-300 focus:bg-gray-200 hover:bg-gray-200 active:bg-gray-400;
+	}
+}
+
 :root {
 	--primary: #41a7fa;
 	--primary-hl: #6abcff;
@@ -22,32 +38,6 @@ body {
 	letter-spacing: 0.6px;
 }
 
-* {
-	font-family: Roboto !important;
-}
-
-img {
-	width: 100%;
-}
-
-.button {
-	cursor: pointer;
-	user-select: none;
-	font-weight: bold;
-	text-transform: uppercase;
-	padding: var(--button-padding);
-	transition: var(--short-transition);
-	background-color: var(--primary);
-	color: var(--bg);
-	border-radius: 0.5rem;
-	border: none;
-	box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 20%);
-}
-
-.button:hover {
-	box-shadow: 0 8px 10px 0 rgb(0, 0, 0, 30%);
-}
-
 .color.primary {
 	background-color: var(--primary);
 	color: var(--bg);
@@ -59,134 +49,4 @@ img {
 .button.color.primary:hover {
 	color: var(--text);
 	background-color: var(--primary-hl);
-}
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol,
-ul {
-	list-style: none;
-}
-blockquote,
-q {
-	quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
 }

@@ -59,6 +59,10 @@
 		flex: 1;
 	}
 
+	button {
+		border: 1px #555 solid;
+	}
+
 	.display {
 		margin: auto;
 		cursor: pointer;

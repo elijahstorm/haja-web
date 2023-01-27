@@ -6,7 +6,7 @@
 
 	$: {
 		if (!$session.waitingCreationFlow && $session.user && $session.ready) {
-			if (browser) goto(`${base}/me`)
+			if (browser) goto(`${base}/`)
 		}
 	}
 </script>

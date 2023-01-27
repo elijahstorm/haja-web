@@ -6,7 +6,10 @@
 </script>
 
 {#if url}
-	<div style="background-image: url({url}); width: {width}px; height: {height}px;" />
+	<div
+		class="m-auto max-w-full"
+		style="background-image: url({url}); width: {width}px; height: {height}px;"
+	/>
 {/if}
 
 <style>
@@ -14,7 +17,5 @@
 		background-position: center center;
 		background-size: contain;
 		background-repeat: no-repeat;
-		margin: auto;
-		max-width: 100%;
 	}
 </style>

@@ -10,7 +10,7 @@
 	export let size: number = 2
 
 	$: myId = $session?.user?.uid
-	$: href = base + (user ? `/user/${user.id}` : "/")
+	$: href = base + (user ? `/user/${user.id}` : "/me")
 	$: style = `width: ${size}rem; height: ${size}rem;`
 
 	const myHome = () => {
@@ -18,7 +18,12 @@
 	}
 </script>
 
-<div on:click={myHome} on:keydown={myHome} class="profile" {style}>
+<div
+	class="h-8 w-8 bg-white rounded-full border border-solid border-gray-600 overflow-hidden self-center cursor-pointer "
+	on:click={myHome}
+	on:keydown={myHome}
+	{style}
+>
 	{#if user == null}
 		{#await getUser({ id: myId }) then user}
 			{#if typeof user !== "string"}
@@ -39,16 +44,3 @@
 		/>
 	{/if}
 </div>
-
-<style>
-	.profile {
-		border-radius: 50%;
-		border: 1px #555 solid;
-		overflow: hidden;
-		align-self: center;
-		cursor: pointer;
-		height: 2rem;
-		width: 2rem;
-		background: var(--bg);
-	}
-</style>

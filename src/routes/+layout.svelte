@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import { navigating } from "$app/stores"
 	import Loader from "$lib/UI/Widgets/Loader.svelte"
 	import { Toasts } from "as-toast"
+	import "../app.css"
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="{base}/app.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 	<link
@@ -18,8 +17,10 @@
 <slot />
 
 {#if $navigating}
-	<div>
-		<div class="loading-box">
+	<div class="fixed inset-0 bg-slate-400 bg-opacity-20">
+		<div
+			class="fixed inset-0 m-auto h-min w-min p-8 bg-white rounded-lg border border-solid border-black"
+		>
 			<Loader />
 		</div>
 	</div>
@@ -28,20 +29,9 @@
 <Toasts />
 
 <style>
-	div {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
-	.loading-box {
-		margin: auto;
-		height: min-content;
-		width: min-content;
-		padding: 2rem;
+	:global(body) {
 		background: var(--bg);
-		border-radius: 0.5rem;
-		border: 1px var(--text) solid;
+		color: var(--text);
+		letter-spacing: 0.6px;
 	}
 </style>

@@ -5,28 +5,10 @@
 	export let logoLink: string = "/"
 </script>
 
-<section>
-	<div class="container">
+<section class="flex justify-center">
+	<div class="w-full max-w-4xl p-8 pb-16 overflow-hidden break break-words">
 		<Header {backBtn} {logoLink} />
-		<div class="padding-bottom" />
+		<div class="pb-6" />
 		<slot />
 	</div>
 </section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-	.container {
-		width: 100%;
-		max-width: 900px;
-		padding: 32px 32px 64px 32px;
-		overflow: hidden;
-		word-wrap: break-word;
-	}
-	.padding-bottom {
-		padding-bottom: var(--default-padding);
-	}
-</style>

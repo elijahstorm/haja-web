@@ -9,7 +9,6 @@
 	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
 	import EditButton from "$lib/UI/Widgets/EditButton.svelte"
 	import type { AllContentTypes } from "./Content"
-	import { base } from "$app/paths"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let isTeam: boolean = false

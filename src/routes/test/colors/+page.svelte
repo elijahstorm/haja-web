@@ -43,7 +43,7 @@
 	{/each}
 </svelte:head>
 
-<section style={`grid-template-columns: repeat(${fonts.length}, 1fr);`}>
+<section class="grid gap-4" style={`grid-template-columns: repeat(${fonts.length}, 1fr);`}>
 	{#each colors as color (color)}
 		{#each fonts as font (font)}
 			<p style={styleRender(color, font)}>{textRender(font)}</p>
@@ -52,10 +52,6 @@
 </section>
 
 <style>
-	section {
-		display: grid;
-		gap: 1rem;
-	}
 	p {
 		text-stroke: 3px #000;
 		-webkit-text-stroke: 3px #000;

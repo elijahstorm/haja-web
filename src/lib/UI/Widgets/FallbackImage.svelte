@@ -9,15 +9,4 @@
 	const handleError = (e) => (e.target.src = fallback)
 </script>
 
-<img class:cover {src} {alt} on:error={handleError} />
-
-<style>
-	img {
-		width: 100%;
-		height: 100%;
-	}
-
-	.cover {
-		object-fit: cover;
-	}
-</style>
+<img class="w-full h-full" class:object-cover={cover} {src} {alt} on:error={handleError} />

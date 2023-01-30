@@ -11,4 +11,8 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Haja: Do Together</title>
+</svelte:head>
+
 <slot />

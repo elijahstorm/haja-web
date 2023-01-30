@@ -39,7 +39,7 @@
 	<form class:attempted on:submit|preventDefault={submit}>
 		<div class="p-4 mb-20">
 			<div class="flex gap-2 text-sm my-4 sm:hidden">
-				<img class="w-24" src="{base}/haja/logo_horizontal_full.png" alt="haja" />
+				<img class="w-24" src="{base}/images/haja/logo_horizontal_full.png" alt="haja" />
 			</div>
 
 			{#if errorReport}

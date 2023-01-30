@@ -9,25 +9,11 @@
 </script>
 
 <FullContentPage entity={team} isTeam={true}>
-	<div slot="info">
-		<UserIconList {users} hideMe />
-		<p>
+	<div class="flex justify-end content-center gap-4" slot="info">
+		<UserIconList {users} hideMe size={1.5} />
+		<p class="self-center text-base">
 			{users.length} user{users.length != 1 ? "s" : ""}
 		</p>
 	</div>
 	<slot />
 </FullContentPage>
-
-<style>
-	div {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-content: center;
-		gap: 1rem;
-	}
-	p {
-		font-size: 20px;
-		align-self: center;
-	}
-</style>

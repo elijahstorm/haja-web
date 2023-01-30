@@ -38,7 +38,7 @@
 
 <svelte:window on:resize={resize} />
 
-<section on:click={next}>
+<section on:click={next} on:keydown={next}>
 	<div class="background">
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>

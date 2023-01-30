@@ -4,7 +4,7 @@
 
 @layer components {
 	.btn {
-		@apply self-start mt-2 px-5 py-3 inline-block rounded-lg uppercase tracking-wider font-semibold text-sm lg:text-lg sm:text-base sm:mt-4 transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-50;
+		@apply self-start px-5 py-3 inline-block rounded-lg uppercase tracking-wider font-semibold text-sm lg:text-lg sm:text-base transition focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-50;
 	}
 	.btn-primary {
 		@apply bg-brand-500 text-white focus:ring-brand-500 focus:bg-brand-400 hover:bg-brand-400 active:bg-brand-600;

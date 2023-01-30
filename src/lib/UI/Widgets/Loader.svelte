@@ -13,14 +13,6 @@
 	$: style = `padding: ${padding.map((p) => `${p}rem`).join(" ")};`
 </script>
 
-<div {style}>
+<div class="m-auto w-12 h-12" {style}>
 	<GoogleSpin size={size + "rem"} />
 </div>
-
-<style>
-	div {
-		margin: auto;
-		width: 3rem;
-		height: 3rem;
-	}
-</style>

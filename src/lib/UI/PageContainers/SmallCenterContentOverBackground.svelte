@@ -3,38 +3,12 @@
 	import Logo from "$lib/UI/Branding/Logo.svelte"
 </script>
 
-<div class="container">
-	<div class="logo">
+<div class="flex flex-col p-16 pt-4 min-h-screen overflow-y-auto bg-brand-800 select-none">
+	<div class="mt-0 mb-2 mx-auto max-w-xs max-h-full text-white">
 		<Logo url={`${base}/haja/logo_horizontal_white.png`} height={200} />
 	</div>
 
-	<div class="content">
+	<div class="text-white">
 		<slot />
 	</div>
 </div>
-
-<style>
-	.container {
-		display: flex;
-		padding: 1rem 4rem 4rem 4rem;
-		min-height: 100vh;
-		overflow-y: auto;
-		flex-direction: column;
-		flex: 2;
-		background-color: var(--primary);
-		user-select: none;
-		-webkit-user-select: none;
-	}
-
-	.logo {
-		margin: 0 auto 0.5rem auto;
-		width: 100%;
-		max-width: 200px;
-		max-height: 100%;
-		text-align: center;
-	}
-
-	div {
-		color: white;
-	}
-</style>

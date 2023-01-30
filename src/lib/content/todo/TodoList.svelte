@@ -30,13 +30,13 @@
 {#if typeof todos === "string" || !Array.isArray(todos)}
 	{todos}
 {:else if todos.length == 0}
-	<p>No todos yet!</p>
+	<p class="mt-8">No todos yet!</p>
 
 	Todo: Add teams creations...
 {:else if todos}
 	<div class:push>
 		{#each todos as todo (todo.id)}
-			<div class="todo">
+			<div class="my-4 mx-0">
 				<TodoContent {todo} {source} {isTeam} />
 			</div>
 		{/each}
@@ -44,9 +44,6 @@
 {/if}
 
 <style>
-	.todo {
-		margin: 1rem 0;
-	}
 	:not(.add).push {
 		transform: translateY(-3rem);
 		animation-name: push;
@@ -60,9 +57,6 @@
 		animation-delay: 600ms;
 		animation-duration: 500ms;
 		animation-timing-function: ease;
-	}
-	p {
-		margin-top: 2rem;
 	}
 
 	@keyframes push {

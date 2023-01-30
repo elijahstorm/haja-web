@@ -5,7 +5,7 @@
 	export let todo: TodoContentConfig
 	export let source: string = null
 	export let isTeam: boolean
-	export let requestSave = () => {}
+	export const requestSave = () => {}
 </script>
 
 <slot />

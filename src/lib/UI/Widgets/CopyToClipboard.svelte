@@ -12,10 +12,4 @@
 	})
 </script>
 
-<textarea bind:value bind:this={textarea} />
-
-<style>
-	textarea {
-		display: none;
-	}
-</style>
+<textarea class="hidden" bind:value bind:this={textarea} />

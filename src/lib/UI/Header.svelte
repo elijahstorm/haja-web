@@ -2,7 +2,7 @@
 	import { base } from "$app/paths"
 
 	import BackButton from "$lib/UI/BackButton.svelte"
-	import Login from "$lib/UI/Login.svelte"
+	import LoginHeader from "$lib/UI/LoginHeader.svelte"
 
 	export let backBtn: boolean = true
 	export let logoLink: string = "/"
@@ -15,22 +15,8 @@
 		<BackButton />
 	{/if}
 	<a href={base + logoLink}>
-		<img src={logo} alt="HAJA" />
+		<img class="cursor-pointer w-32" src={logo} alt="HAJA" />
 	</a>
-	<div class="center" />
-	<Login />
+	<div class="flex-1" />
+	<LoginHeader />
 </div>
-
-<style>
-	.flex {
-		display: flex;
-		flex-direction: horizontal;
-	}
-	img {
-		max-width: 120px;
-		cursor: pointer;
-	}
-	.center {
-		flex: 1;
-	}
-</style>

@@ -63,12 +63,13 @@
 	}
 </script>
 
-<div class="flex" class:editing on:click={add} on:keydown={add}>
+<div class="flex gap-4" class:cursor-pointer={!editing} on:click={add} on:keydown={add}>
 	<div>
 		<Icon {icon} color={style} {width} />
 	</div>
 	{#if editing}
 		<input
+			class="font-bold w-full border-none text-lg"
 			bind:this={input}
 			bind:value={title}
 			placeholder="Let's do Together!"
@@ -76,35 +77,18 @@
 			on:keydown={saveOnEnter}
 		/>
 	{:else}
-		<div class="todo">
-			<span class="bold">Add a new todo now!</span>
+		<div class="text-lg my-auto mx-0">
+			<span class="font-bold">Add a new todo now!</span>
 		</div>
 	{/if}
 </div>
 
 <style>
-	.flex {
-		display: flex;
-		gap: var(--default-padding);
-	}
 	.flex > :first-child {
 		flex: 0 0 30px;
 	}
-	.flex:not(.editing) {
-		cursor: pointer;
-	}
-	.todo {
-		font-size: 20px;
-		margin: auto 0;
-	}
-	.bold {
-		font-weight: bold;
-	}
+
 	input {
-		width: 100%;
-		border: none;
-		font-size: 20px;
-		font-weight: bold;
 		background: transparent;
 	}
 </style>

@@ -26,14 +26,7 @@
 			<Content {content} source={source ?? content.id} {isTeam} />
 		{/await}
 	{:else}
-		<p>{errors ?? "Sorry, we can't find what you're looking for 🔎"}</p>
-		<p>You may need to login to view this content</p>
+		<p class="mt-8 w-full">{errors ?? "Sorry, we can't find what you're looking for 🔎"}</p>
+		<p class="mt-8 w-full">You may need to login to view this content</p>
 	{/if}
 </Casing>
-
-<style>
-	p {
-		margin-top: 2rem;
-		width: 100%;
-	}
-</style>

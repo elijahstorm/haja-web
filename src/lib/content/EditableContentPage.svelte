@@ -26,7 +26,7 @@
 		{#await content}
 			<Loader />
 		{:then content}
-			<div class="edit">
+			<div class="edit mb-20">
 				{#if content.contentType == "team"}
 					<TeamEditor team={content} {isTeam} bind:requestSave>
 						<slot />
@@ -43,20 +43,12 @@
 			</div>
 		{/await}
 	{:else}
-		<p>{errors ?? "Sorry, we can't find what you're looking for 🔎"}</p>
-		<p>You may need to login to view this content</p>
+		<p class="mt-8 w-full">{errors ?? "Sorry, we can't find what you're looking for 🔎"}</p>
+		<p class="mt-8 w-full">You may need to login to view this content</p>
 	{/if}
 </ProtectedPage>
 
 <style>
-	.edit {
-		margin-bottom: 5rem;
-	}
-	p {
-		margin-top: 2rem;
-		width: 100%;
-	}
-
 	:global(.edit .row) {
 		display: flex;
 		flex-direction: row;

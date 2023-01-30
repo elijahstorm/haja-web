@@ -11,14 +11,8 @@
 	No teams joined!
 {:else}
 	{#each teams as team (team.id)}
-		<div>
+		<div class="my-4">
 			<TeamCard {team} />
 		</div>
 	{/each}
 {/if}
-
-<style>
-	div {
-		margin: 1rem 0;
-	}
-</style>

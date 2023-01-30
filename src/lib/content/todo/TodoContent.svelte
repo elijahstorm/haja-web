@@ -77,18 +77,19 @@
 {#if todo.status == "[broken]"}
 	<FallbackImage alt="todo not found" />
 {:else if todo.status != "[deleted]"}
-	<div class="flex" out:fade>
+	<div class="flex gap-4 items-start" out:fade>
 		<div
-			class="icon"
+			class="relative cursor-pointer"
 			on:click|preventDefault={toggleDone}
 			on:keydown|preventDefault={toggleDone}
 		>
 			<Icon {color} {width} {icon} />
 		</div>
-		<div class="flex column">
+		<div class="flex flex-col gap-3">
 			{#if editing}
 				<!-- svelte-ignore a11y-autofocus -->
 				<input
+					class="font-bold w-full border-none text-lg"
 					bind:this={input}
 					bind:value={todo.title}
 					placeholder="Let's do Together!"
@@ -98,17 +99,17 @@
 				/>
 			{:else}
 				<div
-					class="todo flex column"
+					class="cursor-pointer text-lg my-auto mx-0 flex flex-col"
 					on:click={toggleShowInlineEditor}
 					on:keydown={toggleShowInlineEditor}
 				>
-					<p class="bold">{todo.title}</p>
+					<p class="font-bold">{todo.title}</p>
 					{#if todo.caption != ""}
-						<p class="caption">{todo.caption}</p>
+						<p class="opacity-60">{todo.caption}</p>
 					{/if}
 					{#if shown}
 						<p
-							class="date"
+							class="opacity-60"
 							in:fly={{ y: -50, duration: 300 }}
 							out:fly={{ y: -50, duration: 300 }}
 						>
@@ -116,6 +117,7 @@
 						</p>
 					{/if}
 				</div>
+
 				<InlineTodoEditor bind:todo bind:editing {shown} {source} {isTeam} />
 			{/if}
 		</div>
@@ -123,37 +125,7 @@
 {/if}
 
 <style>
-	.flex {
-		display: flex;
-		gap: var(--default-padding);
-		align-items: flex-start;
-	}
-	.column {
-		flex-direction: column;
-		gap: 0.75rem;
-		margin-top: 0.2rem;
-	}
-	.todo {
-		cursor: pointer;
-		font-size: 20px;
-		margin: auto 0;
-	}
-	.bold {
-		font-weight: bold;
-	}
-	.caption,
-	.date {
-		opacity: 0.6;
-	}
-	.icon {
-		cursor: pointer;
-		position: relative;
-	}
 	input {
-		width: 100%;
-		border: none;
-		font-size: 20px;
-		font-weight: bold;
 		background: transparent;
 	}
 </style>

@@ -37,16 +37,10 @@
 	>
 	<span
 		slot="right"
-		class="primary"
+		class="text-brand-500"
 		on:click|stopPropagation={save(update("closed"))}
 		on:keypress={keypress(save(update("closed")))}>Submit</span
 	>
 
 	<EditableContentPage bind:content={entity} {isTeam} bind:requestSave />
 </DraggableModal>
-
-<style>
-	.primary {
-		color: var(--primary);
-	}
-</style>

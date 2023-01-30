@@ -13,14 +13,8 @@
 	$: style = `grid-template-columns: repeat(${cols}, 1fr); gap: ${gap};`
 </script>
 
-<section {style}>
+<section class="grid" {style}>
 	{#each items as item, index}
 		<slot {item} {index} />
 	{/each}
 </section>
-
-<style>
-	section {
-		display: grid;
-	}
-</style>

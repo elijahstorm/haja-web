@@ -19,18 +19,14 @@
 				{user}
 			{:else}
 				<UserContent {user}>
-					<a class="button color primary" href="{base}/team"> My Teams </a>
-					<a class="button color primary" href="{base}/team"> Create A New Team </a>
+					<a
+						class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+						href="{base}/team"
+					>
+						My Teams
+					</a>
 				</UserContent>
 			{/if}
 		{/await}
 	</Casing>
 </ProtectedPage>
-
-<style>
-	.button {
-		margin: 0.25rem 0.25rem;
-		border: 1px #555 solid;
-		font-size: small;
-	}
-</style>

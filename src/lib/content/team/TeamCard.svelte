@@ -27,77 +27,43 @@
 	}
 </script>
 
-<div class="card" on:click={view} on:keypress={view}>
-	<div class="grid">
+<div
+	class="card rounded-3xl overflow-hidden border border-solid cursor-pointer border-grey-500"
+	on:click={view}
+	on:keypress={view}
+>
+	<div class="grid grid-c grid-rows-2 justify-between content-between">
 		{#if typeof team !== "string"}
-			<div class="background">
+			<div class="background col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
 				<FallbackImage {src} alt={`team ${title}`} />
 			</div>
-			<p class="title bold">{title}</p>
-			<p class="caption">{caption}</p>
-			<div class="info">
+			<p class="p-4 text-white col-start-1 row-start-2 self-end font-bold">{title}</p>
+			<p class="p-4 text-white col-start-1 row-start-1 row-end-3">{caption}</p>
+			<div
+				class="col-start-2 row-start-2 self-end justify-self-end flex justify-end content-center"
+			>
 				<UserIconList {users} hideMe />
-				<p class="bold">
+				<p class="p-4 text-white font-bold">
 					{users.length}
 				</p>
 			</div>
 		{:else}
-			<div class="background">
+			<div class="background col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
 				<img src={img404} alt="team not found" />
 			</div>
-			<p class="caption bold alert">Team not found</p>
+			<p class="p-4 col-start-1 row-start-1 row-end-3 font-bold text-red-500">
+				Team not found
+			</p>
 		{/if}
 	</div>
 </div>
 
 <style>
 	.card {
-		border-radius: 20px;
-		overflow: hidden;
-		border: 1px solid #555;
-		cursor: pointer;
 		background-image: linear-gradient(#0007, #0002, var(--bg), #0002, #0007);
 	}
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		justify-content: space-between;
-		align-content: space-between;
-	}
+
 	.background {
 		aspect-ratio: 2 / 1;
-		grid-column: 1 / 3;
-		grid-row: 1 / 3;
-		overflow: hidden;
-	}
-	p {
-		padding: 1rem;
-		color: var(--bg);
-	}
-	.bold {
-		font-weight: bold;
-	}
-	.alert {
-		color: red;
-	}
-	.title {
-		grid-column: 1;
-		grid-row: 2;
-		align-self: flex-end;
-	}
-	.caption {
-		grid-column: 1;
-		grid-row: 1 / 3;
-	}
-	.info {
-		grid-column: 2;
-		grid-row: 2;
-		align-self: flex-end;
-		justify-self: flex-end;
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-content: center;
 	}
 </style>

@@ -13,13 +13,15 @@
 	$: iconHref = `background: url(${base}${icon}); background-size: 1.5rem auto; background-repeat: repeat;`
 </script>
 
-<div class="input-container">
+<div class="relative my-4 mx-0">
 	{#if icon != ""}
-		<div class="input-icon icon-username" style={iconHref} />
+		<div class="input-icon absolute -mt-2 w-6 h-6 left-3 bottom-4" style={iconHref} />
 	{/if}
+
 	<input
-		class:push={icon != ""}
-		class:attempted
+		class="text-sm text-black w-full rounded-lg p-4 border border-brand-500"
+		class:invalid:border-red-500={attempted}
+		class:pl-14={icon != ""}
 		{id}
 		{name}
 		placeholder={text}
@@ -29,18 +31,6 @@
 </div>
 
 <style>
-	.input-container {
-		position: relative;
-		margin: 1rem 0 1rem 0;
-	}
-	.input-icon {
-		position: absolute;
-		bottom: 13px;
-		margin-top: -9px;
-		left: 12px;
-		width: 1.5rem;
-		height: 1.5rem;
-	}
 	.input-icon::after {
 		content: "";
 		position: absolute;
@@ -64,19 +54,5 @@
 			#d4d4d4 70%,
 			rgba(212, 212, 212, 0) 100%
 		);
-	}
-	input {
-		border: 1px solid var(--primary);
-		padding: 1rem;
-		border-radius: 0.5rem;
-		font-size: 0.9rem;
-		width: calc(100% - 2.125rem);
-	}
-	input.push {
-		padding-left: 3.5rem;
-		width: calc(100% - 4.7rem);
-	}
-	input.attempted:invalid {
-		border: 1px solid var(--error-soft);
 	}
 </style>

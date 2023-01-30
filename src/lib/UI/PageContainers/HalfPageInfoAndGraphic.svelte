@@ -16,108 +16,30 @@
 	export let icon: keyof typeof icons = "events"
 </script>
 
-<div class="container">
-	<div class="left">
-		<div class="logo">
+<div class="absolute inset-0 flex bg-white">
+	<div
+		class="flex-2 max-w-xl bg-brand-900 select-none overflow-hidden p-16 pb-0 flex-col hidden md:flex"
+	>
+		<div class="flex-1 w-full m-auto my-0 max-w-xs">
 			<Logo url={`${base}/haja/logo_horizontal_white.png`} height={200} />
 		</div>
-		<div class="bottom-logo">
-			<img src="{base}/icon/blob.svg" alt="white background" />
-			<img src={base + icons[icon]} alt="haja-icon" />
+		<div class="flex-1 w-full m-auto max-w-xs relative mb-8 h-0">
+			<img class="absolute" src="{base}/icon/blob.svg" alt="white background" />
+			<img class="absolute" src={base + icons[icon]} alt="haja-icon" />
 		</div>
 	</div>
 
-	<div class="right">
-		<div class="logo small">
+	<div
+		class="flex flex-col flex-3 max-w-2xl overflow-y-auto overflow-hidden py-16 px-4 md:p-16 md:pb-0"
+	>
+		<div class="my-0 mx-auto max-w-xs opacity-0 hidden sm:block sm:opacity-100">
 			<Logo url={`${base}/haja/logo_horizontal_full.png`} height={100} />
 		</div>
 		<slot />
-		<img src={base + icons[icon]} alt="haja-icon" />
+		<img
+			class="m-auto max-w-xs block opacity-100 md:hidden md:opacity-0"
+			src={base + icons[icon]}
+			alt="haja-icon"
+		/>
 	</div>
 </div>
-
-<style>
-	.container {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		display: flex;
-		background-color: var(--bg);
-	}
-
-	.left,
-	.right {
-		overflow: hidden;
-		padding: 4rem 4rem 0 4rem;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.left {
-		flex: 2;
-		max-width: 600px;
-		background-color: var(--primary);
-		user-select: none;
-		-webkit-user-select: none;
-	}
-
-	.left > * {
-		flex: 1;
-		margin: auto;
-		max-width: 400px;
-	}
-	.left > .bottom-logo {
-		position: relative;
-		margin-bottom: 2rem;
-		width: 100%;
-		height: 0;
-	}
-	.left > .bottom-logo * {
-		position: absolute;
-	}
-
-	.right {
-		flex: 3;
-		max-width: 600px;
-		overflow-y: auto;
-	}
-	.logo {
-		margin: 0 auto;
-		width: 100%;
-		max-width: 200px;
-		max-height: 100%;
-		text-align: center;
-	}
-
-	.right img {
-		margin: auto;
-	}
-	.logo.small,
-	.right > img:last-of-type {
-		max-width: 300px;
-		display: none;
-		opacity: 0;
-	}
-	.right > img:last-of-type {
-		display: none;
-	}
-
-	@media only screen and (max-width: 37.5em) {
-		.right {
-			padding: 4rem 1rem;
-		}
-		.logo.small,
-		.right > img:last-of-type {
-			display: block;
-			opacity: 1;
-		}
-		.right > img:last-of-type {
-			display: block;
-		}
-		.left {
-			display: none;
-		}
-	}
-</style>

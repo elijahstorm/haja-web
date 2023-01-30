@@ -3,6 +3,7 @@
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { updatePassword } from "firebase/auth"
 	import { base } from "$app/paths"
+	import BottomBreakCardInfo from "$lib/UI/Widgets/BottomBreakCardInfo.svelte"
 
 	export let data
 
@@ -50,6 +51,13 @@
 		>
 			<div slot="title">Update Password</div>
 			<div slot="button">Update</div>
+			<div slot="bottom">
+				<BottomBreakCardInfo
+					text="New to Haja?"
+					actionText="Sign up"
+					href="{base}/login/signup"
+				/>
+			</div>
 		</FormInfoRequestCard>
 	{:else}
 		<span>Password updated. </span>

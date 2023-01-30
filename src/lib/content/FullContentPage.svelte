@@ -32,33 +32,35 @@
 	}
 </script>
 
-<section>
-	<div class="header">
-		<div class="description">
-			<p>{caption}</p>
+<section class="grid grid-cols-2 justify-between content-between select-none">
+	<div class="flex gap-4 justify-between mb-4 col-start-1 col-end-3">
+		<div>
+			<p class="m-auto">{caption}</p>
 			<slot />
 		</div>
 
-		<div class="info"><slot name="info" /></div>
+		<slot name="info" />
 	</div>
 
-	<div class="background">
-		<div>
+	<div
+		class="background grid grid-cols-1 grid-rows-2 col-start-1 col-end-3 row-start-2 row-end-4 rounded overflow-hidden"
+	>
+		<div class="col-start-1 row-start-1 row-end-3">
 			<FallbackImage {src} alt={`${isTeam ? "team" : "user"} ${title}`} cover />
 		</div>
-		<div class="overlay">&nbsp;</div>
+		<div class="overlay col-start-1 row-start-1 row-end-3">&nbsp;</div>
 		{#if isTeam || source === myId}
-			<div class="btn">
+			<div class="col-start-1 row-start-1 row-end-3 self-start justify-self-end m-4">
 				<EditButton entity={promise} {isTeam} />
 			</div>
 		{/if}
 	</div>
 
-	<div class="picture">
+	<div class="ml-4 col-start-1 row-start-2 self-center justify-start aspect-square h-8">
 		<slot name="picture" />
 	</div>
 
-	<div class="card">
+	<div class="col-start-1 col-end-3 row-start-3 row-end-4">
 		<InfoCard>
 			<p slot="title">{title ?? "unknown"}'s todos!</p>
 
@@ -73,76 +75,14 @@
 
 <style>
 	section {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
 		grid-template-rows: auto 6rem 1fr;
-		justify-content: space-between;
-		align-content: space-between;
-		user-select: none;
-	}
-	.background {
-		aspect-ratio: 2 / 1;
-		grid-column: 1 / 3;
-		grid-row: 2 / 4;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(2, 1fr);
-		border-top-left-radius: 0.25rem;
-		border-top-right-radius: 0.25rem;
-		overflow: hidden;
-	}
-	.background > * {
-		grid-row: 1 / 3;
-		grid-column: 1;
-	}
-	.background > .btn {
-		grid-row: 1 / 3;
-		grid-column: 1;
-		align-self: flex-start;
-		justify-self: flex-end;
-		margin: 1rem;
-		overflow: hidden;
-	}
-	:global(.background > .btn button) {
-		opacity: 0;
-		transition: opacity 0.7s ease;
-	}
-	:global(.background:hover > .btn button) {
-		opacity: 0.8;
-	}
-	@media only screen and (max-width: 31.25rem) {
-		:global(.background > .btn button) {
-			opacity: 1;
-		}
-	}
-	.background > .overlay {
-		background-image: linear-gradient(transparent, transparent, #fff2, #fffb, var(--bg));
-	}
-	.card {
-		grid-column: 1 / 3;
-		grid-row: 3 / 4;
 	}
 
-	.header {
-		display: flex;
-		gap: 1rem;
-		justify-content: space-between;
-		margin-bottom: 1rem;
-		grid-column: 1 / 3;
+	.background {
+		aspect-ratio: 2 / 1;
 	}
-	.description {
-		display: inherit;
-	}
-	.description > p {
-		margin: auto;
-	}
-	.picture {
-		margin-left: 1rem;
-		grid-column: 1;
-		grid-row: 2;
-		align-self: center;
-		justify-self: flex-start;
-		height: 50%;
-		aspect-ratio: 1;
+
+	.overlay {
+		background-image: linear-gradient(transparent, transparent, #fff2, #fffb, var(--bg));
 	}
 </style>

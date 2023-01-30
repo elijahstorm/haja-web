@@ -109,9 +109,9 @@
 <svelte:window on:resize={resize} />
 
 {#if shown}
-	<div class="flex" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
+	<div class="flex gap-3" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
 		{#each icons as icon}
-			<div on:click={icon.action} on:keydown={icon.action}>
+			<div class="cursor-pointer" on:click={icon.action} on:keydown={icon.action}>
 				{#if icon.action === cal}
 					<div class="remove-defaults">
 						<Datepicker bind:store={updateDate}>
@@ -126,10 +126,10 @@
 		<div bind:this={clipboard} />
 	</div>
 	{#if smallContent}
-		<div class="flex">
+		<div class="flex gap-3">
 			{#each colors.slice(0, 5) as color (color)}
 				<div
-					class="color"
+					class="overflow-hidden rounded-full cursor-pointer flex w-5 h-5 items-center justify-center"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
@@ -140,10 +140,10 @@
 				</div>
 			{/each}
 		</div>
-		<div class="flex">
+		<div class="flex gap-3">
 			{#each colors.slice(5) as color (color)}
 				<div
-					class="color"
+					class="overflow-hidden rounded-full cursor-pointer flex w-5 h-5 items-center justify-center"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
@@ -151,10 +151,14 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="flex" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
+		<div
+			class="flex gap-3"
+			in:fly={{ y: -50, duration: 300 }}
+			out:fly={{ y: -50, duration: 300 }}
+		>
 			{#each colors as color (color)}
 				<div
-					class="color"
+					class="overflow-hidden rounded-full cursor-pointer flex w-5 h-5 items-center justify-center"
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
@@ -167,22 +171,3 @@
 		</div>
 	{/if}
 {/if}
-
-<style>
-	.flex {
-		display: flex;
-		gap: 0.75rem;
-	}
-	.flex > * {
-		cursor: pointer;
-		width: 1.25rem;
-		height: 1.25rem;
-	}
-	.color {
-		overflow: hidden;
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-</style>

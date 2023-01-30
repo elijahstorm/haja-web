@@ -58,27 +58,31 @@
 	}
 </script>
 
-<section>
+<section
+	class="bg-white w-full overflow-hidden my-8 mx-auto border border-gray-400 rounded-lg max-w-md shadow-md"
+>
 	{#if actionError}
 		{#await actionError}
-			<div class="loader">
+			<div class="flex h-80 justify-center items-center">
 				<Loader />
 			</div>
 		{:then error}
 			{error === "" ? "Finished! Taking you to your profile..." : error}
 		{/await}
 	{:else}
-		<div class="content">
-			<h1>
+		<div class="p-8">
+			<h1 class="text-brand-500 text-center font-bold text-2xl mt-4 mb-5">
 				<slot name="title">Reset Password</slot>
 			</h1>
 
 			{#if error !== ""}
-				<div class="error">
+				<div
+					class="border py-4 px-6 rounded-lg text-sm mt-6 text-red-500 bg-red-100 border-red-400"
+				>
 					{error}
 				</div>
 			{:else}
-				<p>
+				<p class="border border-transparent text-left text-gray-500 text-ms mt-6 py-2 px-0">
 					<slot name="help">
 						Enter your email address below and we'll send you a link to reset your
 						password.
@@ -86,7 +90,7 @@
 				</p>
 			{/if}
 
-			<div class="form-container">
+			<div class="relative w-full mt-6 mx-auto">
 				<form bind:this={formElement} on:submit|preventDefault={sendRequest}>
 					{#each inputs as input}
 						<DataInput
@@ -101,9 +105,16 @@
 					{/each}
 
 					{#if requestSent}
-						<button disabled> Request Sent </button>
+						<button
+							class="border-none w-full rounded-lg text-sm uppercase text-white bg-brand-800 py-4 px-6 opacity-60"
+						>
+							Request Sent
+						</button>
 					{:else}
-						<button type="submit">
+						<button
+							class="border-none w-full rounded-lg text-sm uppercase text-white bg-brand-800 py-4 px-6"
+							type="submit"
+						>
 							<slot name="button">Reset Password</slot>
 						</button>
 					{/if}
@@ -111,103 +122,6 @@
 			</div>
 		</div>
 
-		<div class="bottom content">
-			<slot name="bottom">
-				<span> New to Haja? </span>
-				<a href="{base}/login/signup">Sign up</a>
-			</slot>
-		</div>
+		<slot name="bottom" />
 	{/if}
 </section>
-
-<style>
-	section {
-		background-color: white;
-		width: 100%;
-		overflow: hidden;
-	}
-
-	section {
-		margin: 2rem auto;
-		border: 1px solid #f0f0f0;
-		border-radius: 0.5rem;
-		max-width: 400px;
-		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-	}
-	h1 {
-		color: var(--primary);
-		text-align: center;
-		font-weight: bold;
-		font-size: 1.4rem;
-		margin-top: 1rem;
-		margin-bottom: 1.25rem;
-	}
-	span,
-	p {
-		border: 1px solid transparent;
-		text-align: left;
-		margin: 1.5rem 0 0 0;
-		color: #555;
-		font-size: 0.9rem;
-		padding: 0.5rem 0 calc(0.5rem + 2px) 0;
-	}
-	:global(section .bottom span) {
-		color: #555;
-	}
-	:global(section .bottom a) {
-		color: var(--primary);
-		text-decoration: none;
-		border-bottom: 1px solid;
-		border-bottom-color: var(--transparent);
-		transition: border-bottom-color 0.3s;
-	}
-
-	.error {
-		border: 1px solid transparent;
-		background-color: #fdf6f6;
-		border-color: var(--error-soft);
-		color: var(--error);
-		padding: 1rem 1.6rem;
-		border-radius: 0.5rem;
-		font-size: 0.9rem;
-		margin-top: 1.5rem;
-	}
-
-	.loader {
-		height: 300px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.form-container {
-		margin: 1.5rem auto 0 auto;
-		width: 100%;
-		position: relative;
-	}
-	button {
-		padding: 1rem 1.6rem;
-		border: none;
-		width: 100%;
-		border-radius: 0.5rem;
-		font-size: 0.9rem;
-		text-transform: uppercase;
-		color: white;
-		background: #0081c6;
-		cursor: pointer;
-	}
-	button:disabled {
-		opacity: 0.6;
-	}
-
-	.content {
-		padding: 2rem;
-	}
-
-	.bottom {
-		border-top: 1px solid #ddd;
-		background-color: #f5f5f5;
-		text-align: center;
-		padding: 1.5rem;
-	}
-</style>

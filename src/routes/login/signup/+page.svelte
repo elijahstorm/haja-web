@@ -3,6 +3,7 @@
 	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { newUser } from "$lib/firebase/auth"
 	import { base } from "$app/paths"
+	import BottomBreakCardInfo from "$lib/UI/Widgets/BottomBreakCardInfo.svelte"
 
 	const callback = async (form) => {
 		const { error } = await newUser(form["email"].value, form["password"].value)
@@ -39,8 +40,11 @@
 		<div slot="button">Signup</div>
 		<div slot="help">Start using Haja today! Enter your email and create a new password</div>
 		<div slot="bottom">
-			<span> Already have an account? </span>
-			<a href="{base}/login">Login</a>
+			<BottomBreakCardInfo
+				text="Already have an account?"
+				actionText="Login"
+				href="{base}/login"
+			/>
 		</div>
 	</FormInfoRequestCard>
 </SmallCenterContentOverBackground>

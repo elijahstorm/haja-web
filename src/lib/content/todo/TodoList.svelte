@@ -31,8 +31,6 @@
 	{todos}
 {:else if todos.length == 0}
 	<p class="mt-8">No todos yet!</p>
-
-	Todo: Add teams creations...
 {:else if todos}
 	<div class:push>
 		{#each todos as todo (todo.id)}

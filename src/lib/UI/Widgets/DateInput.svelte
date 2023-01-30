@@ -20,10 +20,12 @@
 	const sub = (amt) => date.add(-1, amt)
 </script>
 
-<section class="flex">
-	<div class="flex remove-defaults">
+<section
+	class="flex flex-col self-center py-0 px-4 mb-8 col-start-1 col-end-3 gap-4 justify-center items-center"
+>
+	<div class="flex gap-4 justify-center items-center remove-defaults">
 		<Datepicker bind:store={date} {theme} {format} let:key let:send let:receive>
-			<div class="display" in:receive|local={{ key }} out:send|local={{ key }}>
+			<div class="m-atuo cursor-pointer" in:receive|local={{ key }} out:send|local={{ key }}>
 				{($date?.selected ?? new Date()).toLocaleDateString("en-us", {
 					weekday: "short",
 					year: "numeric",
@@ -34,40 +36,19 @@
 		</Datepicker>
 	</div>
 
-	<div class="flex">
-		<button class="button color primary" on:click={() => sub("week")}>-&nbsp;week</button>
-		<button class="button color primary" on:click={() => add("week")}>+&nbsp;week</button>
+	<div class="flex gap-4 justify-center items-center">
+		<button
+			class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+			on:click={() => sub("week")}>-&nbsp;week</button
+		>
+		<button
+			class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+			on:click={() => add("week")}>+&nbsp;week</button
+		>
 	</div>
 </section>
 
 <style>
-	section {
-		flex-direction: column;
-		align-self: center;
-		align-self: center;
-		padding: 0 1rem;
-		grid-column: 1 / 3;
-		margin-bottom: 2rem;
-	}
-	.flex {
-		display: flex;
-		gap: 1rem;
-	}
-	.flex > * {
-		align-self: center;
-		justify-self: center;
-		flex: 1;
-	}
-
-	button {
-		border: 1px #555 solid;
-	}
-
-	.display {
-		margin: auto;
-		cursor: pointer;
-	}
-
 	:global(.remove-defaults .button) {
 		color: unset;
 		border-radius: unset;

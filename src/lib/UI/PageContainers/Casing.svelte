@@ -6,7 +6,7 @@
 </script>
 
 <section class="flex justify-center">
-	<div class="w-full max-w-4xl px-8 pt-4 pb-16 overflow-hidden break break-words">
+	<div class="w-full max-w-4xl px-8 pt-4 pb-16 break break-word">
 		<Header {backBtn} {logoLink} />
 		<div class="pb-6" />
 		<slot />

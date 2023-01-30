@@ -10,9 +10,11 @@
 {:else if teams.length == 0}
 	No teams joined!
 {:else}
-	{#each teams as team (team.id)}
-		<div class="my-4">
-			<TeamCard {team} />
-		</div>
-	{/each}
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+		{#each teams as team (team.id)}
+			<div class="my-4">
+				<TeamCard {team} />
+			</div>
+		{/each}
+	</div>
 {/if}

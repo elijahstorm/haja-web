@@ -16,7 +16,7 @@ import { ErrorMessaging } from "./errors"
 import { uploadDocument } from "./firestore"
 import type { TodoContentConfig } from "$lib/content/todo/TodoContent"
 
-const auth = getAuth()
+export const auth = getAuth()
 
 const loginPipe: (pipe: () => Promise<void>) => Promise<{ error?: string }> = async (pipe) =>
 	await new Promise((resolve) => {

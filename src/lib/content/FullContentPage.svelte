@@ -9,6 +9,7 @@
 	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
 	import EditButton from "$lib/UI/Widgets/EditButton.svelte"
 	import type { AllContentTypes } from "./Content"
+	import { Collection } from "sveltefire"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let isTeam: boolean = false
@@ -66,9 +67,12 @@
 
 			<DateInput bind:date />
 
-			{#await getTodoList({ source, isTeam, amount, dateRange }) then todos}
+			<!-- {#await getTodoList({ source, isTeam, amount, dateRange }) then todos}
 				<TodoList {todos} {source} {isTeam} />
-			{/await}
+				{/await} -->
+			<Collection ref={`users/${myId}/todo`} let:data={todos}>
+				<TodoList {todos} {source} {isTeam} />
+			</Collection>
 		</InfoCard>
 	</div>
 </section>

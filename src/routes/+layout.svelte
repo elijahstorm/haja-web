@@ -2,6 +2,9 @@
 	import { navigating } from "$app/stores"
 	import Loader from "$lib/UI/Widgets/Loader.svelte"
 	import { Toasts } from "as-toast"
+	import { FirebaseApp } from "sveltefire"
+	import { firestore } from "$lib/firebase/firestore"
+	import { auth } from "$lib/firebase/auth"
 	import "../app.css"
 </script>
 
@@ -14,7 +17,9 @@
 	/>
 </svelte:head>
 
-<slot />
+<FirebaseApp {auth} {firestore}>
+	<slot />
+</FirebaseApp>
 
 {#if $navigating}
 	<div class="fixed inset-0 bg-slate-400 bg-opacity-20">

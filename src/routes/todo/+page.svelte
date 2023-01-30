@@ -5,16 +5,25 @@
 	import Loader from "$lib/UI/Widgets/Loader.svelte"
 	import session from "$lib/firebase/session"
 	import Casing from "$lib/UI/PageContainers/Casing.svelte"
+	import { Collection } from "sveltefire"
 
 	$: myId = $session?.user?.uid
 </script>
 
 <ProtectedPage>
 	<Casing>
-		{#await getTodoList({ source: myId })}
+		<!-- {#await getTodoList({ source: myId })}
 			<Loader top={4} />
 		{:then todos}
 			<TodoList {todos} source={myId} isTeam={false} />
-		{/await}
+		{/await} -->
+		<Collection ref={`todos/${myId}`} let:data={todos}>
+			{#each todos as todo (todo.id)}
+				<aside>
+					{todo.title}
+				</aside>
+				{todo.date}
+			{/each}
+		</Collection>
 	</Casing>
 </ProtectedPage>

@@ -25,6 +25,8 @@ import { pipe } from "$lib/utils"
 
 const db = getFirestore(firebaseApp)
 
+export const firestore = db
+
 export const api: (data: StoreLocation) => () => string = ({
 	source = null,
 	isTeam = false,
@@ -46,7 +48,7 @@ export const api: (data: StoreLocation) => () => string = ({
 
 const connect = (store) => (api: string) => store(db, api)
 
-const clense = (content, timestamp) => (location) => {
+const clense = (content, timestamp) => (location?) => {
 	delete content.id
 	delete content.contentType
 	content[timestamp] = serverTimestamp()
@@ -81,7 +83,7 @@ export const uploadDocument: (
 		content: SendContentConfig
 		timestamp?: string
 	}
-) => Promise<DocumentReference<DocumentData>> = ({
+) => Promise<DocumentReference<DocumentData> | void> = ({
 	content,
 	id = null,
 	source = null,

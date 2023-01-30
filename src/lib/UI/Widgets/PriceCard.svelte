@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from "$app/navigation"
 	import { base } from "$app/paths"
 
 	export let id: string
@@ -9,9 +8,9 @@
 	export let propertyCount: number
 </script>
 
-<button
+<a
 	class="flex items-center rounded-lg shadow-lg bg-stone-100 overflow-hidden"
-	on:click={() => goto(base + "/destinations/" + id)}
+	href="{base}/team/{id}"
 >
 	<img class="h-32 flex-shrink-0 aspect-square" src={picture} alt="landscape of {title}" />
 
@@ -22,4 +21,4 @@
 
 		<p class="mt-4 text-sm text-brand-600">Explore {propertyCount} properties</p>
 	</div>
-</button>
+</a>

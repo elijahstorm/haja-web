@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { TeamContentConfig } from "./TeamContent"
-	import { browser } from "$app/environment"
-	import { goto } from "$app/navigation"
 	import UserIconList from "../user/UserIconList.svelte"
 	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
 	import { base } from "$app/paths"
@@ -19,20 +17,12 @@
 			  }
 			: team
 	const src = picture
-
-	const view = () => {
-		if (typeof team === "string") return
-
-		if (browser) goto(`${base}/team/${team.id}`)
-	}
 </script>
 
-<div
-	class="card rounded-3xl overflow-hidden border border-solid cursor-pointer border-grey-500"
-	on:click={view}
-	on:keypress={view}
->
-	<div class="grid grid-c grid-rows-2 justify-between content-between">
+<a href="{base}/team/{typeof team === 'string' ? 'create' : team.id}">
+	<div
+		class="card rounded-3xl overflow-hidden border border-solid border-grey-500 grid grid-c grid-rows-2 justify-between content-between"
+	>
 		{#if typeof team !== "string"}
 			<div class="background col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
 				<FallbackImage {src} alt={`team ${title}`} />
@@ -52,11 +42,11 @@
 				<img src={img404} alt="team not found" />
 			</div>
 			<p class="p-4 col-start-1 row-start-1 row-end-3 font-bold text-red-500">
-				Team not found
+				Team not found. Create a new one?
 			</p>
 		{/if}
 	</div>
-</div>
+</a>
 
 <style>
 	.card {

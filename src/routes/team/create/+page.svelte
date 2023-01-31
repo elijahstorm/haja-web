@@ -11,25 +11,26 @@
 		const user = await getUser({ id: await awaitMyId() })
 
 		const id = ""
-		const title = typeof user !== "string" ? user.title + "'s New Team" : ""
+		const title = typeof user !== "string" ? user.title + "'s Team" : ""
 		const contentType = "team"
 		const caption = ""
+		const users = typeof user !== "string" ? [user.id] : []
 
-		resolve({ id, title, contentType, caption, private: true })
+		resolve({ id, title, contentType, caption, private: true, users })
 	})
 
-	const requestSave = (data) => alert(data)
+	let requestSave
 </script>
 
 <Casing>
 	<ListWithActionAndTitle title="Make a new team">
 		<div slot="action">
-			<button class="btn btn-primary py-2 px-3 flex items-center">
+			<button class="btn btn-primary py-2 px-3 flex items-center" on:click={requestSave}>
 				<span class="hidden sm:block px-2 leading-3">Save</span>
 				<Icon icon="entypo:edit" width={"1.25rem"} />
 			</button>
 		</div>
 
-		<EditableContentPage isTeam {content} {requestSave} />
+		<EditableContentPage isTeam {content} bind:requestSave />
 	</ListWithActionAndTitle>
 </Casing>

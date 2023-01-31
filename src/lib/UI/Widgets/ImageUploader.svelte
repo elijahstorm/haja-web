@@ -35,8 +35,10 @@
 	let state: "ready" | "uploading" | "finished" | "failed" = "ready"
 
 	$: {
-		fileName = decodeURIComponent(src).split("/").pop().split("?").shift()
-		fileType = `.${src.split(".").pop().split("?").shift()}`
+		if (src) {
+			fileName = decodeURIComponent(src).split("/").pop().split("?").shift()
+			fileType = `.${src.split(".").pop().split("?").shift()}`
+		}
 	}
 
 	const onFileSelected = async (e) => {

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { browser } from "$app/environment"
+	import { goto } from "$app/navigation"
+	import { base } from "$app/paths"
 	import { updateDocument, uploadDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/UI/Widgets/ImageUploader.svelte"
 	import type { TeamContentConfig } from "./TeamContent"
@@ -7,11 +10,12 @@
 	export let isTeam: boolean
 
 	const { id } = team
-	const source: string = null
 
 	let changedValues = {
 		title: team.title,
-		caption: team.caption
+		caption: team.caption,
+		private: team.private,
+		users: team.users
 	}
 
 	const change = (where: string) => (input) => {
@@ -22,13 +26,15 @@
 		let shouldChange = false
 		const toChange = {
 			title: team.title,
-			caption: team.caption
+			caption: team.caption,
+			private: team.private,
+			users: [...team.users]
 		}
 
 		if (
 			changedValues.title &&
 			changedValues.title !== "" &&
-			changedValues.title !== team.title
+			(team.id === "" || changedValues.title !== team.title)
 		) {
 			shouldChange = true
 			toChange.title = changedValues.title
@@ -43,23 +49,34 @@
 			toChange.caption = changedValues.caption
 		}
 
+		if (changedValues.private !== team.private) {
+			shouldChange = true
+			toChange.private = changedValues.private
+		}
+
+		if (changedValues.users !== team.users) {
+			shouldChange = true
+			toChange.users = [...changedValues.users]
+		}
+
 		if (!shouldChange) return
 
 		if (team.id === "") {
-			console.log({ team })
-			return
 			uploadDocument({
 				isTeam,
-				content: team
-			}).then((response) => {
-				team.id = response.id
+				content: { ...toChange }
 			})
+				.then((response) => {
+					if (browser) goto(`${base}/team/${response.id}`)
+				})
+				.catch((response) => {
+					alert("error")
+				})
 		} else {
 			updateDocument({
 				type: "team",
 				id: team.id,
 				isTeam,
-				source,
 				content: {
 					...toChange
 				},
@@ -69,6 +86,8 @@
 
 		team.title = toChange.title
 		team.caption = toChange.caption
+		team.private = toChange.private
+		team.users = toChange.users
 	}
 </script>
 
@@ -98,8 +117,15 @@
 
 	<div class="flex justify-end">
 		<label for="private">Private Team</label>
-		<input type="checkbox" name="private" />
+		<input
+			name="private"
+			type="checkbox"
+			bind:checked={team.private}
+			on:input={change("private")}
+		/>
 	</div>
 
-	<ImageUploader src={team.picture} dest={"picture"} alt="picture" {id} {source} {isTeam} />
+	<!-- Add editable user list -->
+
+	<ImageUploader src={team.picture} dest={"picture"} alt="picture" {id} {isTeam} />
 </div>

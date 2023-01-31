@@ -87,7 +87,7 @@ export const uploadDocument: (
 	source = null,
 	type = null,
 	isTeam = false,
-	timestamp = "created"
+	timestamp = "createdOn"
 }) =>
 	id === null
 		? addDoc(

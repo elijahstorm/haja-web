@@ -7,7 +7,7 @@
 	export let logoLink: string = "/"
 </script>
 
-<div class="flex">
+<div class="max-w-4xl w-full flex">
 	<a href={base + logoLink}>
 		<img
 			class="cursor-pointer w-24"

@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { browser } from "$app/environment"
 	import { pipe } from "$lib/utils"
 	import { fly, fade } from "svelte/transition"
 
 	let state: "closed" | "open" | "full" = "closed"
 
 	$: {
-		document.body.style.overflow = state === "closed" ? "inherit" : "hidden"
+		if (browser) {
+			document.body.style.overflow = state === "closed" ? "inherit" : "hidden"
+		}
 	}
 
 	export let maxVH = 90

@@ -83,6 +83,5 @@
 		background: transparent;
 		border: 1px solid var(--text);
 		border-radius: 0.25rem;
-		width: calc(100% - 0.75rem);
 	}
 </style>

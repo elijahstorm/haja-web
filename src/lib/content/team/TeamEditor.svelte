@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { updateDocument } from "$lib/firebase/firestore"
+	import { updateDocument, uploadDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/UI/Widgets/ImageUploader.svelte"
 	import type { TeamContentConfig } from "./TeamContent"
 
@@ -45,16 +45,27 @@
 
 		if (!shouldChange) return
 
-		updateDocument({
-			type: "team",
-			id: team.id,
-			isTeam,
-			source,
-			content: {
-				...toChange
-			},
-			timestamp: "updatedOn"
-		})
+		if (team.id === "") {
+			console.log({ team })
+			return
+			uploadDocument({
+				isTeam,
+				content: team
+			}).then((response) => {
+				team.id = response.id
+			})
+		} else {
+			updateDocument({
+				type: "team",
+				id: team.id,
+				isTeam,
+				source,
+				content: {
+					...toChange
+				},
+				timestamp: "updatedOn"
+			})
+		}
 
 		team.title = toChange.title
 		team.caption = toChange.caption
@@ -83,6 +94,11 @@
 			rows={3}
 			placeholder="More about this team"
 		/>
+	</div>
+
+	<div class="flex justify-end">
+		<label for="private">Private Team</label>
+		<input type="checkbox" name="private" />
 	</div>
 
 	<ImageUploader src={team.picture} dest={"picture"} alt="picture" {id} {source} {isTeam} />

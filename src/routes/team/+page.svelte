@@ -27,10 +27,15 @@
 							+
 							<span class="inline sm:hidden"> New </span>
 							<span class="hidden sm:inline"> Create A Team </span>
-							(todo)
 						</a>
 					</ListWithActionAndTitle>
+				{/if}
+			{/await}
 
+			{#await getTeamList({})}
+				<Loader top={4} />
+			{:then teams}
+				{#if typeof teams !== "string"}
 					<ListWithActionAndTitle title="Recommended Teams">
 						<div class="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
 							{#each teams as team (team.id)}

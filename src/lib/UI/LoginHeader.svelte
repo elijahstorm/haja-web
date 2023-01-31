@@ -14,10 +14,10 @@
 	{#if loggedIn}
 		<UserIcon />
 		<button
-			class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+			class="btn btn-primary text-xs px-3 py-2 flex items-center h-max"
 			on:click={() => signOut()}
 		>
-			<span class="pr-2 hidden sm:block">Logout</span>
+			<span class="px-2 hidden sm:block">Logout</span>
 			<Icon icon={"fe:logout"} width={16} />
 		</button>
 	{:else}

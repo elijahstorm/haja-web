@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Casing from "$lib/UI/PageContainers/Casing.svelte"
 </script>
 

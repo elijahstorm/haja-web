@@ -67,6 +67,7 @@
 	<div>
 		<Icon {icon} color={style} {width} />
 	</div>
+
 	{#if editing}
 		<input
 			class="font-bold w-full border-none text-lg"

@@ -61,16 +61,17 @@
 	}
 </script>
 
-<div class="col">
+<div class="flex flex-col gap-4">
 	<slot />
 
-	<div class="row">
+	<div class="flex gap-4">
 		<ImageUploader src={user.picture} alt="profile" {id} {source} {isTeam} />
 
-		<div class="col">
-			<div class="data-input">
-				<label for="name">Name</label>
+		<div class="flex flex-col gap-4">
+			<div class="flex flex-col gap-2">
+				<label class="px-1 py-0 opacity-70" for="name">Name</label>
 				<input
+					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="name"
 					value={user.title}
 					on:input={change("title")}
@@ -78,9 +79,10 @@
 				/>
 			</div>
 
-			<div class="data-input">
-				<label for="caption">Description</label>
+			<div class="flex flex-col gap-2">
+				<label class="px-1 py-0 opacity-70" for="caption">Description</label>
 				<textarea
+					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="caption"
 					value={user.caption}
 					on:input={change("caption")}

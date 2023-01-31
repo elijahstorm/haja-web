@@ -26,7 +26,7 @@
 		{#await content}
 			<Loader />
 		{:then content}
-			<div class="edit mb-20">
+			<div class="mb-20">
 				{#if content.contentType == "team"}
 					<TeamEditor team={content} {isTeam} bind:requestSave>
 						<slot />
@@ -47,41 +47,3 @@
 		<p class="mt-8 w-full">You may need to login to view this content</p>
 	{/if}
 </ProtectedPage>
-
-<style>
-	:global(.edit .row) {
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-	}
-	:global(.edit .col) {
-		display: flex;
-		flex-direction: column;
-		flex: 1 1 50%;
-		gap: 1rem;
-	}
-
-	:global(.edit .data-input) {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	:global(.edit label) {
-		padding: 0 0.25rem;
-		opacity: 0.7;
-	}
-
-	:global(.edit textarea),
-	:global(.edit input) {
-		width: 100%;
-		border: none;
-		padding: 0.25rem;
-		font-size: 20px;
-		font-weight: bold;
-		resize: none;
-		background: transparent;
-		border: 1px solid var(--text);
-		border-radius: 0.25rem;
-	}
-</style>

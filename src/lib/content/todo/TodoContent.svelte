@@ -89,7 +89,7 @@
 			{#if editing}
 				<!-- svelte-ignore a11y-autofocus -->
 				<input
-					class="font-bold w-full border-none text-lg"
+					class="font-bold w-full border-none text-lg background-transparent"
 					bind:this={input}
 					bind:value={todo.title}
 					placeholder="Let's do Together!"
@@ -123,9 +123,3 @@
 		</div>
 	</div>
 {/if}
-
-<style>
-	input {
-		background: transparent;
-	}
-</style>

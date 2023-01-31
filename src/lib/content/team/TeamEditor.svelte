@@ -91,12 +91,13 @@
 	}
 </script>
 
-<div class="col">
+<div class="flex flex-col gap-4">
 	<slot />
 
-	<div class="data-input">
-		<label for="name">Name</label>
+	<div class="flex flex-col gap-2">
+		<label class="px-1 py-0 opacity-70" for="name">Name</label>
 		<input
+			class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 			name="name"
 			value={team.title}
 			on:input={change("title")}
@@ -104,9 +105,10 @@
 		/>
 	</div>
 
-	<div class="data-input">
-		<label for="caption">Description</label>
+	<div class="flex flex-col gap-2">
+		<label class="px-1 py-0 opacity-70" for="caption">Description</label>
 		<textarea
+			class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 			name="caption"
 			value={team.caption}
 			on:input={change("caption")}
@@ -115,9 +117,10 @@
 		/>
 	</div>
 
-	<div class="flex justify-end">
-		<label for="private">Private Team</label>
+	<div class="flex flex-col gap-2">
+		<label class="px-1 py-0 opacity-70" for="private">Private Team</label>
 		<input
+			class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 			name="private"
 			type="checkbox"
 			bind:checked={team.private}

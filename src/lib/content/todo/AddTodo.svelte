@@ -70,7 +70,7 @@
 
 	{#if editing}
 		<input
-			class="font-bold w-full border-none text-lg"
+			class="font-bold w-full border-none text-lg background-transparent"
 			bind:this={input}
 			bind:value={title}
 			placeholder="Let's do Together!"
@@ -87,9 +87,5 @@
 <style>
 	.flex > :first-child {
 		flex: 0 0 30px;
-	}
-
-	input {
-		background: transparent;
 	}
 </style>

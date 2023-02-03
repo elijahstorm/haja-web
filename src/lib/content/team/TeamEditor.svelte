@@ -4,6 +4,7 @@
 	import { base } from "$app/paths"
 	import { updateDocument, uploadDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/UI/Widgets/ImageUploader.svelte"
+	import { addToast } from "as-toast"
 	import type { TeamContentConfig } from "./TeamContent"
 
 	export let team: TeamContentConfig
@@ -81,6 +82,8 @@
 					...toChange
 				},
 				timestamp: "updatedOn"
+			}).then((response) => {
+				addToast(`Team ${toChange.title} updated`)
 			})
 		}
 
@@ -129,6 +132,10 @@
 	</div>
 
 	<!-- Add editable user list -->
+	<!-- View teams list by recommended -->
+	<!-- Create tests for TTD and sanity -->
+	<!-- Refactor components folder -->
+	<!-- Make form input prettier -->
 
 	<ImageUploader src={team.picture} dest={"picture"} alt="picture" {id} {isTeam} />
 </div>

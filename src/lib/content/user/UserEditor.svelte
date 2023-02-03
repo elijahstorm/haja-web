@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { updateDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/UI/Widgets/ImageUploader.svelte"
+	import { addToast } from "as-toast"
 	import type { UserContentConfig } from "./UserContent"
 
 	export let user: UserContentConfig
@@ -54,6 +55,8 @@
 				...toChange
 			},
 			timestamp: "updatedOn"
+		}).then((response) => {
+			addToast(`User ${toChange.title} profile updated`)
 		})
 
 		user.title = toChange.title

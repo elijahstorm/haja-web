@@ -22,12 +22,16 @@
 	let requestSave
 </script>
 
+<svelte:head>
+	<title>Create Team</title>
+</svelte:head>
+
 <Casing>
 	<ListWithActionAndTitle title="Make a new team">
 		<div slot="action">
 			<button class="btn btn-primary py-2 px-3 flex items-center" on:click={requestSave}>
 				<span class="hidden sm:block px-2 leading-3">Save</span>
-				<Icon icon="entypo:edit" width={"1.25rem"} />
+				<Icon icon="material-symbols:save" width={"1.25rem"} />
 			</button>
 		</div>
 

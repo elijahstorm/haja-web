@@ -6,6 +6,7 @@
 	import Loader from "./Loader.svelte"
 	import ImageGradientOverlay from "./Helpers/ImageGradientOverlay.svelte"
 	import Cropper from "svelte-easy-crop"
+	import { addToast } from "as-toast"
 
 	let crop = { x: 0, y: 0 }
 	let zoom = 1
@@ -74,6 +75,7 @@
 				timestamp: "updatedOn"
 			})
 
+			addToast("Image uploaded")
 			state = "finished"
 			oncomplete()
 		} catch (e) {

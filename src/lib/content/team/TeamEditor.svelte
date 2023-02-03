@@ -18,29 +18,26 @@
 		users: team.users
 	})
 
-	export const requestSave = () => {
-		if (team.id === "") {
-			uploadDocument({
-				isTeam,
-				content: getContent()
-			})
-				.then((response) => {
-					if (browser) goto(`${base}/team/${response.id}`)
-				})
-				.catch((response) => {
-					alert("error")
-				})
-		} else {
-			updateDocument({
-				id: team.id,
-				isTeam,
-				content: getContent(),
-				timestamp: "updatedOn"
-			}).then((response) => {
-				addToast(`Team ${team.title} updated`)
-			})
-		}
-	}
+	export const requestSave = () =>
+		team.id === ""
+			? uploadDocument({
+					isTeam,
+					content: getContent()
+			  })
+					.then((response) => {
+						if (browser) goto(`${base}/team/${response.id}`)
+					})
+					.catch((response) => {
+						alert("error")
+					})
+			: updateDocument({
+					id: team.id,
+					isTeam,
+					content: getContent(),
+					timestamp: "updatedOn"
+			  }).then((response) => {
+					addToast(`Team ${team.title} updated`)
+			  })
 </script>
 
 <div class="flex flex-col gap-4">

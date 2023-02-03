@@ -15,7 +15,7 @@
 		caption: user.caption
 	})
 
-	export const requestSave = () => {
+	export const requestSave = () =>
 		updateDocument({
 			id: user.id,
 			isTeam,
@@ -24,7 +24,6 @@
 		}).then((response) => {
 			addToast(`User ${user.title} profile updated`)
 		})
-	}
 </script>
 
 <div class="flex flex-col gap-4">

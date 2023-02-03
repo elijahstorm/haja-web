@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import { getTeamList } from "$lib/Components/Content/team/TeamList"
-	import TeamList from "$lib/Components/Content/team/TeamList.svelte"
+	import { getTeamList } from "$lib/Components/Content/Team/TeamList"
+	import TeamList from "$lib/Components/Content/Team/TeamList.svelte"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import EditableContentPage from "$lib/Components/Content/EditableContentPage.svelte"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
-	import type { TeamContentConfig } from "$lib/Components/Content/team/TeamContent"
+	import type { TeamContentConfig } from "$lib/Components/Content/Team/TeamContent"
 	import { awaitMyId } from "$lib/firebase/auth"
 	import { getUser } from "$lib/Components/Content/User/UserContent"
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"

@@ -17,7 +17,7 @@
 	const gap = "2rem 1rem"
 </script>
 
-<Casing logoLink={"/demo"} backBtn={false}>
+<Casing logoLink={"/demo"}>
 	<div>
 		<a href="{base}/demo">Let's Do Together -- Today!</a>
 	</div>

@@ -1,12 +1,11 @@
 <script lang="ts">
 	import Header from "$lib/Components/Branding/Header.svelte"
 
-	export let backBtn: boolean = true
 	export let logoLink: string = "/"
 </script>
 
 <div class="px-8 py-4 bg-stone-100 flex justify-center">
-	<Header {backBtn} {logoLink} />
+	<Header {logoLink} />
 </div>
 
 <div class="px-8 pb-16 flex justify-center">

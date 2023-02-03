@@ -2,7 +2,6 @@
 	import { base } from "$app/paths"
 	import LoginHeader from "$lib/Components/Auth/LoginHeader.svelte"
 
-	export let backBtn: boolean = true
 	export let logoLink: string = "/"
 </script>
 

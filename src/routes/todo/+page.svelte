@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getTodoList } from "$lib/Content/Todo/TodoList"
-	import TodoList from "$lib/Content/Todo/TodoList.svelte"
+	import { getTodoList } from "$lib/Components/Content/Todo/TodoList"
+	import TodoList from "$lib/Components/Content/Todo/TodoList.svelte"
 	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import session from "$lib/firebase/session"

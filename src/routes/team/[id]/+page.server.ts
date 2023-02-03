@@ -1,6 +1,6 @@
 import type { PageServerLoad } from "./$types"
 import { error } from "@sveltejs/kit"
-import { getTeam } from "$lib/Content/Team/TeamContent"
+import { getTeam } from "$lib/Components/Content/Team/TeamContent"
 import { pipe } from "$lib/utils"
 
 export const load: PageServerLoad = async ({ params }) => {

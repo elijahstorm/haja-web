@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { UserContentConfig } from "$lib/Content/User/UserContent"
-	import TodoList from "$lib/Content/Todo/TodoList.svelte"
-	import { getTodoList } from "$lib/Content/Todo/TodoList"
+	import type { UserContentConfig } from "$lib/Components/Content/User/UserContent"
+	import TodoList from "$lib/Components/Content/Todo/TodoList.svelte"
+	import { getTodoList } from "$lib/Components/Content/Todo/TodoList"
 	import session from "$lib/firebase/session"
-	import type { TeamContentConfig } from "$lib/Content/Team/TeamContent"
+	import type { TeamContentConfig } from "$lib/Components/Content/Team/TeamContent"
 	import type { AllContentTypes } from "./Content"
 	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"

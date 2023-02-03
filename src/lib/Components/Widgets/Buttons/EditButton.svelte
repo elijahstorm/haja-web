@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { AllContentTypes } from "$lib/Content/Content"
-	import EditableContentPage from "$lib/Content/EditableContentPage.svelte"
+	import type { AllContentTypes } from "$lib/Components/Content/Content"
+	import EditableContentPage from "$lib/Components/Content/EditableContentPage.svelte"
 	import DraggableModal from "$lib/Components/Widgets/Layouts/DraggableModal.svelte"
 	import GlassyButton from "$lib/Components/Widgets/Buttons/GlassyButton.svelte"
 

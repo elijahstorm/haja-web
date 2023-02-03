@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import { getUser } from "$lib/Content/User/UserContent"
-	import UserContent from "$lib/Content/User/UserContent.svelte"
+	import { getUser } from "$lib/Components/Content/User/UserContent"
+	import UserContent from "$lib/Components/Content/User/UserContent.svelte"
 	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import session from "$lib/firebase/session"

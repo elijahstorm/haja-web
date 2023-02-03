@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EditableContentPage from "$lib/Content/EditableContentPage.svelte"
+	import EditableContentPage from "$lib/Components/Content/EditableContentPage.svelte"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 
 	export let data

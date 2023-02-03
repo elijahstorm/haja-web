@@ -1,6 +1,6 @@
 import { getDocument } from "$lib/firebase/firestore"
 import type { Timestamp } from "firebase/firestore"
-import type { ContentConfig } from "$lib/Content/Content"
+import type { ContentConfig } from "$lib/Components/Content/Content"
 
 type RGB = `rgb(${number}, ${number}, ${number})`
 type HSL = `hsl(${number}%, ${number}%, ${number}%)`

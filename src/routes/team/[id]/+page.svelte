@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ContentContainer from "$lib/Content/ContentContainer.svelte"
+	import ContentContainer from "$lib/Components/Content/ContentContainer.svelte"
 
 	export let data
 	export let errors

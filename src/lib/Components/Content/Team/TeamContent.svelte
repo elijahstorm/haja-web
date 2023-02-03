@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { TeamContentConfig } from "./TeamContent"
-	import FullContentPage from "$lib/Content/FullContentPage.svelte"
-	import UserIconList from "$lib/Content/User/UserIconList.svelte"
+	import FullContentPage from "$lib/Components/Content/FullContentPage.svelte"
+	import UserIconList from "$lib/Components/Content/User/UserIconList.svelte"
 
 	export let team: TeamContentConfig
 

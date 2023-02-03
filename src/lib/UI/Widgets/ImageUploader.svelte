@@ -64,7 +64,7 @@
 				})
 			).replace(import.meta.env.VITE_STORAGE_URL_PREFIX, "")
 
-			await updateDocument({
+			updateDocument({
 				type,
 				id,
 				source,
@@ -73,11 +73,11 @@
 					[dest]: picture
 				},
 				timestamp: "updatedOn"
+			}).then((response) => {
+				addToast("Image uploaded")
+				state = "finished"
+				oncomplete()
 			})
-
-			addToast("Image uploaded")
-			state = "finished"
-			oncomplete()
 		} catch (e) {
 			state = "failed"
 			status = e
@@ -89,51 +89,43 @@
 	}
 </script>
 
-<section>
-	<div class="image-uploader-container" on:click={open} on:keypress={open}>
+<section class="flex items-center justify-center flow-c">
+	<button
+		class="image-uploader-container w-full overflow-clip text-left rounded-lg relative cursor-pointer grid grid-cols-1 grid-rows-1 border border-gray-400 max-h-96"
+		on:click={open}
+	>
 		<FallbackImage {src} {alt} {fallback} />
 		<!-- <Cropper {image} bind:crop bind:zoom /> -->
 
 		<ImageGradientOverlay title="Your {dest}" info={""} {fileType} {fileName} {state} />
 
-		<div class="upload" class:status={state != "ready"}>
+		<div
+			class="upload-interation-icon cursor-pointer z-50 opacity-0 transition-opacity duration-500 bg-white p-4 m-4 border border-gray-300 rounded-full"
+			class:opacity-100={state != "ready"}
+		>
 			{#if state == "ready"}
 				<Icon {icon} {width} />
 			{:else if state == "uploading"}
 				<Loader />
 			{:else if state == "failed"}
 				<Icon icon={failedIcon} {width} color={"var(--error)"} />
-				<p class="error">{status}</p>
+				<div class="flex flex-col items-center">
+					<p
+						class="absolute mt-8 py-2 px-4 text-red-500 bg-red-100 rounded-lg border border-red-500"
+					>
+						{status}
+					</p>
+				</div>
 			{:else if state == "finished"}
 				<Icon icon={finishedIcon} {width} color={"var(--primary)"} />
 			{/if}
 		</div>
-	</div>
+	</button>
 
-	<input type="file" {accept} on:change={onFileSelected} bind:this={fileinput} />
+	<input class="hidden" type="file" {accept} on:change={onFileSelected} bind:this={fileinput} />
 </section>
 
 <style>
-	section {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-flow: column;
-		flex: 1 1 50%;
-	}
-
-	.image-uploader-container {
-		height: 300px;
-		overflow: clip;
-		border-radius: 0.5rem;
-		position: relative;
-		cursor: pointer;
-		display: grid;
-		grid-template-rows: 1fr;
-		grid-template-columns: 1fr;
-		border: solid #cccc;
-	}
-
 	:global(.image-uploader-container > *) {
 		grid-row: 1;
 		grid-column: 1;
@@ -141,44 +133,7 @@
 		justify-self: center;
 	}
 
-	.upload {
-		z-index: 5;
-		cursor: pointer;
-		opacity: 0;
-		transition: 0.7s ease;
-		background-color: #fff6;
-		padding: 1rem;
-		margin: 1rem;
-		border: solid grey;
-		border-radius: 50%;
-	}
-
-	.upload:hover {
-		background-color: var(--bg);
-	}
-
-	.status {
+	.image-uploader-container:is(:focus, :hover) .upload-interation-icon {
 		opacity: 1;
-	}
-
-	.error {
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		text-align: center;
-		margin: 2rem 0;
-		padding: 1rem 0.5rem;
-		color: var(--error);
-		background-color: var(--bg);
-		border-radius: 1rem;
-		border: solid grey;
-	}
-
-	.image-uploader-container:hover .upload {
-		opacity: 1;
-	}
-
-	input {
-		display: none;
 	}
 </style>

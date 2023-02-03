@@ -14,7 +14,7 @@
 	{#if loggedIn}
 		<UserIcon />
 		<button
-			class="btn btn-primary text-xs px-3 py-2 flex items-center h-max"
+			class="btn btn-primary text-xs px-2 py-2 flex items-center h-max"
 			on:click={() => signOut()}
 		>
 			<span class="px-2 hidden sm:block">Logout</span>

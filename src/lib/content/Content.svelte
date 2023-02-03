@@ -9,12 +9,10 @@
 	export let isTeam: boolean
 </script>
 
-<section class="my-4 mx-0 transition-all">
-	{#if content.contentType == "team"}
-		<TeamContent team={content} />
-	{:else if content.contentType == "user"}
-		<UserContent user={content} />
-	{:else if content.contentType == "todo"}
-		<TodoContent todo={content} {source} {isTeam} />
-	{/if}
-</section>
+{#if content.contentType == "team"}
+	<TeamContent team={content} />
+{:else if content.contentType == "user"}
+	<UserContent user={content} />
+{:else if content.contentType == "todo"}
+	<TodoContent todo={content} {source} {isTeam} />
+{/if}

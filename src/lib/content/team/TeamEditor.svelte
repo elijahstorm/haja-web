@@ -81,11 +81,5 @@
 		>
 	</label>
 
-	<!-- Add editable user list -->
-	<!-- View teams list by recommended -->
-	<!-- Create tests for TTD and sanity -->
-	<!-- Refactor components folder -->
-	<!-- Make form input prettier -->
-
 	<ImageUploader src={team.picture} dest={"picture"} alt="picture" id={team.id} {isTeam} />
 </div>

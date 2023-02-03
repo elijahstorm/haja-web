@@ -5,62 +5,25 @@
 	import type { UserContentConfig } from "./UserContent"
 
 	export let user: UserContentConfig
-	export let isTeam: boolean
 
+	const isTeam = false
 	const { id } = user
 	const source: string = null
 
-	let changedValues = {
+	const getContent = () => ({
 		title: user.title,
 		caption: user.caption
-	}
-
-	const change = (where: string) => (input) => {
-		changedValues[where] = input.target.value
-	}
+	})
 
 	export const requestSave = () => {
-		let shouldChange = false
-		const toChange = {
-			title: user.title,
-			caption: user.caption
-		}
-
-		if (
-			changedValues.title &&
-			changedValues.title !== "" &&
-			changedValues.title !== user.title
-		) {
-			shouldChange = true
-			toChange.title = changedValues.title
-		}
-
-		if (
-			changedValues.caption &&
-			changedValues.caption !== "" &&
-			changedValues.caption !== user.caption
-		) {
-			shouldChange = true
-			toChange.caption = changedValues.caption
-		}
-
-		if (!shouldChange) return
-
 		updateDocument({
-			type: "user",
 			id: user.id,
 			isTeam,
-			source,
-			content: {
-				...toChange
-			},
+			content: getContent(),
 			timestamp: "updatedOn"
 		}).then((response) => {
-			addToast(`User ${toChange.title} profile updated`)
+			addToast(`User ${user.title} profile updated`)
 		})
-
-		user.title = toChange.title
-		user.caption = toChange.caption
 	}
 </script>
 
@@ -76,9 +39,8 @@
 				<input
 					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="name"
-					value={user.title}
-					on:input={change("title")}
 					placeholder="Your user name"
+					bind:value={user.title}
 				/>
 			</div>
 
@@ -87,10 +49,9 @@
 				<textarea
 					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="caption"
-					value={user.caption}
-					on:input={change("caption")}
 					rows={3}
 					placeholder="More about you"
+					bind:value={user.caption}
 				/>
 			</div>
 		</div>

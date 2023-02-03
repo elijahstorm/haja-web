@@ -11,7 +11,7 @@
 	class:failed={state === "failed"}
 >
 	<p
-		class="overflow-hidden z-20 text-xs p-4 text-white text-ellipsis text-sm col-start-1 col-end-2 row-start-2"
+		class="overflow-hidden z-20 p-4 text-white text-ellipsis text-sm col-start-1 col-end-2 row-start-2"
 	>
 		{title}
 	</p>

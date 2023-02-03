@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import { getUser } from "$lib/content/user/UserContent"
-	import UserContent from "$lib/content/user/UserContent.svelte"
-	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
+	import { getUser } from "$lib/Content/User/UserContent"
+	import UserContent from "$lib/Content/User/UserContent.svelte"
+	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import session from "$lib/firebase/session"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 
 	$: myId = $session?.user?.uid
 </script>

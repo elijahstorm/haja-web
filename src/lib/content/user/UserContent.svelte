@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { UserContentConfig } from "./UserContent"
-	import FullContentPage from "../FullContentPage.svelte"
+	import FullContentPage from "$lib/Content/FullContentPage.svelte"
 	import UserIcon from "./UserIcon.svelte"
 
 	export let user: UserContentConfig

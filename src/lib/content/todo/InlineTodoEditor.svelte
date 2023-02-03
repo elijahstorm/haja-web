@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { deleteDocument, updateDocument } from "$lib/firebase/firestore"
-	import CopyToClipboard from "$lib/UI/Widgets/CopyToClipboard.svelte"
+	import CopyToClipboard from "$lib/Components/Widgets/Helpers/CopyToClipboard.svelte"
 	import { Datepicker, Popover } from "svelte-calendar"
 	import type { TodoContentConfig } from "./TodoContent"
 	import Icon from "@iconify/svelte"

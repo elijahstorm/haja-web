@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 </script>
 
 <Casing>

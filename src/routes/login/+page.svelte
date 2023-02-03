@@ -1,6 +1,6 @@
 <script lang="ts">
-	import LoginForm from "$lib/UI/LoginForm.svelte"
-	import HalfPageInfoAndGraphic from "$lib/UI/PageContainers/HalfPageInfoAndGraphic.svelte"
+	import LoginForm from "$lib/Components/Auth/LoginForm.svelte"
+	import HalfPageInfoAndGraphic from "$lib/Components/PageContainers/HalfPageInfoAndGraphic.svelte"
 </script>
 
 <HalfPageInfoAndGraphic>

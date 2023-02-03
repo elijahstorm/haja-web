@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import Logo from "$lib/UI/Branding/Logo.svelte"
+	import Logo from "$lib/Components/Branding/Logo.svelte"
 </script>
 
 <div class="flex flex-col p-16 pt-4 min-h-screen overflow-y-auto bg-brand-800 select-none">

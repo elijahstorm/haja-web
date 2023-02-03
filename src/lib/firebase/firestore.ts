@@ -19,7 +19,7 @@ import {
 	type WhereFilterOp,
 	deleteDoc
 } from "firebase/firestore"
-import type { SendContentConfig } from "$lib/content/Content"
+import type { SendContentConfig } from "$lib/Content/Content"
 import { firebaseApp } from "./firebase"
 import { pipe } from "$lib/utils"
 

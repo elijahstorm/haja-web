@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import Logo from "$lib/UI/Branding/Logo.svelte"
+	import Logo from "$lib/Components/Branding/Logo.svelte"
 
 	const icons = {
 		calendar: "/icon/calendar.svg",

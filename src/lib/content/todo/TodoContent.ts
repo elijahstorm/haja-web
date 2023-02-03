@@ -1,6 +1,6 @@
 import { getDocument } from "$lib/firebase/firestore"
 import type { Timestamp } from "firebase/firestore"
-import type { ContentConfig } from "../Content"
+import type { ContentConfig } from "$lib/Content/Content"
 
 type RGB = `rgb(${number}, ${number}, ${number})`
 type HSL = `hsl(${number}%, ${number}%, ${number}%)`
@@ -50,10 +50,9 @@ export const getTodo: (input: {
 			id: data.id ?? doc.id,
 			title: data.title?.trim(),
 			caption: data.caption?.trim(),
-			color:
-				!data.color || data.color === ""
-					? "var(--primary)"
-					: `#${data.color.substring(2) + data.color.substring(0, 2)}`,
+			color: !data.color
+				? "var(--primary)"
+				: `#${data.color.substring(2) + data.color.substring(0, 2)}`,
 			date: data.date.toDate(),
 			status: data.status,
 			type: data.type

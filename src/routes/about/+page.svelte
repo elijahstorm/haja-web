@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
-	import Grid from "$lib/UI/Widgets/Grid.svelte"
-	import Modal from "$lib/UI/Widgets/Modal.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
+	import Grid from "$lib/Components/Widgets/Layouts/Grid.svelte"
+	import Modal from "$lib/Components/Widgets/Layouts/Modal.svelte"
 
 	const imgs = [
 		"/showcase/todos1.png",

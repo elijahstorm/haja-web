@@ -1,6 +1,6 @@
 import type { PageServerLoad } from "./$types"
 import { error } from "@sveltejs/kit"
-import { getUser } from "$lib/content/user/UserContent"
+import { getUser } from "$lib/Content/User/UserContent"
 import { pipe } from "$lib/utils"
 
 export const load: PageServerLoad = async ({ params }) => {

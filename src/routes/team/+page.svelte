@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import { getTeamList } from "$lib/content/team/TeamList"
-	import TeamList from "$lib/content/team/TeamList.svelte"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
-	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
-	import ListWithActionAndTitle from "$lib/UI/Widgets/ListWithActionAndTitle.svelte"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
-	import PriceCard from "$lib/UI/Widgets/PriceCard.svelte"
+	import { getTeamList } from "$lib/Content/team/TeamList"
+	import TeamList from "$lib/Content/team/TeamList.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
+	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
+	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
+	import PriceCard from "$lib/Components/Widgets/Layouts/PriceCard.svelte"
 </script>
 
 <ProtectedPage>

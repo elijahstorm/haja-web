@@ -1,6 +1,6 @@
-import type { TeamContentConfig } from "./team/TeamContent"
-import type { TodoContentConfig } from "./todo/TodoContent"
-import type { UserContentConfig } from "./user/UserContent"
+import type { TeamContentConfig } from "./Team/TeamContent"
+import type { TodoContentConfig } from "./Todo/TodoContent"
+import type { UserContentConfig } from "./User/UserContent"
 
 export type ContentType = "team" | "user" | "todo"
 

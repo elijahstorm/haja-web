@@ -4,7 +4,7 @@
 	import InlineTodoEditor from "./InlineTodoEditor.svelte"
 	import { fade, fly } from "svelte/transition"
 	import Icon from "@iconify/svelte"
-	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
+	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 
 	export let todo: TodoContentConfig
 	export let source: string

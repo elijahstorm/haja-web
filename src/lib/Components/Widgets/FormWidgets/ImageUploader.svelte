@@ -2,9 +2,9 @@
 	import { updateDocument } from "$lib/firebase/firestore"
 	import { uploadFileAndGetUrl } from "$lib/firebase/storage"
 	import Icon from "@iconify/svelte"
-	import FallbackImage from "./FallbackImage.svelte"
-	import Loader from "./Loader.svelte"
-	import ImageGradientOverlay from "./Helpers/ImageGradientOverlay.svelte"
+	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
+	import ImageGradientOverlay from "$lib/Components/Widgets/Helpers/ImageGradientOverlay.svelte"
 	import Cropper from "svelte-easy-crop"
 	import { addToast } from "as-toast"
 

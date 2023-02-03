@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { getTodoList } from "$lib/content/todo/TodoList"
-	import TodoList from "$lib/content/todo/TodoList.svelte"
-	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
+	import { getTodoList } from "$lib/Content/Todo/TodoList"
+	import TodoList from "$lib/Content/Todo/TodoList.svelte"
+	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import session from "$lib/firebase/session"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 
 	$: myId = $session?.user?.uid
 </script>

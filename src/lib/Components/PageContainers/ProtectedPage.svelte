@@ -4,7 +4,7 @@
 	import { base } from "$app/paths"
 	import { awaitMyId } from "$lib/firebase/auth"
 	import session from "$lib/firebase/session"
-	import Loader from "../Widgets/Loader.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 
 	let wait = awaitMyId()
 

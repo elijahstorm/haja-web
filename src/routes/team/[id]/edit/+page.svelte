@@ -1,6 +1,6 @@
 <script lang="ts">
-	import EditableContentPage from "$lib/content/EditableContentPage.svelte"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
+	import EditableContentPage from "$lib/Content/EditableContentPage.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 
 	export let data
 	export let errors

@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { UserContentConfig } from "$lib/content/user/UserContent"
-	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
-	import InfoCard from "$lib/UI/Widgets/InfoCard.svelte"
-	import TodoList from "$lib/content/todo/TodoList.svelte"
-	import { getTodoList } from "$lib/content/todo/TodoList"
+	import type { UserContentConfig } from "$lib/Content/User/UserContent"
+	import TodoList from "$lib/Content/Todo/TodoList.svelte"
+	import { getTodoList } from "$lib/Content/Todo/TodoList"
 	import session from "$lib/firebase/session"
-	import type { TeamContentConfig } from "$lib/content/team/TeamContent"
-	import DateInput from "$lib/UI/Widgets/DateInput.svelte"
-	import EditButton from "$lib/UI/Widgets/EditButton.svelte"
+	import type { TeamContentConfig } from "$lib/Content/Team/TeamContent"
 	import type { AllContentTypes } from "./Content"
+	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
+	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"
+	import DateInput from "$lib/Components/Widgets/FormWidgets/DateInput.svelte"
+	import EditButton from "$lib/Components/Widgets/Buttons/EditButton.svelte"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let isTeam: boolean = false

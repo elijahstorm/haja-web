@@ -1,10 +1,10 @@
 <script lang="ts">
-	import EditableContentPage from "$lib/content/EditableContentPage.svelte"
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
-	import type { TeamContentConfig } from "$lib/content/team/TeamContent"
+	import EditableContentPage from "$lib/Content/EditableContentPage.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
+	import type { TeamContentConfig } from "$lib/Content/team/TeamContent"
 	import { awaitMyId } from "$lib/firebase/auth"
-	import { getUser } from "$lib/content/user/UserContent"
-	import ListWithActionAndTitle from "$lib/UI/Widgets/ListWithActionAndTitle.svelte"
+	import { getUser } from "$lib/Content/User/UserContent"
+	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
 	import Icon from "@iconify/svelte"
 
 	const content: Promise<TeamContentConfig> = new Promise(async (resolve) => {

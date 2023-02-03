@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-	import DataInput from "./DataInput.svelte"
-	import Loader from "./Loader.svelte"
+	import DataInput from "$lib/Components/Widgets/FormWidgets/DataInput.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 
 	export let inputs = [
 		{

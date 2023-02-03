@@ -1,10 +1,10 @@
 <script lang="ts">
-	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
-	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
+	import FormInfoRequestCard from "$lib/Components/Widgets/FormWidgets/FormInfoRequestCard.svelte"
+	import SmallCenterContentOverBackground from "$lib/Components/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { lostPassword } from "$lib/firebase/auth"
-	import InfoCard from "$lib/UI/Widgets/InfoCard.svelte"
+	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"
 	import { base } from "$app/paths"
-	import BottomBreakCardInfo from "$lib/UI/Widgets/BottomBreakCardInfo.svelte"
+	import BottomBreakCardInfo from "$lib/Components/Widgets/Layouts/BottomBreakCardInfo.svelte"
 
 	const callback = async (form) => {
 		started = true

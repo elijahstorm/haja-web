@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { TeamContentConfig } from "./TeamContent"
-	import UserIconList from "../user/UserIconList.svelte"
-	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
+	import UserIconList from "$lib/Content/User/UserIconList.svelte"
+	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import { base } from "$app/paths"
 
 	export let team: TeamContentConfig | string

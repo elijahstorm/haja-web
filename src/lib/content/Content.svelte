@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { AllContentTypes } from "./Content"
-	import TeamContent from "./team/TeamContent.svelte"
-	import TodoContent from "./todo/TodoContent.svelte"
-	import UserContent from "./user/UserContent.svelte"
+	import TeamContent from "./Team/TeamContent.svelte"
+	import TodoContent from "./Todo/TodoContent.svelte"
+	import UserContent from "./User/UserContent.svelte"
 
 	export let content: AllContentTypes
 	export let source: string

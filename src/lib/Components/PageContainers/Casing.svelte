@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from "$lib/UI/Header.svelte"
+	import Header from "$lib/Components/Branding/Header.svelte"
 
 	export let backBtn: boolean = true
 	export let logoLink: string = "/"

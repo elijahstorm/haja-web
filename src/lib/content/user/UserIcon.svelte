@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from "$app/paths"
 	import session from "$lib/firebase/session"
-	import FallbackImage from "$lib/UI/Widgets/FallbackImage.svelte"
+	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import { getUser, type UserContentConfig } from "./UserContent"
 
 	export let user: UserContentConfig | "fallback" | null = null

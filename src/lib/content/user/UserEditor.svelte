@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { updateDocument } from "$lib/firebase/firestore"
-	import ImageUploader from "$lib/UI/Widgets/ImageUploader.svelte"
+	import ImageUploader from "$lib/Components/Widgets/FormWidgets/ImageUploader.svelte"
 	import { addToast } from "as-toast"
 	import type { UserContentConfig } from "./UserContent"
 

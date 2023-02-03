@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import type { ContentConfig } from "./Content"
 	import Content from "./Content.svelte"
 

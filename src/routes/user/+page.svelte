@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Casing from "$lib/UI/PageContainers/Casing.svelte"
-	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
+	import Casing from "$lib/Components/PageContainers/Casing.svelte"
+	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
 </script>
 
 <ProtectedPage>

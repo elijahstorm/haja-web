@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { base } from "$app/paths"
-
-	import LoginHeader from "$lib/UI/LoginHeader.svelte"
+	import LoginHeader from "$lib/Components/Auth/LoginHeader.svelte"
 
 	export let backBtn: boolean = true
 	export let logoLink: string = "/"

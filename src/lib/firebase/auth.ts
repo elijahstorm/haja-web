@@ -14,7 +14,7 @@ import {
 import session from "./session"
 import { ErrorMessaging } from "./errors"
 import { uploadDocument } from "./firestore"
-import type { TodoContentConfig } from "$lib/content/todo/TodoContent"
+import type { TodoContentConfig } from "$lib/Content/Todo/TodoContent"
 
 const auth = getAuth()
 

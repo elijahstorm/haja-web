@@ -1,6 +1,6 @@
 import { base } from "$app/paths"
 import { getDocument } from "$lib/firebase/firestore"
-import type { ContentConfig } from "../Content"
+import type { ContentConfig } from "$lib/Content/Content"
 
 export interface UserContentConfig extends ContentConfig {
 	picture?: string

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import ProtectedPage from "$lib/UI/PageContainers/ProtectedPage.svelte"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
+	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import type { AllContentTypes } from "./Content"
-	import TeamEditor from "./team/TeamEditor.svelte"
-	import TodoEditor from "./todo/TodoEditor.svelte"
-	import UserEditor from "./user/UserEditor.svelte"
+	import TeamEditor from "./Team/TeamEditor.svelte"
+	import TodoEditor from "./Todo/TodoEditor.svelte"
+	import UserEditor from "./User/UserEditor.svelte"
 
 	export let content: Promise<AllContentTypes | null>
 	export let errors: string | null = null
@@ -28,11 +28,11 @@
 		{:then content}
 			<div class="mb-20">
 				{#if content.contentType == "team"}
-					<TeamEditor team={content} {isTeam} bind:requestSave>
+					<TeamEditor team={content} bind:requestSave>
 						<slot />
 					</TeamEditor>
 				{:else if content.contentType == "user"}
-					<UserEditor user={content} {isTeam} bind:requestSave>
+					<UserEditor user={content} bind:requestSave>
 						<slot />
 					</UserEditor>
 				{:else if content.contentType == "todo"}

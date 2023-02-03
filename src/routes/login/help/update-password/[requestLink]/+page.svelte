@@ -1,9 +1,9 @@
 <script lang="ts">
-	import FormInfoRequestCard from "$lib/UI/Widgets/FormInfoRequestCard.svelte"
-	import SmallCenterContentOverBackground from "$lib/UI/PageContainers/SmallCenterContentOverBackground.svelte"
+	import FormInfoRequestCard from "$lib/Components/Widgets/FormWidgets/FormInfoRequestCard.svelte"
+	import SmallCenterContentOverBackground from "$lib/Components/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { updatePassword } from "firebase/auth"
 	import { base } from "$app/paths"
-	import BottomBreakCardInfo from "$lib/UI/Widgets/BottomBreakCardInfo.svelte"
+	import BottomBreakCardInfo from "$lib/Components/Widgets/Layouts/BottomBreakCardInfo.svelte"
 
 	export let data
 

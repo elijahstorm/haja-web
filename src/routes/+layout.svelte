@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { navigating } from "$app/stores"
-	import Loader from "$lib/UI/Widgets/Loader.svelte"
+	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import { Toasts } from "as-toast"
 	import github from "$lib/images/github.svg"
 	import "../app.css"

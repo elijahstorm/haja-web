@@ -3,21 +3,17 @@
 	import SmallCenterContentOverBackground from "$lib/Components/PageContainers/SmallCenterContentOverBackground.svelte"
 	import { lostPassword } from "$lib/firebase/auth"
 	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"
-	import { base } from "$app/paths"
 	import BottomBreakCardInfo from "$lib/Components/Widgets/Layouts/BottomBreakCardInfo.svelte"
+	import { base } from "$app/paths"
 
-	const callback = async (form) => {
-		started = true
+	const callback = async (form: HTMLFormElement) => {
 		formSent = lostPassword(form["email"].value)
+		started = true
+
 		return ""
 	}
 
-	const retry = () => {
-		started = false
-		formSent = null
-	}
-
-	let formSent
+	let formSent: Promise<{ error?: string }>
 	$: started = false
 </script>
 
@@ -28,10 +24,7 @@
 				Sending....
 			{:then response}
 				{#if response.error}
-					<p>
-						{response.error}
-					</p>
-					<button class="button" on:click={retry}>Retry</button>
+					{response.error}
 				{:else}
 					A password change email was sent
 				{/if}
@@ -55,15 +48,9 @@
 				<BottomBreakCardInfo
 					text="New to Haja?"
 					actionText="Sign up"
-					href="{base}/login/signup"
+					href="{base}/signup"
 				/>
 			</div>
 		</FormInfoRequestCard>
 	{/if}
 </SmallCenterContentOverBackground>
-
-<style>
-	button {
-		margin: 1rem auto;
-	}
-</style>

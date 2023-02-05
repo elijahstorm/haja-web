@@ -43,7 +43,6 @@
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 	</div>
-	>
 	{#each images as image, index}
 		<img
 			bind:this={img}

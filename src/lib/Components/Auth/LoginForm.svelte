@@ -95,7 +95,7 @@
 					<span> New to Haja? </span>
 					<a
 						class="text-brand-500 no-underline border-b border-b-transparent transition-colors hover:border-b-brand-500"
-						href="{base}/login/signup">Sign up</a
+						href="{base}/signup">Sign up</a
 					>
 				</p>
 				<p class="mt-4 text-sm">

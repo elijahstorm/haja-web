@@ -55,7 +55,7 @@
 				<BottomBreakCardInfo
 					text="New to Haja?"
 					actionText="Sign up"
-					href="{base}/login/signup"
+					href="{base}/signup"
 				/>
 			</div>
 		</FormInfoRequestCard>

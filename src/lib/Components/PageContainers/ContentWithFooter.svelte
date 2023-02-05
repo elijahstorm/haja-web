@@ -1,34 +1,39 @@
 <script lang="ts">
-	import github from "$lib/images/github.svg"
 	import { base } from "$app/paths"
+	import LoginHeader from "../Auth/LoginHeader.svelte"
 
-	const footerSections = [
+	const iconSocialLinks = [
 		{
-			links: [
-				{
-					href: "/download",
-					text: "Download the App"
-				}
-			],
-			hash: Math.random()
+			href: "https://github.com/elijahstorm",
+			icon: "icons/github-mark-white.svg",
+			alt: "GitHub"
+		}
+	]
+
+	const footerLinks = [
+		{
+			href: base + "/download",
+			text: "Download the App"
 		},
 		{
-			links: [
-				{
-					href: "/about",
-					text: "About"
-				}
-			],
-			hash: Math.random()
+			href: base + "/about",
+			text: "About"
 		},
 		{
-			links: [
-				{
-					href: "http://elijahstorm.github.io/",
-					text: "More by Elijah"
-				}
-			],
-			hash: Math.random()
+			href: base + "/contact",
+			text: "Contact Us"
+		},
+		{
+			href: base + "/support",
+			text: "Support"
+		},
+		{
+			href: base + "/privacy",
+			text: "Privacy Policy"
+		},
+		{
+			href: "http://elijahstorm.github.io/",
+			text: "More by Elijah"
 		}
 	]
 </script>
@@ -37,26 +42,44 @@
 	<slot />
 </div>
 
-<footer class="px-8 py-6 bg-stone-300 text-stone-900 tracking-normal flex justify-center">
-	<div class="max-w-4xl flex-1 grid grid-cols-3 gap-6">
-		<a class="contents" href="/" target="_blank" rel="noopener noreferrer">
-			<img class="h-10" src="{base}/images/haja/logo_horizontal_black.png" alt="Haja logo" />
-		</a>
-
-		<a
-			class="contents"
-			href="https://github.com/elijahstorm"
-			target="_blank"
-			rel="noopener noreferrer"
+<footer class="bg-primary-dark-blue py-10">
+	<div class="container">
+		<div
+			class="text-center grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-12 lg:gap-0"
 		>
-			<img class="w-8 col-start-3 justify-self-end" src={github} alt="GitHub" />
-		</a>
+			<div class="flex flex-col justify-between lg:justify-self-start lg:col-span-3">
+				<a class="contents" href={base} target="_blank" rel="noopener noreferrer">
+					<img
+						class="mb-7 w-24"
+						src="images/haja/logo_horizontal_full.png"
+						alt="haja logo"
+					/>
+				</a>
 
-		{#each footerSections as footerSection (footerSection.hash)}
-			<div class="flex flex-col space-y-2">
-				{#each footerSection.links as link (link.href)}
+				<div class="flex justify-between items-center gap-4">
+					{#each iconSocialLinks as link (link.href)}
+						<a
+							class="contents"
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								class="w-6 col-start-3 justify-self-end"
+								src={link.icon}
+								alt={link.alt}
+							/>
+						</a>
+					{/each}
+				</div>
+			</div>
+
+			<div
+				class="grid grid-cols-1 gap-2 py-1 lg:grid-rows-3 text-white text-sm lg:text-left lg:justify-self-start lg:col-span-5 lg:gap-x-24 lg:grid-flow-col-dense"
+			>
+				{#each footerLinks as link (link.href)}
 					<a
-						class="hover:underline"
+						class="hover:text-green-400"
 						href={link.href}
 						target="_blank"
 						rel="noopener noreferrer"
@@ -65,8 +88,14 @@
 					</a>
 				{/each}
 			</div>
-		{/each}
 
-		<p class="col-start-2 row-start-3 justify-self-center self-end">© Haja 2023</p>
+			<div
+				class="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4"
+			>
+				<LoginHeader />
+
+				<p class="text-neutral-grayish-blue text-sm">© Haja. All Rights Reserved</p>
+			</div>
+		</div>
 	</div>
 </footer>

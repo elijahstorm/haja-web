@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Hero from "./Home/Hero.svelte"
 	import Motivation from "./Home/Motivation.svelte"
-	import Blog from "./Home/Blog.svelte"
-	import Footer from "./Layout/Footer.svelte"
 </script>
 
 <div class="relative overflow-hidden">
@@ -11,8 +9,8 @@
 			class="bg-image-mockups absolute z-20 w-full h-full bg-no-repeat bg-auto bg-right-top -right-72 xl:-right-28"
 		/>
 	</div>
+
 	<Hero />
+
 	<Motivation />
 </div>
-<Blog />
-<Footer />

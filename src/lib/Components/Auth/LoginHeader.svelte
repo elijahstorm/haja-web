@@ -21,7 +21,7 @@
 			<Icon icon={"fe:logout"} width={16} />
 		</button>
 	{:else}
-		<a class="btn btn-primary flex content-center h-max" href="{base}/login">
+		<a class="flex items-center content-center h-max btn btn-primary" href="{base}/login">
 			<span class="pr-2 ">Login</span>
 			<Icon icon={"akar-icons:google-fill"} width={22} />
 		</a>

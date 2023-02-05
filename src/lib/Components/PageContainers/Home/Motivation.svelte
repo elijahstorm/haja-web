@@ -1,28 +1,27 @@
 <script lang="ts">
 	const motivationItems = [
 		{
-			iconPath: "/icons/icon-online.svg",
-			title: "Online Banking",
-			subtitle:
-				"Our modern web and mobile applications allow you to keep track of your finances wherever you are in the world."
-		},
-		{
-			iconPath: "/icons/icon-budgeting.svg",
-			title: "Simple Budgeting",
-			subtitle:
-				"See exactly where your money goes each month. Receive notifications when you’re close to hitting your limits."
-		},
-		{
 			iconPath: "/icons/icon-onboarding.svg",
 			title: "Fast Onboarding",
 			subtitle:
-				"We don’t do branches. Open your account in minutes online and start taking control of your finances right away."
+				"Streamlined workflow for maximum efficiency. Accessible from any device, anywhere."
+		},
+		{
+			iconPath: "/icons/icon-budgeting.svg",
+			title: "Online Workflow",
+			subtitle:
+				"Improved communication and collaboration with centralized organization of projects and tasks"
 		},
 		{
 			iconPath: "/icons/icon-api.svg",
-			title: "Open API",
+			title: "Open AI API",
 			subtitle:
-				"Manage your savings, investments, pension, and much more from one account. Tracking your money has never been easier."
+				"Customizable to fit your team's unique needs. Increased accountability and transparency."
+		},
+		{
+			iconPath: "/icons/icon-online.svg",
+			title: "Simple Planning",
+			subtitle: "Easy task delegation and management with real-time progress tracking."
 		}
 	]
 </script>
@@ -31,9 +30,7 @@
 	<div class="container text-center lg:text-left">
 		<div class="grid lg:grid-cols-2 mb-12 lg:mb-16">
 			<div class="col-span-1">
-				<h2 class="text-3xl lg:text-4xl text-primary-dark-blue pb-5">
-					Why choose Easybank?
-				</h2>
+				<h2 class="text-3xl lg:text-4xl text-primary-dark-blue pb-5">Why choose Haja?</h2>
 				<p class="text-neutral-grayish-blue text-sm lg:text-base leading-5">
 					We leverage Open Banking to turn your bank account into your financial hub.
 					Control your finances like never before.

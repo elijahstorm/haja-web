@@ -5,6 +5,17 @@ module.exports = {
 		extend: {
 			fontFamily: "Roboto, sans-serif",
 			colors: {
+				primary: {
+					"dark-blue": "hsl(233, 26%, 24%)",
+					"lime-green": "#59e5c3",
+					"bright-cyan": "hsl(192, 70%, 51%)"
+				},
+				neutral: {
+					"grayish-blue": "hsl(233, 8%, 62%)",
+					"light-grayish-blue": "hsl(220, 16%, 96%)",
+					"very-light-gray": "hsl(0, 0%, 98%)",
+					white: "hsl(0, 0%, 100%)"
+				},
 				black: "#000000",
 				white: "#f8f9fa",
 				brand: {

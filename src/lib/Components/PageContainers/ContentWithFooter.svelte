@@ -56,7 +56,7 @@
 					/>
 				</a>
 
-				<div class="flex justify-between items-center gap-4">
+				<div class="flex justify-center lg:justify-between items-center gap-4">
 					{#each iconSocialLinks as link (link.href)}
 						<a
 							class="contents"
@@ -90,7 +90,7 @@
 			</div>
 
 			<div
-				class="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4"
+				class="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4 gap-4"
 			>
 				<LoginHeader />
 

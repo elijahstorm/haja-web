@@ -3,6 +3,7 @@ module.exports = {
 	content: ["./src/**/*.{svelte,html,ts}"],
 	theme: {
 		extend: {
+			fontFamily: "Roboto, sans-serif",
 			colors: {
 				black: "#000000",
 				white: "#f8f9fa",
@@ -19,8 +20,29 @@ module.exports = {
 					900: "#0986ef"
 				}
 			},
-			fontFamily: "Roboto, sans-serif"
+			backgroundImage: (theme) => ({
+				"header-desktop": "url('/images/bg-intro-desktop.svg')",
+				"header-mobile": "url('/images/bg-intro-mobile.svg')",
+				"image-mockups": "url('/images/image-mockups.png')"
+			}),
+			backgroundSize: {
+				"custom-mobile-header-size": "100% 50%",
+				"custom-mobile-mockup-size": "auto 60%"
+			},
+			container: {
+				center: true,
+				padding: {
+					DEFAULT: "1.25rem",
+					sm: "2rem",
+					lg: "3rem",
+					xl: "4rem",
+					"2xl": "5rem"
+				}
+			},
+			inset: {
+				"-42.6%": "-42.6%"
+			}
 		}
 	},
-	plugins: [require("@tailwindcss/forms")]
+	plugins: [require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio")]
 }

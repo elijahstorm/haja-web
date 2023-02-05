@@ -6,6 +6,7 @@
 	import ImageUploader from "$lib/Components/Widgets/FormWidgets/ImageUploader.svelte"
 	import { addToast } from "as-toast"
 	import type { TeamContentConfig } from "./TeamContent"
+	import EditableUserList from "$lib/Components/Widgets/FormWidgets/EditableUserList.svelte"
 
 	export let team: TeamContentConfig
 
@@ -80,6 +81,8 @@
 			>Private Team</span
 		>
 	</label>
+
+	<EditableUserList users={team.users} />
 
 	<ImageUploader src={team.picture} dest={"picture"} alt="picture" id={team.id} {isTeam} />
 </div>

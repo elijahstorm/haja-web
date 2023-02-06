@@ -5,11 +5,7 @@
 	import { base } from "$app/paths"
 	import BottomBreakCardInfo from "$lib/Components/Widgets/Layouts/BottomBreakCardInfo.svelte"
 
-	const callback = async (form) => {
-		const { error } = await newUser(form["email"].value, form["password"].value)
-
-		return error
-	}
+	const callback = async (form) => newUser(form["email"].value, form["password"].value)
 </script>
 
 <SmallCenterContentOverBackground>

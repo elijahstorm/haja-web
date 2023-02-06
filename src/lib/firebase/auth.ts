@@ -15,6 +15,7 @@ import session from "./session"
 import { ErrorMessaging } from "./errors"
 import { uploadDocument } from "./firestore"
 import type { TodoContentConfig } from "$lib/Components/Content/Todo/TodoContent"
+import { get } from "svelte/store"
 
 const auth = getAuth()
 
@@ -63,6 +64,9 @@ export const loginWithInfo = (email: string, password: string) =>
 export const newUser = (email: string, password: string) =>
 	loginPipe(async () => {
 		session.update((session) => ({ ...session, waitingCreationFlow: true }))
+
+		console.log(get(session), { email, password })
+		throw "testing"
 
 		await createUserWithEmailAndPassword(auth, email, password)
 		await sendEmailVerification(auth.currentUser)

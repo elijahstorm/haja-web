@@ -5,7 +5,7 @@
 	const iconSocialLinks = [
 		{
 			href: "https://github.com/elijahstorm",
-			icon: "icons/github-mark-white.svg",
+			icon: base + "/icons/github-mark-white.svg",
 			alt: "GitHub"
 		}
 	]
@@ -51,7 +51,7 @@
 				<a class="contents" href={base} target="_blank" rel="noopener noreferrer">
 					<img
 						class="mb-7 w-24"
-						src="images/haja/logo_horizontal_full.png"
+						src="{base}/images/haja/logo_horizontal_full.png"
 						alt="haja logo"
 					/>
 				</a>

@@ -5,8 +5,8 @@
 
 <Casing>
 	<ContactForm
-		type="support"
-		title="Report an Issue"
-		prompt="To create a request ticket, contact us directly with this form."
+		type="data-request"
+		title="Data Request"
+		prompt="To request your personal data, fill out this form."
 	/>
 </Casing>

@@ -3,6 +3,7 @@
 	import ImageUploader from "$lib/Components/Widgets/FormWidgets/ImageUploader.svelte"
 	import { addToast } from "as-toast"
 	import type { UserContentConfig } from "./UserContent"
+	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
 
 	export let user: UserContentConfig
 
@@ -29,12 +30,13 @@
 <div class="flex flex-col gap-4">
 	<slot />
 
-	<div class="flex gap-4">
-		<ImageUploader src={user.picture} alt="profile" {id} {source} {isTeam} />
-
-		<div class="flex flex-col gap-4">
+	<ListWithActionAndTitle title="General Information" small>
+		<div class="flex flex-col gap-3">
 			<div class="flex flex-col gap-2">
-				<label class="px-1 py-0 opacity-70" for="name">Name</label>
+				<label
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					for="name">Name</label
+				>
 				<input
 					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="name"
@@ -44,7 +46,10 @@
 			</div>
 
 			<div class="flex flex-col gap-2">
-				<label class="px-1 py-0 opacity-70" for="caption">Description</label>
+				<label
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					for="caption">Description</label
+				>
 				<textarea
 					class="w-full p-1 text-lg font-bold resize-none background-transparent border border-gray-600 rounded-md"
 					name="caption"
@@ -54,14 +59,24 @@
 				/>
 			</div>
 		</div>
-	</div>
+	</ListWithActionAndTitle>
 
-	<ImageUploader
-		src={user.background}
-		dest={"background"}
-		alt="background"
-		{id}
-		{source}
-		{isTeam}
-	/>
+	<ListWithActionAndTitle title="Images" small>
+		<div class="flex gap-4">
+			<div class="flex-1">
+				<ImageUploader src={user.picture} alt="profile" {id} {source} {isTeam} />
+			</div>
+
+			<div class="flex-1">
+				<ImageUploader
+					src={user.background}
+					dest={"background"}
+					alt="background"
+					{id}
+					{source}
+					{isTeam}
+				/>
+			</div>
+		</div>
+	</ListWithActionAndTitle>
 </div>

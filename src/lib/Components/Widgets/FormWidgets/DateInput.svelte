@@ -38,11 +38,11 @@
 
 	<div class="flex gap-4 justify-center items-center">
 		<button
-			class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+			class="btn btn-secondary text-xs px-3 py-2 flex content-center h-max"
 			on:click={() => sub("week")}>-&nbsp;week</button
 		>
 		<button
-			class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
+			class="btn btn-secondary text-xs px-3 py-2 flex content-center h-max"
 			on:click={() => add("week")}>+&nbsp;week</button
 		>
 	</div>

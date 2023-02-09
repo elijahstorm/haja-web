@@ -37,7 +37,7 @@
 			{:then teams}
 				{#if typeof teams !== "string"}
 					<ListWithActionAndTitle title="Recommended Teams">
-						<div class="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 							{#each teams as team (team.id)}
 								<PriceCard
 									{...team}

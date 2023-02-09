@@ -6,7 +6,7 @@
 
 {#each users as id (id)}
 	{#await getUser({ id })}
-		<slot name="loader" />
+		<slot name="loading" />
 	{:then user}
 		{#if typeof user !== "string"}
 			<slot {user} />

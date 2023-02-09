@@ -12,9 +12,7 @@
 {:else}
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 		{#each teams as team (team.id)}
-			<div class="my-4">
-				<TeamCard {team} />
-			</div>
+			<TeamCard {team} />
 		{/each}
 	</div>
 {/if}

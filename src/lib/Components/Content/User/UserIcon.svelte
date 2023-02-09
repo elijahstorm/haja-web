@@ -12,7 +12,7 @@
 	$: style = `width: ${size}rem; height: ${size}rem;`
 </script>
 
-<a {href}>
+<a class="contents" {href}>
 	<div
 		class="h-8 w-8 bg-white rounded-full border border-solid border-gray-600 overflow-hidden self-center cursor-pointer"
 		{style}

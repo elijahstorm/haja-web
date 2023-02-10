@@ -1,6 +1,6 @@
 <script lang="ts">
+	import HorizontalUserCard from "$lib/Components/Content/User/HorizontalUserCard.svelte"
 	import type { UserContentConfig } from "$lib/Components/Content/User/UserContent"
-	import UserIcon from "$lib/Components/Content/User/UserIcon.svelte"
 	import UserIdsToContent from "$lib/Components/Content/User/UserIdsToContent.svelte"
 	import Loader from "../Helpers/Loader.svelte"
 
@@ -69,15 +69,7 @@
 	<div class="flex gap-3 items-center w-full">
 		<UserIdsToContent {users} let:user>
 			{#if typeof user !== "string"}
-				<div
-					class="flex-1 flex gap-3 justify-between items-center rounded-full bg-gray-200 line-height-username1"
-				>
-					<UserIcon {user} size={4} />
-
-					<span class="flex-1 text-xl whitespace-nowrap overflow-hidden text-ellipsis"
-						>{user.title}</span
-					>
-
+				<HorizontalUserCard {user}>
 					<button
 						class="inline-flex items-center px-4 py-2 mr-7 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md"
 						on:click={remove(user)}
@@ -99,7 +91,7 @@
 
 						<span class="ml-2 hidden sm:block"> Remove </span>
 					</button>
-				</div>
+				</HorizontalUserCard>
 			{/if}
 
 			<div slot="loading">

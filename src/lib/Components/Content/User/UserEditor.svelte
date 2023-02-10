@@ -4,6 +4,7 @@
 	import { addToast } from "as-toast"
 	import type { UserContentConfig } from "./UserContent"
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
+	import ToggleButton from "$lib/Components/Widgets/FormWidgets/ToggleButton.svelte"
 
 	export let user: UserContentConfig
 
@@ -13,7 +14,8 @@
 
 	const getContent = () => ({
 		title: user.title,
-		caption: user.caption
+		caption: user.caption,
+		private: user.private
 	})
 
 	export const requestSave = () =>
@@ -31,6 +33,8 @@
 	<slot />
 
 	<ListWithActionAndTitle title="General Information" small>
+		<ToggleButton label="Private Profile" bind:checked={user.private} />
+
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-col gap-2">
 				<label

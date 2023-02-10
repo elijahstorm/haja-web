@@ -23,7 +23,7 @@
 		{#await getUser({ id: source }) then user}
 			{#if typeof user !== "string"}
 				<div class="flex flex-col gap-4">
-					<HorizontalUserCard {user} size={5} />
+					<HorizontalUserCard {user} />
 				</div>
 			{/if}
 		{/await}

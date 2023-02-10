@@ -2,6 +2,7 @@
 	import type { UserContentConfig } from "./UserContent"
 	import UserIcon from "./UserIcon.svelte"
 	import Icon from "@iconify/svelte"
+	import { base } from "$app/paths"
 
 	export let user: UserContentConfig
 
@@ -15,7 +16,11 @@
 >
 	<UserIcon {user} size={4} />
 
-	<span class="flex-1 text-xl whitespace-nowrap overflow-hidden text-ellipsis">{user.title}</span>
+	<a class="contents" href={base + (user ? `/user/${user.id}` : "/")}>
+		<span class="flex-1 text-xl whitespace-nowrap overflow-hidden text-ellipsis"
+			>{user.title}</span
+		>
+	</a>
 
 	<slot>
 		<button

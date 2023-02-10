@@ -32,7 +32,7 @@
 			<FallbackImage alt="user profile" fallback="{base}/icon/person.svg" cover />
 		{:else}
 			<FallbackImage
-				src={user?.picture}
+				src={user.picture}
 				alt="user profile"
 				fallback="{base}/icon/person.svg"
 				cover

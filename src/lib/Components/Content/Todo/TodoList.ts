@@ -13,9 +13,7 @@ export const getTodoList: (input: {
 	isTeam = false,
 	amount = 50
 }) => {
-	let list: QuerySnapshot<DocumentData>,
-		response: TodoContentConfig[] = []
-	let error: string | null = null
+	let list: QuerySnapshot<DocumentData>
 
 	try {
 		list = await storeQuery({
@@ -37,14 +35,13 @@ export const getTodoList: (input: {
 			]
 		})
 	} catch (e) {
-		error = e
 		return e
 	}
 
-	list.forEach((doc) => {
+	return list.docs.map((doc) => {
 		const data = doc.data()
 
-		response.push({
+		return {
 			contentType: "todo",
 			id: data.id ?? doc.id,
 			title: data.title?.trim(),
@@ -56,8 +53,6 @@ export const getTodoList: (input: {
 			date: data.date.toDate(),
 			status: data.status,
 			type: data.type
-		})
+		}
 	})
-
-	return response
 }

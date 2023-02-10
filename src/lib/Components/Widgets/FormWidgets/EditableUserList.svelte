@@ -27,7 +27,7 @@
 </script>
 
 <div class="flex flex-col items-start gap-3">
-	<UserSearch select={add} />
+	<UserSearch select={add} exclude={users} />
 
 	<div class="flex gap-3 items-center w-full">
 		<UserIdsToContent {users} let:user>
@@ -67,7 +67,7 @@
 				<span class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis text-red-300">
 					error {id}
 				</span>
-			</div></UserIdsToContent
-		>
+			</div>
+		</UserIdsToContent>
 	</div>
 </div>

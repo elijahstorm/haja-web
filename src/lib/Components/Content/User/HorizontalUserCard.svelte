@@ -30,6 +30,6 @@
 			<Icon icon="fluent-mdl2:add-friend" />
 
 			<span class="ml-2 hidden sm:block"> Add Friend </span>
-		</button></slot
-	>
+		</button>
+	</slot>
 </div>

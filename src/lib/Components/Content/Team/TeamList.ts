@@ -12,19 +12,15 @@ export const getTeamList: (input: {
 	value = awaitMyId(),
 	amount = 10
 }) => {
-	const isTeam = true
-	const timestamp = "updatedOn"
-	let list: QuerySnapshot<DocumentData>,
-		response: TeamContentConfig[] = []
-	let error: string | null = null
+	let list: QuerySnapshot<DocumentData>
 
 	value = await value
 
 	try {
 		list = await storeQuery({
-			isTeam,
+			isTeam: true,
 			amount,
-			timestamp,
+			timestamp: "updatedOn",
 			queries: [
 				{
 					type: query,
@@ -34,14 +30,13 @@ export const getTeamList: (input: {
 			]
 		})
 	} catch (e) {
-		error = e
 		return e
 	}
 
-	list.forEach((doc) => {
+	return list.docs.map((doc) => {
 		const data = doc.data()
 
-		response.push({
+		return {
 			contentType: "team",
 			id: data.id ?? doc.id,
 			title: data.title?.trim(),
@@ -49,8 +44,6 @@ export const getTeamList: (input: {
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			private: data.private,
 			users: data.users
-		})
+		}
 	})
-
-	return response
 }

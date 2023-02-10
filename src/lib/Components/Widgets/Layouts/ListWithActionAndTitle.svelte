@@ -6,7 +6,7 @@
 <div class="pb-2">
 	<div class="flex justify-between content-center">
 		{#if small}
-			<h2 class="opacity-70 mb-3 text-lg font-medium text-gray-900 dark:text-gray-300">
+			<h2 class="opacity-70 mb-3 text-lg font-medium text-gray-900">
 				{title}
 			</h2>
 		{:else}

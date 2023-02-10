@@ -38,7 +38,7 @@
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="name">Name</label
 				>
 				<input
@@ -51,7 +51,7 @@
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="caption">Description</label
 				>
 				<textarea

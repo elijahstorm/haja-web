@@ -5,12 +5,7 @@
 	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import ImageGradientOverlay from "$lib/Components/Widgets/Helpers/ImageGradientOverlay.svelte"
-	import Cropper from "svelte-easy-crop"
 	import { addToast } from "as-toast"
-
-	let crop = { x: 0, y: 0 }
-	let zoom = 1
-	let image = "https://cdn1-www.dogtime.com/assets/uploads/2011/03/puppy-development.jpg"
 
 	const fallback = "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"
 
@@ -21,6 +16,7 @@
 	export let src: string = fallback
 	export let alt: string
 	export let dest: string = "picture"
+	export let title: string = null
 	export let oncomplete: () => void = () => {}
 
 	const accept = ".jpg, .jpeg, .png, .svg"
@@ -71,8 +67,7 @@
 				isTeam,
 				content: {
 					[dest]: picture
-				},
-				timestamp: "updatedOn"
+				}
 			}).then((response) => {
 				addToast("Image uploaded")
 				state = "finished"
@@ -91,13 +86,18 @@
 
 <section class="flex items-center justify-center flow-c">
 	<button
-		class="image-uploader-container w-full overflow-clip text-left rounded-lg relative cursor-pointer grid grid-cols-1 grid-rows-1 border border-gray-400 max-h-96"
+		class="image-uploader-container w-full overflow-clip text-left rounded-lg relative cursor-pointer grid grid-cols-1 grid-rows-1 border border-gray-400 max-h-96 transition-all"
 		on:click={open}
 	>
 		<FallbackImage {src} {alt} {fallback} />
-		<!-- <Cropper {image} bind:crop bind:zoom /> -->
 
-		<ImageGradientOverlay title="Your {dest}" info={""} {fileType} {fileName} {state} />
+		<ImageGradientOverlay
+			title={title ?? `Your ${dest}`}
+			info={""}
+			{fileType}
+			{fileName}
+			{state}
+		/>
 
 		<div
 			class="upload-interation-icon cursor-pointer z-50 opacity-0 transition-opacity duration-500 bg-white p-4 m-4 border border-gray-300 rounded-full"

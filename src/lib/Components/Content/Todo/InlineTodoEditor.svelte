@@ -75,8 +75,7 @@
 			source,
 			content: {
 				color: `ff${color}`
-			},
-			timestamp: "updatedOn"
+			}
 		})
 	}
 

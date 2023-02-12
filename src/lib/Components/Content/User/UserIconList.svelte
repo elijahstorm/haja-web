@@ -16,7 +16,9 @@
 
 <section class="grid grid-cols-4 grid-rows-1 items-center">
 	{#await awaitMyId() then myself}
-		{#each users.filter((id) => !hideMe || id != myself).slice(0, SHOW_MAX_LENGTH) as id, index}
+		{#each users
+			.filter((id) => !hideMe || id != myself)
+			.slice(0, SHOW_MAX_LENGTH) as id, index (id)}
 			<div
 				class="row-start-1 h-min"
 				style="translate: {(index / 4) * 100}% 0; grid-column: {4 - index};"

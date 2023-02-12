@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import DataInput from "$lib/Components/Widgets/FormWidgets/DataInput.svelte"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 
@@ -12,44 +11,44 @@
 		}
 	]
 
+	type ResponseInfo = {
+		message?: string
+		error?: string
+	}
 	export let error: string = ""
-	export let callback: (form: HTMLFormElement) => Promise<string | null> = async (form) => ""
+	export let callback: (form: HTMLFormElement) => Promise<ResponseInfo>
 
 	let formElement: HTMLFormElement
-	let actionError: Promise<string>
-
-	$: requestSent = false
-	$: attempted = false
+	let requestError: Promise<ResponseInfo>
+	let requestSent = false
+	let attempted = false
 
 	const sendRequest = async () => {
 		attempted = true
 		error = validateForm()
 
-		if (error != "") {
+		if (error !== "") {
 			return false
 		}
 
-		actionError = callback(formElement)
-		error = (await actionError) ?? ""
-
-		if (error != "") {
-			return false
+		if (callback) {
+			requestError = callback(formElement)
+			requestSent = true
 		}
-
-		requestSent = true
 	}
 
 	const validateForm = (): string => {
 		error = null
 		let password
 
-		for (let index in inputs) {
-			const input = inputs[index]
+		for (let input of inputs) {
 			const value = formElement[input.id].value
 
-			if (input.type == "password") {
+			if (input.id === "password") {
+				if (value.length < 6) return "Password should be at least 6 characters"
+
 				password = value
-			} else if (input.id == "pass_confirm" && value != password) {
+			} else if (input.id === "pass_confirm" && value != password) {
 				return "Passwords don't match"
 			}
 		}
@@ -61,13 +60,19 @@
 <section
 	class="bg-white w-full overflow-hidden my-8 mx-auto border border-gray-400 rounded-lg max-w-md shadow-md"
 >
-	{#if actionError}
-		{#await actionError}
+	{#if requestError}
+		{#await requestError}
 			<div class="flex h-80 justify-center items-center">
 				<Loader />
 			</div>
-		{:then error}
-			{error === "" ? "Finished! Taking you to your profile..." : error}
+		{:then response}
+			<div class="flex h-80 justify-center items-center">
+				<p class="text-red-500 py-4 px-4">
+					{response.error
+						? response.error
+						: response.message ?? "Finished processing request"}
+				</p>
+			</div>
 		{/await}
 	{:else}
 		<div class="p-8">

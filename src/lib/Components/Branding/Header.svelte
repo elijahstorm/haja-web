@@ -5,14 +5,16 @@
 	export let logoLink: string = "/"
 </script>
 
-<div class="max-w-4xl w-full flex">
-	<a href={base + logoLink}>
-		<img
-			class="cursor-pointer w-24"
-			src="{base}/images/haja/logo_horizontal_full.png"
-			alt="HAJA"
-		/>
-	</a>
-	<div class="flex-1" />
-	<LoginHeader />
+<div class="px-8 py-4 bg-stone-100 flex justify-center">
+	<div class="max-w-4xl w-full flex">
+		<a href={base + logoLink}>
+			<img
+				class="cursor-pointer w-24"
+				src="{base}/images/haja/logo_horizontal_full.png"
+				alt="HAJA"
+			/>
+		</a>
+		<div class="flex-1" />
+		<LoginHeader />
+	</div>
 </div>

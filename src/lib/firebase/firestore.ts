@@ -17,11 +17,18 @@ import {
 	where,
 	type DocumentData,
 	type WhereFilterOp,
-	deleteDoc
+	deleteDoc,
+	FieldPath
 } from "firebase/firestore"
 import type { SendContentConfig } from "$lib/Components/Content/Content"
 import { firebaseApp } from "./firebase"
 import { pipe } from "$lib/utils"
+
+export type FirestoreQuery = {
+	type: string | FieldPath
+	compare: WhereFilterOp
+	value: unknown
+}[]
 
 const db = getFirestore(firebaseApp)
 
@@ -50,6 +57,7 @@ const clense = (content, timestamp) => (location) => {
 	delete content.id
 	delete content.contentType
 	content[timestamp] = serverTimestamp()
+	content["updatedOn"] = serverTimestamp()
 
 	return {
 		location,
@@ -114,7 +122,7 @@ export const updateDocument: (
 	source = null,
 	type = null,
 	isTeam = false,
-	timestamp = "edited"
+	timestamp = "updatedOn"
 }) =>
 	pipe(
 		api({ source, type, isTeam, id }),
@@ -127,18 +135,14 @@ export const storeQuery: (
 	data: StoreLocation & {
 		amount?: number
 		timestamp?: string
-		queries: {
-			type: string
-			compare: WhereFilterOp
-			value: unknown
-		}[]
+		queries: FirestoreQuery
 	}
 ) => Promise<QuerySnapshot<DocumentData>> = ({
 	source = null,
 	isTeam = false,
 	type = null,
 	amount = 50,
-	timestamp = "date",
+	timestamp = "updatedOn",
 	queries
 }) =>
 	pipe(

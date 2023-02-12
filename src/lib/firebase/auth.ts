@@ -117,12 +117,14 @@ export const newUser = (email: string, password: string) =>
 		]
 		const source = await awaitMyId()
 		const isTeam = false
+		const type = "todo"
 
 		await uploadDocument({
 			id: source,
 			isTeam,
 			content: {
 				email,
+				private: false,
 				caption: "Edit your profile"
 			}
 		})
@@ -133,7 +135,7 @@ export const newUser = (email: string, password: string) =>
 				source,
 				isTeam,
 				content,
-				type: "todo"
+				type
 			})
 		}
 

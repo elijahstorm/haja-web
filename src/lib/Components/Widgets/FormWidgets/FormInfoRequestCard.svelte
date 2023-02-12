@@ -34,9 +34,6 @@
 		if (callback) {
 			requestError = callback(formElement)
 			requestSent = true
-
-			console.log(requestError)
-			console.log(await requestError)
 		}
 	}
 

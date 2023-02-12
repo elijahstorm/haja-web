@@ -22,8 +22,7 @@
 		updateDocument({
 			id: user.id,
 			isTeam,
-			content: getContent(),
-			timestamp: "updatedOn"
+			content: getContent()
 		}).then((response) => {
 			addToast(`User ${user.title} profile updated`)
 		})

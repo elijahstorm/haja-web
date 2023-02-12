@@ -6,13 +6,14 @@
 
 	export let user: UserContentConfig | "fallback" | null = null
 	export let size: number = 2
+	export let newTab = false
 
 	$: myId = $session?.user?.uid
 	$: href = user === "fallback" ? "#" : base + (user ? `/user/${user.id}` : "/")
 	$: style = `width: ${size}rem; height: ${size}rem;`
 </script>
 
-<a class="contents" {href}>
+<a class="contents" {href} target={newTab ? "_blank" : "_self"} rel="noreferrer">
 	<div
 		class="h-8 w-8 bg-white rounded-full border border-solid border-gray-600 overflow-hidden self-center cursor-pointer"
 		{style}

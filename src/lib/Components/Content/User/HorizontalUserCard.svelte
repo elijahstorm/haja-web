@@ -14,9 +14,14 @@
 <div
 	class="flex-1 flex gap-3 justify-between items-center rounded-full bg-gray-200 line-height-username1"
 >
-	<UserIcon {user} size={4} />
+	<UserIcon {user} size={4} newTab />
 
-	<a class="contents" href={base + (user ? `/user/${user.id}` : "/")}>
+	<a
+		class="contents"
+		href={base + (user ? `/user/${user.id}` : "/")}
+		target="_blank"
+		rel="noreferrer"
+	>
 		<span class="flex-1 text-xl whitespace-nowrap overflow-hidden text-ellipsis"
 			>{user.title}</span
 		>

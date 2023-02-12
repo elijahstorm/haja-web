@@ -24,13 +24,15 @@
 		users: getUpdatedUserList ? getUpdatedUserList() : undefined
 	})
 
-	export const requestSave = () =>
+	export const requestSave = (resolve?: (id: string) => void) =>
 		team.id === ""
 			? uploadDocument({
 					isTeam,
 					content: getContent()
 			  })
 					.then((response) => {
+						if (resolve) resolve(response.id)
+
 						if (browser) goto(`${base}/team/${response.id}`)
 					})
 					.catch((response) => {
@@ -39,8 +41,7 @@
 			: updateDocument({
 					id: team.id,
 					isTeam,
-					content: getContent(),
-					timestamp: "updatedOn"
+					content: getContent()
 			  }).then((response) => {
 					addToast(`Team ${team.title} updated`)
 			  })

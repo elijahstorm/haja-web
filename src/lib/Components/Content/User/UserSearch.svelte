@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
-	import { getUsersSearch } from "./SearchUsers"
+	import { getRecommendedUsers, getUsersSearch } from "./SearchUsers"
 	import type { UserContentConfig } from "./UserContent"
-	import UserIcon from "./UserIcon.svelte"
+	import UserSearchResult from "./UserSearchResult.svelte"
 
 	let results: Promise<UserContentConfig[] | string>
 	let timer: number
@@ -32,7 +32,9 @@
 	})
 </script>
 
-<div class="w-full">
+<div
+	class="w-full shadow-md overflow-clip rounded-md border border-gray-300 bg-gray-50 focus-within:ring-blue-500 focus-within:border-blue-500"
+>
 	<div class="relative">
 		<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 			<svg
@@ -52,8 +54,7 @@
 			</svg>
 		</div>
 		<input
-			class="block w-full p-4 pl-10 text-sm rounded-t-md text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500:ring-blue-500:border-blue-500"
-			class:rounded-b-md={!results}
+			class="block w-full p-4 pl-10 text-sm text-gray-900 border-transparent focus:ring-transparent focus:border-transparent"
 			type="search"
 			placeholder="Search for users"
 			on:input={search}
@@ -61,31 +62,31 @@
 		/>
 	</div>
 
-	{#if results}
-		{#await results}
-			<Loader />
-		{:then results}
-			{#if Array.isArray(results) && results.length}
-				<div
-					class="flex flex-col justify-center relative text-gray-500 bg-white border border-gray-100"
-				>
-					{#each results as user}
-						<button
-							class="flex items-center pl-3 pr-2 py-1 text-sm border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900"
-							on:click={select(user)}
-						>
-							<UserIcon {user} size={1.5} />
-							<span class="ml-4">
-								{user.title}
-							</span>
-						</button>
-					{/each}
+	<div class="flex flex-col justify-center relative text-gray-500 border border-gray-100">
+		{#if results}
+			{#await results}
+				<div class="py-2">
+					<Loader size={2} />
 				</div>
-			{:else}
-				<p class="py-2 px-4 text-sm border-b-2 border-x-2 border-gray-100">
-					No similar users found
-				</p>
-			{/if}
-		{/await}
-	{/if}
+			{:then results}
+				{#if Array.isArray(results) && results.length}
+					{#each results as user}
+						<UserSearchResult {user} action={select(user)} />
+					{/each}
+				{:else}
+					<p class="py-2 px-4 text-sm border-b-2 border-x-2 border-gray-100">
+						No similar users found
+					</p>
+				{/if}
+			{/await}
+		{:else}
+			{#await getRecommendedUsers({ exclude }) then users}
+				{#if typeof users !== "string"}
+					{#each users as user}
+						<UserSearchResult {user} action={select(user)} />
+					{/each}
+				{/if}
+			{/await}
+		{/if}
+	</div>
 </div>

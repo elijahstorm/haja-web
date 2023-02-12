@@ -21,6 +21,7 @@ export const getTodoList: (input: {
 			source,
 			amount,
 			isTeam,
+			timestamp: "date",
 			queries: [
 				{
 					type: "date",

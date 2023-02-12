@@ -4,12 +4,12 @@
 	import DraggableModal from "$lib/Components/Widgets/Layouts/DraggableModal.svelte"
 	import GlassyButton from "$lib/Components/Widgets/Buttons/GlassyButton.svelte"
 
-	export let entity: Promise<AllContentTypes>
+	export let entity: AllContentTypes
 	export let isTeam: boolean = false
 
 	let maxVH = 70
 	let minVH = 65
-	let requestSave
+	let requestSave: () => Promise<void>
 
 	const save = (action: VoidFunction) => () => {
 		requestSave()

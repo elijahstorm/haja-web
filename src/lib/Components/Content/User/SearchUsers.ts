@@ -1,78 +1,48 @@
 import { myId } from "$lib/firebase/auth"
-import { storeQuery } from "$lib/firebase/firestore"
-import type { DocumentData, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore"
+import { pipe } from "$lib/utils"
+import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
+import {
+	excludeResults,
+	performQuery,
+	recommendedQueriesAlgo,
+	searchQueriesAlgo
+} from "../Algos/searchAlgos"
 import type { UserContentConfig } from "./UserContent"
 
 export const getRecommendedUsers: (input: {
-	value?: string
+	id?: string
+	exclude?: string[]
 	amount?: number
-}) => Promise<UserContentConfig[] | string> = ({ value = myId(), amount = 5 }) =>
-	performQuery({
-		queries: [
-			{
-				type: "id",
-				compare: "array-contains",
-				value
-			}
-		],
-		orderBy: "updatedOn",
-		amount,
-		value
-	})
+}) => Promise<UserContentConfig[] | string> = ({ id = myId(), exclude = [], amount = 5 }) =>
+	pipe(
+		() =>
+			performQuery({
+				isTeam: false,
+				queries: recommendedQueriesAlgo(id),
+				orderBy: "updatedOn",
+				amount,
+				convertDocToConfig
+			}),
+		excludeResults(exclude, (config: UserContentConfig) => config.id)
+	)
 
 export const getUsersSearch: (input: {
 	value: string
 	exclude?: string[]
 	amount?: number
 }) => Promise<UserContentConfig[] | string> = ({ value, exclude = [], amount = 10 }) =>
-	performQuery({
-		queries: [
-			{
-				type: "title",
-				compare: ">=",
-				value
-			},
-			{
-				type: "title",
-				compare: "<",
-				value: value + "z"
-			},
-			{
-				type: "id",
-				comapre: "not-in",
-				value: exclude
-			}
-		],
-		orderBy: "title",
-		amount,
-		value
-	})
+	pipe(
+		() =>
+			performQuery({
+				queries: searchQueriesAlgo(value),
+				orderBy: "title",
+				amount,
+				convertDocToConfig
+			}),
+		excludeResults(exclude, (config: UserContentConfig) => config.id)
+	)
 
-const performQuery: (input: {
-	queries: any[]
-	orderBy: string
-	value: string | Promise<string>
-	amount: number
-}) => Promise<UserContentConfig[] | string> = async ({ queries, orderBy, value, amount }) => {
-	let list: QuerySnapshot<DocumentData>
-
-	value = await value
-
-	try {
-		list = await storeQuery({
-			isTeam: false,
-			amount,
-			timestamp: orderBy,
-			queries
-		})
-	} catch (e) {
-		return e
-	}
-
-	return list.docs.map(convertDocToUserConfig)
-}
-
-const convertDocToUserConfig = (doc: QueryDocumentSnapshot<DocumentData>): UserContentConfig => {
+const convertDocToConfig = (doc: QueryDocumentSnapshot<DocumentData>): UserContentConfig => {
 	const data = doc.data()
 
 	return {

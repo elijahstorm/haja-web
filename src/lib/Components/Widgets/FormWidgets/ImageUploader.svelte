@@ -67,8 +67,7 @@
 				isTeam,
 				content: {
 					[dest]: picture
-				},
-				timestamp: "updatedOn"
+				}
 			}).then((response) => {
 				addToast("Image uploaded")
 				state = "finished"

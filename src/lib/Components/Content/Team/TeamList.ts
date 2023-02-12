@@ -20,7 +20,6 @@ export const getTeamList: (input: {
 		list = await storeQuery({
 			isTeam: true,
 			amount,
-			timestamp: "updatedOn",
 			queries: [
 				{
 					type: query,

@@ -29,7 +29,7 @@
 <div class="flex flex-col items-start gap-3">
 	<UserSearch select={add} exclude={users} />
 
-	<div class="flex gap-3 items-center w-full">
+	<div class="flex flex-col gap-3 w-full">
 		<UserIdsToContent {users} let:user>
 			{#if typeof user !== "string"}
 				<HorizontalUserCard {user}>

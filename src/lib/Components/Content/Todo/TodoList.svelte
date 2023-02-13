@@ -27,6 +27,7 @@
 		<AddTodo {source} {isTeam} {callback} />
 	</div>
 {/if}
+
 {#if typeof todos === "string" || !Array.isArray(todos)}
 	{todos}
 {:else if todos.length == 0}

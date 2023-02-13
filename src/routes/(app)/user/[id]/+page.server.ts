@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	let user = pipe(() => prefilteredData, JSON.stringify, JSON.parse)
 
 	if (typeof user === "string") {
-		throw error(404, "todo not found")
+		throw error(404, "user not found")
 	}
 
 	return { user }

@@ -13,13 +13,16 @@
 	const content: Promise<TeamContentConfig> = new Promise(async (resolve) => {
 		const user = await getUser({ id: await awaitMyId() })
 
+		if (typeof user === "string") return
+
 		const id = ""
-		const title = typeof user !== "string" ? user.title + "'s Team" : ""
+		const title = user.title + "'s Team"
 		const contentType = "team"
 		const caption = ""
-		const users = typeof user !== "string" ? [user.id] : []
+		const users = [user.id]
+		const owner = user.id
 
-		resolve({ id, title, contentType, caption, private: false, users })
+		resolve({ id, title, contentType, caption, private: false, owner, users })
 	})
 
 	let requestSave: (resolve: (id: string) => void) => Promise<void>

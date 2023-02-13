@@ -5,6 +5,7 @@ export interface TeamContentConfig extends ContentConfig {
 	picture?: string
 	private?: boolean
 	users?: string[]
+	owner: string
 	contentType: "team"
 }
 
@@ -31,6 +32,7 @@ export const getTeam: (input: { id: string }) => Promise<TeamContentConfig | str
 			caption: data.caption?.trim(),
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			private: data.private,
+			owner: data.owner,
 			users: data.users
 		}
 	}

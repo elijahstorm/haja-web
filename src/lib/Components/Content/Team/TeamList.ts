@@ -42,6 +42,7 @@ export const getTeamList: (input: {
 			caption: data.caption?.trim(),
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			private: data.private,
+			owner: data.owner,
 			users: data.users
 		}
 	})

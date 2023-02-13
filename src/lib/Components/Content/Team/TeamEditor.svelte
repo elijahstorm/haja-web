@@ -10,6 +10,7 @@
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
 	import Icon from "@iconify/svelte"
 	import { awaitMyId } from "$lib/firebase/auth"
+	import ToggleButton from "$lib/Components/Widgets/FormWidgets/ToggleButton.svelte"
 
 	export let team: TeamContentConfig
 
@@ -25,13 +26,15 @@
 		users: getUpdatedUserList ? getUpdatedUserList() : undefined
 	})
 
-	export const requestSave = () =>
+	export const requestSave = (resolve?: (id: string) => void) =>
 		team.id === ""
 			? uploadDocument({
 					isTeam,
 					content: { ...getContent(), owner: team.owner }
 			  })
 					.then((response) => {
+						if (resolve) resolve(response.id)
+
 						if (browser) goto(`${base}/team/${response.id}`)
 					})
 					.catch((response) => {
@@ -40,8 +43,7 @@
 			: updateDocument({
 					id: team.id,
 					isTeam,
-					content: getContent(),
-					timestamp: "updatedOn"
+					content: getContent()
 			  }).then((response) => {
 					addToast(`Team ${team.title} updated`)
 			  })
@@ -92,25 +94,11 @@
 
 	<ListWithActionAndTitle title="General Information" small>
 		<div class="flex flex-col gap-3">
-			<label class="relative inline-flex items-center cursor-pointer">
-				<input
-					class="sr-only peer"
-					name="private"
-					type="checkbox"
-					bind:checked={team.private}
-				/>
-				<div
-					class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
-				/>
-				<span
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
-					>Private Team</span
-				>
-			</label>
+			<ToggleButton label="Private Team" bind:checked={team.private} />
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="name">Name</label
 				>
 				<input
@@ -123,7 +111,7 @@
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="caption">Description</label
 				>
 				<textarea

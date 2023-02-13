@@ -29,4 +29,8 @@
 		<p class="mt-8 w-full">{errors ?? "Sorry, we can't find what you're looking for 🔎"}</p>
 		<p class="mt-8 w-full">You may need to login to view this content</p>
 	{/if}
+
+	<div class="mt-8">
+		<slot />
+	</div>
 </Casing>

@@ -9,7 +9,8 @@ import {
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
-	updatePassword
+	updatePassword,
+	type UserCredential
 } from "firebase/auth"
 import session from "./session"
 import { ErrorMessaging } from "./errors"
@@ -19,11 +20,18 @@ import { get } from "svelte/store"
 
 const auth = getAuth()
 
-const loginPipe: (pipe: () => Promise<void>) => Promise<{ error?: string }> = async (pipe) =>
+const loginPipe: (
+	pipe: () => Promise<UserCredential | string>
+) => Promise<{ message?: string; error?: string }> = async (pipe) =>
 	await new Promise((resolve) => {
 		pipe()
-			.then(() => {
-				resolve({})
+			.then((response) => {
+				resolve({
+					message:
+						typeof response === "string"
+							? response
+							: `${response.user.email} logged in.`
+				})
 			})
 			.catch((e) => {
 				resolve({
@@ -50,27 +58,19 @@ export const awaitMyId: () => Promise<string> = () =>
 export const myId = (): string | null => auth.currentUser?.uid
 
 export const loginWithGoogle = () =>
-	loginPipe(async () => {
-		await signInWithPopup(auth, new GoogleAuthProvider())
-	})
+	loginPipe(async () => await signInWithPopup(auth, new GoogleAuthProvider()))
 export const loginWithFacebook = () =>
-	loginPipe(async () => {
-		await signInWithPopup(auth, new FacebookAuthProvider())
-	})
+	loginPipe(async () => await signInWithPopup(auth, new FacebookAuthProvider()))
 export const loginWithInfo = (email: string, password: string) =>
-	loginPipe(async () => {
-		await signInWithEmailAndPassword(auth, email, password)
-	})
+	loginPipe(async () => await signInWithEmailAndPassword(auth, email, password))
 export const newUser = (email: string, password: string) =>
 	loginPipe(async () => {
 		session.update((session) => ({ ...session, waitingCreationFlow: true }))
 
-		console.log(get(session), { email, password })
-		throw "testing"
-
-		await createUserWithEmailAndPassword(auth, email, password)
+		const user = await createUserWithEmailAndPassword(auth, email, password)
 		await sendEmailVerification(auth.currentUser)
 
+		// here we will settup their account by creating
 		// auto-onboarding content for the user to experiment with
 
 		const editTodoPrompt: TodoContentConfig = {
@@ -117,12 +117,14 @@ export const newUser = (email: string, password: string) =>
 		]
 		const source = await awaitMyId()
 		const isTeam = false
+		const type = "todo"
 
 		await uploadDocument({
 			id: source,
 			isTeam,
 			content: {
 				email,
+				private: false,
 				caption: "Edit your profile"
 			}
 		})
@@ -133,19 +135,25 @@ export const newUser = (email: string, password: string) =>
 				source,
 				isTeam,
 				content,
-				type: "todo"
+				type
 			})
 		}
 
 		session.update((session) => ({ ...session, waitingCreationFlow: false }))
+
+		return user
 	})
 export const changePassword = (password: string, requestLink?: string) =>
 	loginPipe(async () => {
 		await updatePassword(auth.currentUser, password)
+
+		return "Password updated."
 	})
 export const lostPassword = (email: string) =>
 	loginPipe(async () => {
 		await sendPasswordResetEmail(auth, email)
+
+		return "An email to reset the password was sent."
 	})
 
 export const signOut = () => {

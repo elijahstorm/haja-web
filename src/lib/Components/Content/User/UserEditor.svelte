@@ -7,6 +7,7 @@
 	import { base } from "$app/paths"
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
+	import ToggleButton from "$lib/Components/Widgets/FormWidgets/ToggleButton.svelte"
 
 	export let user: UserContentConfig
 
@@ -16,15 +17,15 @@
 
 	const getContent = () => ({
 		title: user.title,
-		caption: user.caption
+		caption: user.caption,
+		private: user.private
 	})
 
 	export const requestSave = () =>
 		updateDocument({
 			id: user.id,
 			isTeam,
-			content: getContent(),
-			timestamp: "updatedOn"
+			content: getContent()
 		}).then((response) => {
 			addToast(`User ${user.title} profile updated`)
 		})
@@ -50,10 +51,12 @@
 	<slot />
 
 	<ListWithActionAndTitle title="General Information" small>
+		<ToggleButton label="Private Profile" bind:checked={user.private} />
+
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="name">Name</label
 				>
 				<input
@@ -66,7 +69,7 @@
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="caption">Description</label
 				>
 				<textarea

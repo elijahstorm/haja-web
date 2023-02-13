@@ -648,8 +648,8 @@
 			<bdt class="block-component">
 				<span style="font-size: 15px;">
 					<span data-custom-class="body_text" />
-				</span></bdt
-			>
+				</span>
+			</bdt>
 		</div>
 		<div style="line-height: 1.5;">
 			<span style="font-size: 15px;">
@@ -978,15 +978,15 @@
 			<div style="line-height: 1.5;">
 				<bdt class="block-component">
 					<span style="font-size: 15px;">
-						<span data-custom-class="body_text" /></span
-					></bdt
-				>
+						<span data-custom-class="body_text" />
+					</span>
+				</bdt>
 				<div style="line-height: 1.5;">
 					<bdt class="block-component">
 						<span style="font-size: 15px;">
-							<span data-custom-class="body_text" /></span
-						></bdt
-					>
+							<span data-custom-class="body_text" />
+						</span>
+					</bdt>
 					<div style="line-height: 1.5;">
 						<bdt class="block-component">
 							<span style="font-size: 15px;">
@@ -1258,16 +1258,16 @@
 								</span>
 								<div style="line-height: 1.5;">
 									<bdt class="block-component">
-										<span style="font-size: 15px;" /></bdt
-									>
+										<span style="font-size: 15px;" />
+									</bdt>
 									<div style="line-height: 1.5;">
 										<bdt class="block-component">
-											<span style="font-size: 15px;" /></bdt
-										>
+											<span style="font-size: 15px;" />
+										</bdt>
 										<div style="line-height: 1.5;">
 											<bdt class="block-component">
-												<span style="font-size: 15px;" /></bdt
-											>
+												<span style="font-size: 15px;" />
+											</bdt>
 											<div style="line-height: 1.5;">
 												<bdt class="block-component">
 													<span style="font-size: 15px;">
@@ -1276,13 +1276,13 @@
 												</bdt>
 												<p style="font-size: 15px; line-height: 1.5;">
 													<bdt class="block-component">
-														<span style="font-size: 15px;" /></bdt
-													>
+														<span style="font-size: 15px;" />
+													</bdt>
 												</p>
 												<p style="font-size: 15px; line-height: 1.5;">
 													<bdt class="block-component">
-														<span style="font-size: 15px;" /></bdt
-													>
+														<span style="font-size: 15px;" />
+													</bdt>
 												</p>
 												<p style="font-size: 15px; line-height: 1.5;">
 													<bdt class="block-component" />
@@ -1345,18 +1345,16 @@
 												</p>
 												<div style="line-height: 1.5;">
 													<bdt class="block-component">
-														<span style="font-size: 15px;" /></bdt
-													>
+														<span style="font-size: 15px;" />
+													</bdt>
 													<div style="line-height: 1.5;">
 														<bdt class="block-component">
-															<span style="font-size: 15px;" /></bdt
-														>
+															<span style="font-size: 15px;" />
+														</bdt>
 														<div style="line-height: 1.5;">
 															<bdt class="block-component">
-																<span
-																	style="font-size: 15px;"
-																/></bdt
-															>
+																<span style="font-size: 15px;" />
+															</bdt>
 															<div style="line-height: 1.5;">
 																<span style="font-size: 15px;">
 																	<bdt class="block-component">
@@ -1372,9 +1370,9 @@
 																		>
 																			<span
 																				data-custom-class="body_text"
-																			/></span
-																		></bdt
-																	>
+																			/>
+																		</span>
+																	</bdt>
 																	<div style="line-height: 1.5;">
 																		<bdt
 																			class="block-component"
@@ -1576,9 +1574,9 @@
 																							>
 																								<span
 																									data-custom-class="body_text"
-																								/></span
-																							></bdt
-																						>
+																								/>
+																							</span>
+																						</bdt>
 																						<div
 																							style="line-height: 1.5;"
 																						>
@@ -1590,9 +1588,9 @@
 																								>
 																									<span
 																										data-custom-class="body_text"
-																									/></span
-																								></bdt
-																							>
+																									/>
+																								</span>
+																							</bdt>
 																							<div
 																								style="line-height: 1.5;"
 																							>
@@ -1604,9 +1602,9 @@
 																									>
 																										<span
 																											data-custom-class="body_text"
-																										/></span
-																									></bdt
-																								>
+																										/>
+																									</span>
+																								</bdt>
 																								<div
 																									style="line-height: 1.5;"
 																								>
@@ -1643,9 +1641,9 @@
 																											>
 																												<span
 																													data-custom-class="body_text"
-																												/></span
-																											></bdt
-																										>
+																												/>
+																											</span>
+																										</bdt>
 																										<bdt
 																											class="block-component"
 																										>
@@ -1805,8 +1803,8 @@
 																											>
 																												<bdt
 																													class="block-component"
-																												/></span
-																											>
+																												/>
+																											</span>
 																										</span>
 																										<bdt
 																											class="block-component"
@@ -2710,10 +2708,10 @@
 																												>
 																													<bdt
 																														class="block-component"
-																													/></span
-																												>
-																											</span></span
-																										>
+																													/>
+																												</span>
+																											</span>
+																										</span>
 																									</div>
 																									<div
 																										style="line-height: 1.5;"
@@ -2852,9 +2850,9 @@
 																														>
 																															<span
 																																data-custom-class="body_text"
-																															/></span
-																														></bdt
-																													>
+																															/>
+																														</span>
+																													</bdt>
 																													<div
 																														style="line-height: 1.5;"
 																													>
@@ -2925,8 +2923,8 @@
 																																				>
 																																					<span
 																																						data-custom-class="heading_1"
-																																					/></bdt
-																																				>
+																																					/>
+																																				</bdt>
 																																			</span>
 																																		</span>
 																																	</span>
@@ -3339,8 +3337,8 @@
 																																													class="block-component"
 																																												/>
 																																											</span>
-																																										</bdt></span
-																																									>
+																																										</bdt>
+																																									</span>
 																																								</span>
 																																							</span>
 																																						</span>
@@ -5797,8 +5795,8 @@
 																															>
 																																<span
 																																	style="font-size: 15px;"
-																																/></bdt
-																															>
+																																/>
+																															</bdt>
 																														</div>
 																														<div
 																															style="line-height: 1.5;"
@@ -6211,8 +6209,8 @@
 																																		please
 																																		<bdt
 																																			class="block-component"
-																																		/></span
-																																	>
+																																		/>
+																																	</span>
 																																	<span
 																																		data-custom-class="body_text"
 																																		>visit:
@@ -6266,8 +6264,8 @@
 				</div>
 			</div>
 		</div>
-	</div></Casing
->
+	</div>
+</Casing>
 
 <style>
 	[data-custom-class="body"],

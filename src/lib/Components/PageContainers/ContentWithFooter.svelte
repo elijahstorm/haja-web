@@ -45,9 +45,11 @@
 <footer class="bg-primary-dark-blue py-10">
 	<div class="container">
 		<div
-			class="text-center grid grid-cols-1 justify-items-center gap-6 lg:grid-cols-12 lg:gap-0"
+			class="text-center grid grid-cols-1 justify-items-center gap-6 md:grid-cols-12 lg:gap-0"
 		>
-			<div class="flex flex-col justify-between lg:justify-self-start lg:col-span-3">
+			<div
+				class="flex flex-col justify-between md:col-span-4 lg:justify-self-start lg:col-span-3"
+			>
 				<a class="contents" href={base} target="_blank" rel="noopener noreferrer">
 					<img
 						class="mb-7 w-24"
@@ -56,7 +58,7 @@
 					/>
 				</a>
 
-				<div class="flex justify-center lg:justify-between items-center gap-4">
+				<div class="flex justify-center md:justify-between items-center gap-4">
 					{#each iconSocialLinks as link (link.href)}
 						<a
 							class="contents"
@@ -75,7 +77,7 @@
 			</div>
 
 			<div
-				class="grid grid-cols-1 gap-2 py-1 lg:grid-rows-3 text-white text-sm lg:text-left lg:justify-self-start lg:col-span-5 lg:gap-x-24 lg:grid-flow-col-dense"
+				class="grid grid-cols-1 gap-2 py-1 text-white text-sm md:text-left md:justify-self-start md:grid-rows-4 md:col-span-5 lg:grid-rows-3 lg:col-span-5 lg:gap-x-24 lg:grid-flow-col-dense"
 			>
 				{#each footerLinks as link (link.href)}
 					<a
@@ -90,7 +92,7 @@
 			</div>
 
 			<div
-				class="flex flex-col justify-between items-center lg:items-end lg:justify-self-end lg:col-span-4 gap-4"
+				class="flex flex-col justify-between gap-4 items-center md:items-end md:justify-self-end md:col-span-2 lg:col-span-4"
 			>
 				<LoginHeader />
 

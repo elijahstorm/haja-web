@@ -51,7 +51,7 @@
 </script>
 
 <button
-	class="inline-flex items-center px-4 py-2 mr-7 text-sm font-medium rounded-md w-max {currentState.class}"
+	class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md w-max {currentState.class}"
 	disabled={state === "requesting"}
 	on:click={state === "failed" ? getError : addFriend(user)}
 >

@@ -1,6 +1,7 @@
 {
 	"name": "haja-web",
 	"version": "0.0.1",
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -21,6 +22,7 @@
 		"@tailwindcss/forms": "^0.5.3",
 		"as-toast": "^1.1.0",
 		"autoprefixer": "^10.4.13",
+		"fp-ts": "^2.13.1",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.4",
 		"prettier-plugin-svelte": "^2.9.0",
@@ -38,6 +40,5 @@
 	"dependencies": {
 		"firebase": "^9.17.1",
 		"svelte-fa": "^3.0.3"
-	},
-	"type": "module"
+	}
 }

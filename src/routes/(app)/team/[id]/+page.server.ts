@@ -1,7 +1,7 @@
 import type { PageServerLoad } from "./$types"
 import { error } from "@sveltejs/kit"
 import { getTeam } from "$lib/Components/Content/Team/TeamContent"
-import { pipe } from "$lib/utils"
+import { pipe } from "$lib/fp-ts"
 
 export const load: PageServerLoad = async ({ params }) => {
 	const prefilteredData = await getTeam({

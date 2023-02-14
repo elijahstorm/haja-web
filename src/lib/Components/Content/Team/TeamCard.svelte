@@ -21,11 +21,14 @@
 
 <a href="{base}/team/{typeof team === 'string' ? 'create' : team.id}">
 	<div
-		class="card rounded-3xl overflow-hidden border border-solid border-grey-500 grid grid-c grid-rows-2 justify-between content-between"
+		class="rounded-3xl overflow-hidden border border-solid border-grey-500 grid grid-c grid-rows-2 justify-between content-between"
 	>
 		{#if typeof team !== "string"}
-			<div class="background col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
-				<FallbackImage {src} alt={`team ${title}`} />
+			<div
+				class="aspect-ratio col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden grid grid-rows-1 grid-cols-1"
+			>
+				<FallbackImage tailwind="row-start-1 col-start-1" {src} alt={`team ${title}`} />
+				<div class="overlay w-full h-full col-start-1 row-start-1" />
 			</div>
 			<p class="p-4 text-white col-start-1 row-start-2 self-end font-bold">{title}</p>
 			<p class="p-4 text-white col-start-1 row-start-1 row-end-3">{caption}</p>
@@ -38,7 +41,7 @@
 				</p>
 			</div>
 		{:else}
-			<div class="background col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
+			<div class="aspect-ratio col-start-1 col-end-3 row-start-1 row-end-3 overflow-hidden">
 				<img src={img404} alt="team not found" />
 			</div>
 			<p class="p-4 col-start-1 row-start-1 row-end-3 font-bold text-red-500">
@@ -49,11 +52,11 @@
 </a>
 
 <style>
-	.card {
-		background-image: linear-gradient(#0007, #0002, var(--bg), #0002, #0007);
+	.overlay {
+		background-image: linear-gradient(#000c, #0004, transparent, #0004, #000c);
 	}
 
-	.background {
+	.aspect-ratio {
 		aspect-ratio: 2 / 1;
 	}
 </style>

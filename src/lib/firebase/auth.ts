@@ -160,10 +160,10 @@ export const signOut = () => {
 	auth.signOut()
 }
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) =>
 	session.update((session) => ({
 		...session,
 		user,
 		ready: true
 	}))
-})
+)

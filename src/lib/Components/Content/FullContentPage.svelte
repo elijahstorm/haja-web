@@ -4,11 +4,11 @@
 	import { getTodoList } from "$lib/Components/Content/Todo/TodoList"
 	import session from "$lib/firebase/session"
 	import type { TeamContentConfig } from "$lib/Components/Content/Team/TeamContent"
-	import type { AllContentTypes } from "./Content"
 	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"
 	import DateInput from "$lib/Components/Widgets/FormWidgets/DateInput.svelte"
 	import EditButton from "$lib/Components/Widgets/Buttons/EditButton.svelte"
+	import { awaitMyId } from "$lib/firebase/auth"
 
 	export let entity: UserContentConfig | TeamContentConfig
 	export let isTeam: boolean = false
@@ -20,8 +20,6 @@
 
 	const { id, title, caption, picture } = entity
 	const source = id
-
-	let promise = new Promise<AllContentTypes>((resolve) => resolve(entity))
 
 	let date
 	$: myId = $session?.user?.uid
@@ -49,9 +47,9 @@
 			<FallbackImage {src} alt={`${isTeam ? "team" : "user"} ${title}`} cover />
 		</div>
 		<div class="overlay col-start-1 row-start-1 row-end-3">&nbsp;</div>
-		{#if isTeam || source === myId}
+		{#if (!isTeam && source === myId) || (isTeam && entity?.users?.includes(myId))}
 			<div class="col-start-1 row-start-1 row-end-3 self-start justify-self-end m-4">
-				<EditButton entity={promise} {isTeam} />
+				<EditButton {entity} {isTeam} />
 			</div>
 		{/if}
 	</div>
@@ -67,7 +65,15 @@
 			<DateInput bind:date />
 
 			{#await getTodoList({ source, isTeam, amount, dateRange }) then todos}
-				<TodoList {todos} {source} {isTeam} />
+				{#await awaitMyId() then myId}
+					<TodoList
+						{todos}
+						{source}
+						{isTeam}
+						locked={(!isTeam && source !== myId) ||
+							(isTeam && !entity?.users?.includes(myId))}
+					/>
+				{/await}
 			{/await}
 		</InfoCard>
 	</div>

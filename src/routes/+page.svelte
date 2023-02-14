@@ -2,12 +2,14 @@
 	import { base } from "$app/paths"
 	import { getUser } from "$lib/Components/Content/User/UserContent"
 	import UserContent from "$lib/Components/Content/User/UserContent.svelte"
+	import HorizontalUserCard from "$lib/Components/Content/User/HorizontalUserCard.svelte"
 	import ContentWithFooter from "$lib/Components/PageContainers/ContentWithFooter.svelte"
 	import LandingPage from "$lib/Components/PageContainers/LandingPage.svelte"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
 	import session from "$lib/firebase/session"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 	import Header from "$lib/Components/Branding/Header.svelte"
+	import { getRecommendedUsers } from "$lib/Components/Content/User/SearchUsers"
 
 	$: myId = $session?.user?.uid
 </script>
@@ -37,3 +39,11 @@
 		</Casing>
 	{/if}
 </ContentWithFooter>
+
+{#await getRecommendedUsers({}) then recommendedUsers}
+	{#each recommendedUsers as user}
+		{#if typeof user !== "string"}
+			<HorizontalUserCard {user} />
+		{/if}
+	{/each}
+{/await}

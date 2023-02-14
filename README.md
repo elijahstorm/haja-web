@@ -14,7 +14,7 @@ Recommended Package manager:
 pnpm i
 ```
 
-NPM Package manage:
+NPM Package manager:
 
 ```
 npm i

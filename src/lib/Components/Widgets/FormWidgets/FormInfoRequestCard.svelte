@@ -11,14 +11,15 @@
 		}
 	]
 
-	type ErrorResponse = {
+	type ResponseInfo = {
+		message?: string
 		error?: string
 	}
 	export let error: string = ""
-	export let callback: (form: HTMLFormElement) => Promise<ErrorResponse>
+	export let callback: (form: HTMLFormElement) => Promise<ResponseInfo>
 
 	let formElement: HTMLFormElement
-	let requestError: Promise<ErrorResponse>
+	let requestError: Promise<ResponseInfo>
 	let requestSent = false
 	let attempted = false
 
@@ -30,8 +31,10 @@
 			return false
 		}
 
-		requestError = callback?.call(formElement)
-		requestSent = true
+		if (callback) {
+			requestError = callback(formElement)
+			requestSent = true
+		}
 	}
 
 	const validateForm = (): string => {
@@ -62,8 +65,14 @@
 			<div class="flex h-80 justify-center items-center">
 				<Loader />
 			</div>
-		{:then error}
-			{error.error === "" ? "Finished! Taking you to your profile..." : error}
+		{:then response}
+			<div class="flex h-80 justify-center items-center">
+				<p class="text-red-500 py-4 px-4">
+					{response.error
+						? response.error
+						: response.message ?? "Finished processing request"}
+				</p>
+			</div>
 		{/await}
 	{:else}
 		<div class="p-8">

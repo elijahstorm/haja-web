@@ -62,8 +62,7 @@
 			source,
 			content: {
 				title: input.value
-			},
-			timestamp: "updatedOn"
+			}
 		})
 	}
 

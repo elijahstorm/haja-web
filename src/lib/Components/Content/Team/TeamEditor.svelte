@@ -2,12 +2,15 @@
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import { base } from "$app/paths"
-	import { updateDocument, uploadDocument } from "$lib/firebase/firestore"
+	import { deleteDocument, updateDocument, uploadDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/Components/Widgets/FormWidgets/ImageUploader.svelte"
 	import { addToast } from "as-toast"
 	import type { TeamContentConfig } from "./TeamContent"
 	import EditableUserList from "$lib/Components/Widgets/FormWidgets/EditableUserList.svelte"
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
+	import Icon from "@iconify/svelte"
+	import { awaitMyId } from "$lib/firebase/auth"
+	import ToggleButton from "$lib/Components/Widgets/FormWidgets/ToggleButton.svelte"
 
 	export let team: TeamContentConfig
 
@@ -23,13 +26,15 @@
 		users: getUpdatedUserList ? getUpdatedUserList() : undefined
 	})
 
-	export const requestSave = () =>
+	export const requestSave = (resolve?: (id: string) => void) =>
 		team.id === ""
 			? uploadDocument({
 					isTeam,
-					content: getContent()
+					content: { ...getContent(), owner: team.owner }
 			  })
 					.then((response) => {
+						if (resolve) resolve(response.id)
+
 						if (browser) goto(`${base}/team/${response.id}`)
 					})
 					.catch((response) => {
@@ -38,11 +43,50 @@
 			: updateDocument({
 					id: team.id,
 					isTeam,
-					content: getContent(),
-					timestamp: "updatedOn"
+					content: getContent()
 			  }).then((response) => {
 					addToast(`Team ${team.title} updated`)
 			  })
+
+	const leaveTeam = async () => {
+		if (!team?.id || (await awaitMyId()) === team.owner) return
+
+		const users = team.users
+		const index = users.indexOf(await awaitMyId())
+
+		if (!~index) return
+
+		users.splice(index, 1)
+
+		await updateDocument({
+			id: team.id,
+			isTeam,
+			content: {
+				users
+			},
+			timestamp: "updatedOn"
+		}).then((response) => {
+			addToast(`Successfully left ${team.title}`)
+		})
+
+		if (browser) goto(`${base}/`)
+	}
+
+	const deleteTeam = async () => {
+		if (!team?.id || (await awaitMyId()) !== team.owner) return
+
+		await deleteDocument({ id: team.id, isTeam })
+
+		if (browser) goto(`${base}/`)
+	}
+
+	const alertAction = (action: Function, warning?: string) => () => {
+		const confirmation = confirm(`${warning ?? "Are you sure?"} This action cannot be undone.`)
+
+		if (!confirmation) return
+
+		action()
+	}
 </script>
 
 <div class="flex flex-col gap-6">
@@ -50,25 +94,11 @@
 
 	<ListWithActionAndTitle title="General Information" small>
 		<div class="flex flex-col gap-3">
-			<label class="relative inline-flex items-center cursor-pointer">
-				<input
-					class="sr-only peer"
-					name="private"
-					type="checkbox"
-					bind:checked={team.private}
-				/>
-				<div
-					class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
-				/>
-				<span
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
-					>Private Team</span
-				>
-			</label>
+			<ToggleButton label="Private Team" bind:checked={team.private} />
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="name">Name</label
 				>
 				<input
@@ -81,7 +111,7 @@
 
 			<div class="flex flex-col gap-2">
 				<label
-					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900 dark:text-gray-300"
+					class="px-1 py-0 opacity-70 ml-0.5 text-sm font-medium text-gray-900"
 					for="caption">Description</label
 				>
 				<textarea
@@ -96,7 +126,7 @@
 	</ListWithActionAndTitle>
 
 	<ListWithActionAndTitle title="User Access" small>
-		<EditableUserList {updatedUsersList} bind:getUpdatedUserList />
+		<EditableUserList {updatedUsersList} owner={team.owner} bind:getUpdatedUserList />
 	</ListWithActionAndTitle>
 
 	<ListWithActionAndTitle title="Background Image" small>
@@ -108,5 +138,52 @@
 			id={team.id}
 			{isTeam}
 		/>
+	</ListWithActionAndTitle>
+
+	<ListWithActionAndTitle title="Danger Zone" small>
+		<div class="flex flex-col w-max gap-3">
+			{#await awaitMyId() then myId}
+				<button
+					class="btn-alert"
+					disabled={team.owner === myId}
+					on:click={alertAction(
+						leaveTeam,
+						"Doing this action will remove you from the team. If this team is private, you will have to request to join again."
+					)}
+				>
+					<Icon icon={"fe:logout"} width={20} />
+
+					<span class="ml-2 hidden sm:block"> Leave Team </span>
+				</button>
+			{/await}
+
+			{#await awaitMyId() then myId}
+				<button
+					class="btn-alert"
+					disabled={team.owner !== myId}
+					on:click={alertAction(
+						deleteTeam,
+						"This action can only be performed by the team owner. This will remove all team data, actions, and membership."
+					)}
+				>
+					<svg
+						class="h-5 w-5"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+						/>
+					</svg>
+
+					<span class="ml-2 hidden sm:block"> Delete Team </span>
+				</button>
+			{/await}
+		</div>
 	</ListWithActionAndTitle>
 </div>

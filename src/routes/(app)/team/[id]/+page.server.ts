@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	let team = pipe(() => prefilteredData, JSON.stringify, JSON.parse)
 
 	if (typeof team === "string") {
-		throw error(404, "todo not found")
+		throw error(404, "team not found")
 	}
 
 	return { team }

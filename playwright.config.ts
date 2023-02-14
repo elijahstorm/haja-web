@@ -54,12 +54,6 @@ const config: PlaywrightTestConfig = {
 
 		/* Test against branded browsers. */
 		{
-			name: "Microsoft Edge",
-			use: {
-				channel: "msedge"
-			}
-		},
-		{
 			name: "Google Chrome",
 			use: {
 				channel: "chrome"
@@ -68,7 +62,7 @@ const config: PlaywrightTestConfig = {
 	],
 	outputDir: "test-results/",
 	webServer: {
-		command: "pnpm dev",
+		command: "pnpm dev --port 3000",
 		port: 3000
 	}
 }

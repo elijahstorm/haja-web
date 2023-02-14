@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment"
-	import { pipe } from "$lib/utils"
+	import { pipe } from "$lib/fp-ts"
 	import { fly, fade } from "svelte/transition"
 
 	let state: "closed" | "open" | "full" = "closed"

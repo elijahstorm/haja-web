@@ -10,6 +10,7 @@ specifiers:
   as-toast: ^1.1.0
   autoprefixer: ^10.4.13
   firebase: ^9.17.1
+  fp-ts: ^2.13.1
   postcss: ^8.4.21
   prettier: ^2.8.4
   prettier-plugin-svelte: ^2.9.0
@@ -38,6 +39,7 @@ devDependencies:
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.6
   as-toast: 1.1.0
   autoprefixer: 10.4.13_postcss@8.4.21
+  fp-ts: 2.13.1
   postcss: 8.4.21
   prettier: 2.8.4
   prettier-plugin-svelte: 2.9.0_jrsxveqmsx2uadbqiuq74wlc4u
@@ -1507,6 +1509,10 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: false
+
+  /fp-ts/2.13.1:
+    resolution: {integrity: sha512-0eu5ULPS2c/jsa1lGFneEFFEdTbembJv8e4QKXeVJ3lm/5hyve06dlKZrpxmMwJt6rYen7sxmHHK2CLaXvWuWQ==}
+    dev: true
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}

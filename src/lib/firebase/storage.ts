@@ -1,13 +1,12 @@
-import { firebaseApp } from "./firebase"
-import { pipe } from "$lib/utils"
+import { pipe } from "$lib/fp-ts"
 import { getDownloadURL, getStorage, ref, uploadBytes, type UploadResult } from "firebase/storage"
-import { api, type StoreLocation } from "./firestore"
+import { api } from "./firestore"
 
 const storage = getStorage()
 
-const connect = (store) => (api: string) => store(storage, api)
+const connect = (store: typeof ref) => (api: string) => store(storage, api)
 
-const upload = (protocol, blob) => (ref) => protocol(ref, blob)
+const upload = (protocol: typeof uploadBytes, blob: ArrayBuffer) => (ref) => protocol(ref, blob)
 
 export const uploadFile: (
 	data: StoreLocation & {

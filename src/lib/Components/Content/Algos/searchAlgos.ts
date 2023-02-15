@@ -61,7 +61,7 @@ export const performQuery: <Config>(input: {
 export const excludeResults =
 	<Config>(exclude: string[], index: (config: Config) => string) =>
 	(query: Promise<Config[]>) =>
-		new Promise(async (resolve) => {
+		new Promise<Config[]>(async (resolve) => {
 			const results = await query
 
 			console.log(results)

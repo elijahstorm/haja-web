@@ -36,7 +36,7 @@
 			})
 			.catch((error) => {
 				postStatus = "error"
-				postResponse = { message: error }
+				postResponse = { message: error.message }
 			})
 	}
 </script>

@@ -1,5 +1,5 @@
 import { myId } from "$lib/firebase/auth"
-import { pipe } from "$lib/utils"
+import { pipe } from "$lib/fp-ts"
 import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
 import {
 	excludeResults,
@@ -15,14 +15,13 @@ export const getRecommendedUsers: (input: {
 	amount?: number
 }) => Promise<UserContentConfig[] | string> = ({ id = myId(), exclude = [], amount = 5 }) =>
 	pipe(
-		() =>
-			performQuery({
-				isTeam: false,
-				queries: recommendedQueriesAlgo(id),
-				orderBy: "updatedOn",
-				amount,
-				convertDocToConfig
-			}),
+		performQuery({
+			isTeam: false,
+			queries: recommendedQueriesAlgo(id),
+			orderBy: "updatedOn",
+			amount,
+			convertDocToConfig
+		}),
 		excludeResults(exclude, (config: UserContentConfig) => config.id)
 	)
 
@@ -32,13 +31,12 @@ export const getUsersSearch: (input: {
 	amount?: number
 }) => Promise<UserContentConfig[] | string> = ({ value, exclude = [], amount = 10 }) =>
 	pipe(
-		() =>
-			performQuery({
-				queries: searchQueriesAlgo(value),
-				orderBy: "title",
-				amount,
-				convertDocToConfig
-			}),
+		performQuery({
+			queries: searchQueriesAlgo(value),
+			orderBy: "title",
+			amount,
+			convertDocToConfig
+		}),
 		excludeResults(exclude, (config: UserContentConfig) => config.id)
 	)
 

@@ -3,6 +3,11 @@ type Response<T> = {
 	result: T
 }
 
+export const split =
+	<T, L, R>(layer1: (input: T) => L, layer2: (input: T) => R) =>
+	(input: T): [L, R] =>
+		[layer1(input), layer2(input)]
+
 export const post = async <T>(endpoint: string, data: object): Promise<Response<T>> => {
 	return fetch(endpoint, {
 		method: "POST",
@@ -13,5 +18,3 @@ export const post = async <T>(endpoint: string, data: object): Promise<Response<
 		}
 	}).then((r) => r.json())
 }
-
-export const pipe: <T>(...fncs: ((v) => any)[]) => T = (...fns) => fns.reduce((v, f) => f(v), null)

@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="flex-1 flex gap-3 justify-between items-center rounded-full bg-gray-200 line-height-username1"
+	class="flex-1 flex gap-3 justify-between items-center rounded-full bg-gray-200 line-height-username1 pr-7"
 >
 	<UserIcon {user} size={4} newTab />
 

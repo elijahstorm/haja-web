@@ -22,7 +22,7 @@ import {
 } from "firebase/firestore"
 import type { SendContentConfig } from "$lib/Components/Content/Content"
 import { firebaseApp } from "./firebase"
-import { pipe } from "$lib/utils"
+import { pipe } from "$lib/fp-ts"
 
 export type FirestoreQuery = {
 	type: string | FieldPath
@@ -32,7 +32,7 @@ export type FirestoreQuery = {
 
 const db = getFirestore(firebaseApp)
 
-export const api: (data: StoreLocation) => () => string = ({
+export const api: (data: StoreLocation) => string = ({
 	source = null,
 	isTeam = false,
 	type = null,
@@ -48,22 +48,24 @@ export const api: (data: StoreLocation) => () => string = ({
 		api += `/${id}`
 	}
 
-	return () => api
+	return api
 }
 
 const connect = (store) => (api: string) => store(db, api)
 
-const clense = (content, timestamp) => (location) => {
-	delete content.id
-	delete content.contentType
-	content[timestamp] = serverTimestamp()
-	content["updatedOn"] = serverTimestamp()
+const clense =
+	(content, timestamp: string) =>
+	(location = "") => {
+		delete content.id
+		delete content.contentType
+		content[timestamp] = serverTimestamp()
+		content["updatedOn"] = serverTimestamp()
 
-	return {
-		location,
-		content
+		return {
+			location,
+			content
+		}
 	}
-}
 
 const upload =
 	(protocol, options = null) =>
@@ -77,7 +79,7 @@ export const getDocument: (data: StoreLocation) => Promise<DocumentSnapshot<Docu
 	id
 }) => pipe(api({ source, isTeam, type, id }), connect(doc), getDoc)
 
-export const deleteDocument: (data: StoreLocation) => Promise<DocumentSnapshot<DocumentData>> = ({
+export const deleteDocument: (data: StoreLocation) => Promise<void> = ({
 	source = null,
 	isTeam = false,
 	type = null,
@@ -89,7 +91,7 @@ export const uploadDocument: (
 		content: SendContentConfig
 		timestamp?: string
 	}
-) => Promise<DocumentReference<DocumentData>> = ({
+) => Promise<DocumentReference<DocumentData>> | Promise<void> = ({
 	content,
 	id = null,
 	source = null,
@@ -99,10 +101,10 @@ export const uploadDocument: (
 }) =>
 	id === null
 		? addDoc(
-				collection(db, api({ source, type, isTeam, id })()),
+				collection(db, api({ source, type, isTeam, id })),
 				clense(content, timestamp)().content
 		  )
-		: setDoc(doc(db, api({ source, type, isTeam, id })()), clense(content, timestamp)().content)
+		: setDoc(doc(db, api({ source, type, isTeam, id })), clense(content, timestamp)().content)
 
 // pipe(
 // 	api({ source, type, isTeam, id }),

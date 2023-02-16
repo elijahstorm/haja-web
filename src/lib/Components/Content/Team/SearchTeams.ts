@@ -1,5 +1,5 @@
 import { myId } from "$lib/firebase/auth"
-import { pipe } from "$lib/utils"
+import { pipe } from "$lib/fp-ts"
 import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore"
 import {
 	excludeResults,
@@ -15,21 +15,20 @@ export const getRecommendedTeams: (input: {
 	amount?: number
 }) => Promise<TeamContentConfig[] | string> = ({ id = myId(), exclude = [], amount = 5 }) =>
 	pipe(
-		() =>
-			performQuery({
-				isTeam: true,
-				queries: [
-					...recommendedQueriesAlgo(id),
-					{
-						type: "users",
-						compare: "not-in",
-						value: [[myId()]]
-					}
-				],
-				orderBy: "users",
-				amount,
-				convertDocToConfig
-			}),
+		performQuery({
+			isTeam: true,
+			queries: [
+				...recommendedQueriesAlgo(id),
+				{
+					type: "users",
+					compare: "not-in",
+					value: [[myId()]]
+				}
+			],
+			orderBy: "users",
+			amount,
+			convertDocToConfig
+		}),
 		excludeResults(exclude, (config: TeamContentConfig) => config.id)
 	)
 
@@ -39,13 +38,12 @@ export const getTeamsSearch: (input: {
 	amount?: number
 }) => Promise<TeamContentConfig[] | string> = ({ value, exclude = [], amount = 10 }) =>
 	pipe(
-		() =>
-			performQuery({
-				queries: searchQueriesAlgo(value),
-				orderBy: "title",
-				amount,
-				convertDocToConfig
-			}),
+		performQuery({
+			queries: searchQueriesAlgo(value),
+			orderBy: "title",
+			amount,
+			convertDocToConfig
+		}),
 		excludeResults(exclude, (config: TeamContentConfig) => config.id)
 	)
 
@@ -58,6 +56,7 @@ const convertDocToConfig = (doc: QueryDocumentSnapshot<DocumentData>): TeamConte
 		title: data.title?.trim(),
 		caption: data.caption?.trim(),
 		users: data.users,
+		owner: data.owner,
 		picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 		private: data.private
 	}

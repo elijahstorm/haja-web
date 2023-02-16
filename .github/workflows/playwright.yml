@@ -31,14 +31,19 @@ jobs:
               with:
                   node-version: 16
                   cache: "pnpm"
+            - name: Cache node modules
+              uses: actions/cache@v3
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  cache-name: cache-node-modules
             - name: Cache dependencies
               uses: actions/cache@v3
-              env:
-                  cache-name: cache-node-modules
               with:
                   path: ~/.pnpm-store
                   key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
                   restore-keys: ${{ runner.os }}-pnpm-
+                  cache-name: cache-pnpm-lock
             - name: Install dependencies
               run: pnpm install
             - name: Install Playwright Browsers
@@ -47,6 +52,7 @@ jobs:
               run: |
                   echo "$VITE_AUTH_DOMAIN"
                   echo "finished testing"
+                  pnpm dlx playwright test
             - name: Saving tests results
               uses: actions/upload-artifact@v3
               if: always()

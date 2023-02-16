@@ -20,15 +20,21 @@ jobs:
             VITE_STORAGE_URL_PREFIX: ${{ vars.VITE_STORAGE_URL_PREFIX }}
             VITE_EMAIL_NAME: ${{ vars.VITE_EMAIL_NAME }}
         steps:
+            - name: Checkout code
             - uses: actions/checkout@v3
+            - name: Setup pnpm
             - uses: pnpm/action-setup@v2
               with:
                   version: 7
+            - name: Setup Node.js
             - uses: actions/setup-node@v3
               with:
                   node-version: 16
                   cache: "pnpm"
-              uses: actions/cache@v3
+            - name: Cache dependencies
+            - uses: actions/cache@v3
+              env:
+                  cache-name: cache-node-modules
               with:
                   path: ~/.pnpm-store
                   key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}

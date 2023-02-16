@@ -32,13 +32,13 @@ jobs:
                   node-version: 16
                   cache: "pnpm"
             - name: Cache dependencies
-              uses: actions/cache@v2
+              uses: actions/cache@v3
+              env:
+                  cache-name: cache-node-modules
               with:
-                  path: |
-                      node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+                  path: ~/.pnpm-store
+                  key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: ${{ runner.os }}-pnpm-
             - name: Install dependencies
               run: pnpm install
             - name: Install Playwright Browsers

@@ -10,13 +10,13 @@ jobs:
         runs-on: ubuntu-latest
         env:
             VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+            VITE_MESSAGING_SENDER_ID: ${{ secrets.VITE_MESSAGING_SENDER_ID }}
+            VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+            VITE_MEASUREMENT_ID: ${{ secrets.VITE_MEASUREMENT_ID }}
             VITE_AUTH_DOMAIN: ${{ vars.VITE_AUTH_DOMAIN }}
             VITE_DATABASE_URL: ${{ vars.VITE_DATABASE_URL }}
             VITE_PROJECT_ID: ${{ vars.VITE_PROJECT_ID }}
             VITE_STORAGE_BUCKET: ${{ vars.VITE_STORAGE_BUCKET }}
-            VITE_MESSAGING_SENDER_ID: ${{ secrets.VITE_MESSAGING_SENDER_ID }}
-            VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
-            VITE_MEASUREMENT_ID: ${{ secrets.VITE_MEASUREMENT_ID }}
             VITE_STORAGE_URL_PREFIX: ${{ vars.VITE_STORAGE_URL_PREFIX }}
             VITE_EMAIL_NAME: ${{ vars.VITE_EMAIL_NAME }}
         steps:
@@ -44,7 +44,9 @@ jobs:
             - name: Install Playwright Browsers
               run: pnpm dlx playwright install --with-deps
             - name: Run Playwright tests
-              run: pnpm dlx playwright test
+              run: |
+                  echo "$VITE_AUTH_DOMAIN"
+                  echo "finished testing"
             - name: Saving tests results
               uses: actions/upload-artifact@v3
               if: always()

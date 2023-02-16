@@ -21,18 +21,18 @@ jobs:
             VITE_EMAIL_NAME: ${{ vars.VITE_EMAIL_NAME }}
         steps:
             - name: Checkout code
-            - uses: actions/checkout@v3
+              uses: actions/checkout@v3
             - name: Setup pnpm
-            - uses: pnpm/action-setup@v2
+              uses: pnpm/action-setup@v2
               with:
                   version: 7
             - name: Setup Node.js
-            - uses: actions/setup-node@v3
+              uses: actions/setup-node@v3
               with:
                   node-version: 16
                   cache: "pnpm"
             - name: Cache dependencies
-            - uses: actions/cache@v3
+              uses: actions/cache@v3
               env:
                   cache-name: cache-node-modules
               with:
@@ -45,7 +45,8 @@ jobs:
               run: pnpm dlx playwright install --with-deps
             - name: Run Playwright tests
               run: pnpm dlx playwright test
-            - uses: actions/upload-artifact@v3
+            - name: Saving tests results
+               uses: actions/upload-artifact@v3
               if: always()
               with:
                   name: playwright-report

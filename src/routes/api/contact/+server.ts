@@ -1,8 +1,8 @@
-import { loginWithInfo } from "$lib/firebase/auth"
+import { loginWithInfo, signOut } from "$lib/firebase/auth"
 import { ErrorMessaging } from "$lib/firebase/errors"
 import { error, json } from "@sveltejs/kit"
 import type { RequestHandler } from "./$types"
-import { mailCarrier } from "./mailCarrier"
+import { mailCarrier, prepareTicketId } from "./mailCarrier"
 import { clense, mailGenerator } from "./mailGenerator"
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -15,7 +15,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const date = new Date()
 	const formattedDate = date.toDateString()
 
-	const ticket = ""
+	const ticket = (await prepareTicketId()).id
 
 	const text = clense(message)
 	const html = mailGenerator({ ticket, type, email, subject, text, date: formattedDate })
@@ -25,7 +25,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		const result = mailCarrier({ ticket, type, email, subject, text, html })
 
-		const ticket = ((await result[0]) && (await result[1])).id
+		await result[0]
+		await result[1]
 
 		return json({
 			ticket,

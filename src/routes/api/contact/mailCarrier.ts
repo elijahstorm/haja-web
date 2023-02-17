@@ -1,15 +1,13 @@
 import { firebaseApp } from "$lib/firebase/firebase"
 import { pipe } from "$lib/fp-ts"
 import { split } from "$lib/utils"
-import { addDoc, collection, getFirestore } from "firebase/firestore"
-import type { DocumentData, DocumentReference } from "firebase/firestore"
-
-type DocumentResponse = Promise<DocumentReference<DocumentData>>
+import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore"
 
 const OUR_EMAIL = import.meta.env.VITE_EMAIL_NAME
 
-export const mailCarrier: (email: EmailConfiguration) => CarrierResponse<DocumentResponse> = ({
+export const mailCarrier: (email: EmailConfiguration) => Promise<void>[] = ({
 	type,
+	ticket,
 	email,
 	subject,
 	text,
@@ -18,8 +16,8 @@ export const mailCarrier: (email: EmailConfiguration) => CarrierResponse<Documen
 	pipe(
 		getMessageData({ subject, text, html }),
 		split(toSender(email, type), toUs(type)),
-		(mail) => mail.map((data) => addDoc(collection(getFirestore(firebaseApp), "mail"), data))
-	) as CarrierResponse<DocumentResponse>
+		(mail) => mail.map((data) => setDoc(doc(getFirestore(firebaseApp), `mail/${ticket}`), data))
+	)
 
 const getMessageData: PrepareMessageData =
 	({ subject, text, html }) =>
@@ -40,3 +38,5 @@ const toUs = (type: string) => (getData: MessageDataGetter) => ({
 	type,
 	message: getData()
 })
+
+export const prepareTicketId = () => addDoc(collection(getFirestore(firebaseApp), "mail"), {})

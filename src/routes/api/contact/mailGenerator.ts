@@ -1,5 +1,4 @@
 import { base } from "$app/paths"
-import * as DOMPurify from "dompurify"
 
 export const mailGenerator: (email: EmailHTMLGenerator) => string = (email) =>
 	replaceables(email).reduce(
@@ -71,4 +70,4 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		}
 	] as { search: string; replace: string }[]
 
-export const clense = (message: string) => DOMPurify.sanitize(message)
+export const clense = (message: string) => message

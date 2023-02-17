@@ -18,6 +18,5 @@ type EmailConfiguration = CarrierPayload & {
 	email: string
 }
 
-type CarrierResponse<T> = [T, T]
 type MessageDataGetter = () => CarrierPayload
 type PrepareMessageData = (data: CarrierPayload) => MessageDataGetter

@@ -58,11 +58,11 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		},
 		{
 			search: "$VIEW_EMAIL_HREF",
-			replace: `${base}/contact/view/${email.ticket}`
+			replace: `${base}/contact/${email.ticket}/view`
 		},
 		{
 			search: "$ISSUE_URL_HREF",
-			replace: `${base}/contact/ticket/${email.ticket}`
+			replace: `${base}/contact/${email.ticket}`
 		},
 		{
 			search: "$ISSUE_ID",

@@ -57,9 +57,7 @@
 			>
 				{postResponse.message}
 			</p>
-		{/if}
-
-		{#if postStatus === "success"}
+		{:else if postStatus === "success"}
 			<p
 				class="text-brand-500 block p-3 mb-4 w-full text-sm bg-gray-50 rounded-lg border border-brand-300 shadow-sm"
 			>

@@ -15,8 +15,8 @@
 	export let amount: number = 100
 	export let background: string = null
 
-	const WEEK = 604800000
-	const DAY = WEEK / 7
+	const DAY = 86400000
+	const WEEK = DAY * 7
 
 	const { id, title, caption, picture } = entity
 	const source = id
@@ -25,8 +25,8 @@
 	$: myId = $session?.user?.uid
 	$: src = background ?? picture
 	$: dateRange = {
-		start: new Date(($date?.selected ?? new Date()) - WEEK),
-		end: new Date(($date?.selected ?? new Date()) + DAY)
+		start: new Date(($date?.selected ?? new Date()) - WEEK - DAY),
+		end: new Date(($date?.selected ?? new Date()) + DAY * 2)
 	}
 </script>
 

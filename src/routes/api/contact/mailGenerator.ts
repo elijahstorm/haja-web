@@ -1,5 +1,3 @@
-import { base } from "$app/paths"
-
 export const mailGenerator = async (html: string, email: EmailHTMLGenerator) =>
 	replaceables(email).reduce(
 		(html, replaceable) => html.replaceAll(replaceable.search, replaceable.replace),
@@ -14,27 +12,27 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		},
 		{
 			search: "$HOME_URL_HREF",
-			replace: base
+			replace: siteUrl()
 		},
 		{
 			search: "$LOGO_FULL_COLOR",
-			replace: `${base}/images/haja/logo_horizontal_2 color.png`
+			replace: `${siteUrl()}/images/haja/logo_horizontal_2 color.png`
 		},
 		{
 			search: "$LOGO_SMALL_COLOR",
-			replace: `${base}/images/haja/logo_2 color.png`
+			replace: `${siteUrl()}/images/haja/logo_2 color.png`
 		},
 		{
 			search: "$WHITE_LOGO_IMAGE",
-			replace: `${base}/images/haja/logo_horizontal_white.png`
+			replace: `${siteUrl()}/images/haja/logo_horizontal_white.png`
 		},
 		{
 			search: "$IMAGE_CALENDAR",
-			replace: `${base}/emails/images/desktop.png`
+			replace: `${siteUrl()}/emails/images/desktop.png`
 		},
 		{
 			search: "$IMAGE_WORKSPACE",
-			replace: `${base}/emails/images/calendar.png`
+			replace: `${siteUrl()}/emails/images/calendar.png`
 		},
 		{
 			search: "$SUPPORT_TYPE",
@@ -58,11 +56,11 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		},
 		{
 			search: "$VIEW_EMAIL_HREF",
-			replace: `${base}/contact/${email.ticket}/view`
+			replace: `${siteUrl()}/contact/${email.ticket}/view`
 		},
 		{
 			search: "$ISSUE_URL_HREF",
-			replace: `${base}/contact/${email.ticket}`
+			replace: `${siteUrl()}/contact/${email.ticket}`
 		},
 		{
 			search: "$ISSUE_ID",
@@ -71,3 +69,5 @@ const replaceables = (email: EmailHTMLGenerator) =>
 	] as { search: string; replace: string }[]
 
 export const clense = (message: string) => message
+
+const siteUrl = () => `https://haja-web.vercel.app`

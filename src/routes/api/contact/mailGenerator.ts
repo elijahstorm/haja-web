@@ -16,11 +16,11 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		},
 		{
 			search: "$LOGO_FULL_COLOR",
-			replace: `${siteUrl()}/images/haja/logo_horizontal_2 color.png`
+			replace: `${siteUrl()}/images/haja/logo_horizontal_full.png`
 		},
 		{
 			search: "$LOGO_SMALL_COLOR",
-			replace: `${siteUrl()}/images/haja/logo_2 color.png`
+			replace: `${siteUrl()}/images/haja/logo_full.png`
 		},
 		{
 			search: "$WHITE_LOGO_IMAGE",
@@ -28,11 +28,11 @@ const replaceables = (email: EmailHTMLGenerator) =>
 		},
 		{
 			search: "$IMAGE_CALENDAR",
-			replace: `${siteUrl()}/emails/images/desktop.png`
+			replace: `${siteUrl()}/emails/images/calendar.png`
 		},
 		{
 			search: "$IMAGE_WORKSPACE",
-			replace: `${siteUrl()}/emails/images/calendar.png`
+			replace: `${siteUrl()}/emails/images/desktop.png`
 		},
 		{
 			search: "$SUPPORT_TYPE",

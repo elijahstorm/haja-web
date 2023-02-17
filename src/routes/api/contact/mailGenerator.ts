@@ -1,9 +1,9 @@
 import { base } from "$app/paths"
 
-export const mailGenerator: (email: EmailHTMLGenerator) => string = (email) =>
+export const mailGenerator = async (html: string, email: EmailHTMLGenerator) =>
 	replaceables(email).reduce(
 		(html, replaceable) => html.replaceAll(replaceable.search, replaceable.replace),
-		email.text
+		html
 	)
 
 const replaceables = (email: EmailHTMLGenerator) =>

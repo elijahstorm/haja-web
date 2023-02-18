@@ -1,4 +1,4 @@
-export const mailGenerator = async (html: string, email: EmailHTMLGenerator) =>
+export const mailGenerator = (html: string, email: EmailHTMLGenerator) =>
 	replaceables(email).reduce(
 		(html, replaceable) => html.replaceAll(replaceable.search, replaceable.replace),
 		html

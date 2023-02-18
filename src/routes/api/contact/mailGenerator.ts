@@ -55,12 +55,8 @@ const replaceables = (email: EmailHTMLGenerator) =>
 			replace: email.text
 		},
 		{
-			search: "$VIEW_EMAIL_HREF",
-			replace: `${siteUrl()}/contact/${email.ticket}/view`
-		},
-		{
 			search: "$ISSUE_URL_HREF",
-			replace: `${siteUrl()}/contact/${email.ticket}`
+			replace: `${siteUrl()}/emails/${email.ticket}`
 		},
 		{
 			search: "$ISSUE_ID",

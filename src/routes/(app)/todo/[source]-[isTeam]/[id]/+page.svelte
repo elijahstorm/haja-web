@@ -4,8 +4,9 @@
 	import { getTeam } from "$lib/Components/Content/Team/TeamContent"
 	import { getUser } from "$lib/Components/Content/User/UserContent"
 	import HorizontalUserCard from "$lib/Components/Content/User/HorizontalUserCard.svelte"
+	import type { PageData } from "./$types"
 
-	export let data
+	export let data: PageData
 	export let errors: string | null
 
 	let { todo, source, isTeam } = data

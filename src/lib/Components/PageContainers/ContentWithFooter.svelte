@@ -50,7 +50,7 @@
 			<div
 				class="flex flex-col justify-between md:col-span-4 lg:justify-self-start lg:col-span-3"
 			>
-				<a class="contents" href={base} target="_blank" rel="noopener noreferrer">
+				<a class="contents" href="{base}/" target="_blank" rel="noopener noreferrer">
 					<img
 						class="mb-7 w-24"
 						src="{base}/images/haja/logo_horizontal_full.png"

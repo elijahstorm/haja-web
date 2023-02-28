@@ -8,7 +8,9 @@ export const load: PageServerLoad = async ({ params }) => {
 		id: params.id
 	})
 
-	let team = pipe(() => prefilteredData, JSON.stringify, JSON.parse)
+	console.log(prefilteredData)
+
+	let team = pipe(prefilteredData, JSON.stringify, JSON.parse)
 
 	if (typeof team === "string") {
 		throw error(404, "team not found")

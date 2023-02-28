@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		id
 	})
 
-	let todo = pipe(() => prefilteredData, JSON.stringify, JSON.parse)
+	let todo = pipe(prefilteredData, JSON.stringify, JSON.parse)
 
 	if (typeof todo === "string") {
 		throw error(404, "todo not found")

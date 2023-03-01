@@ -19,6 +19,10 @@
 	const teamList = getTeamList({})
 </script>
 
+<svelte:head>
+	<title>Haja: Do Together</title>
+</svelte:head>
+
 <ContentWithFooter>
 	{#if $session?.user?.uid}
 		<Casing>

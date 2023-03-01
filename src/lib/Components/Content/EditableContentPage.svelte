@@ -12,12 +12,6 @@
 	export let requestSave: (resolve?: (id: string) => void) => Promise<void>
 </script>
 
-<svelte:head>
-	{#if content}
-		<title>Edit | {content.title} | Haja: Do Together</title>
-	{/if}
-</svelte:head>
-
 <ProtectedPage>
 	{#if content}
 		<div class="mb-20">

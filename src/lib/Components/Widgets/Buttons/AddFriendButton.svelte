@@ -44,7 +44,7 @@
 		state = "requesting"
 
 		setTimeout(() => (state = "failed"), 2000)
-		setTimeout(() => (state = "successfully-sent"), 4000)
+		// setTimeout(() => (state = "successfully-sent"), 4000)
 	}
 
 	const getError = () => addToast("There was an connecting to Haja. Please trya gain later")

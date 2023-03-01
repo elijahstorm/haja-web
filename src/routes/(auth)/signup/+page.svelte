@@ -8,6 +8,10 @@
 	const callback = async (form) => newUser(form["email"].value, form["password"].value)
 </script>
 
+<svelte:head>
+	<title>Get Started | Haja: Do Together</title>
+</svelte:head>
+
 <SmallCenterContentOverBackground>
 	<FormInfoRequestCard
 		{callback}

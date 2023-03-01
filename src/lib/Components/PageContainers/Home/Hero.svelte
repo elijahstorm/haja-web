@@ -31,7 +31,7 @@
 					class="bg-primary-lime-green px-7 py-3 rounded-full text-neutral-white text-xs bg-gradient-to-r from-primary-lime-green to-primary-bright-cyan hover:button-brightness mb-7 focus:outline-none focus:ring ring-green-400"
 					href="{base}/signup"
 				>
-					Register Today
+					Get Started
 				</a>
 			</div>
 		</div>

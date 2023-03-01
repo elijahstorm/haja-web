@@ -3,6 +3,10 @@
 	import HalfPageInfoAndGraphic from "$lib/Components/PageContainers/HalfPageInfoAndGraphic.svelte"
 </script>
 
+<svelte:head>
+	<title>Login | Haja: Do Together</title>
+</svelte:head>
+
 <HalfPageInfoAndGraphic>
 	<LoginForm />
 </HalfPageInfoAndGraphic>

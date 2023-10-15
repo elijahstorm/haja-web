@@ -26,6 +26,12 @@ jobs:
             - name: Run tests
               run: pnpm test:integration
               env:
-                  PUBLIC_URL: ${{ env.PUBLIC_URL }}
-                  PUBLIC_GAME_NAME: ${{ env.PUBLIC_GAME_NAME }}
+                  VITE_API_KEY: ${{ secrets.VITE_API_KEY}}
+                  VITE_AUTH_DOMAIN: ${{ env.VITE_AUTH_DOMAIN }}
+                  VITE_DATABASE_URL: ${{ env.VITE_DATABASE_URL }}
+                  VITE_PROJECT_ID: ${{ env.VITE_PROJECT_ID }}
+                  VITE_STORAGE_BUCKET: ${{ env.VITE_STORAGE_BUCKET }}
+                  VITE_MESSAGING_SENDER_ID: ${{ secrets.VITE_MESSAGING_SENDER_ID }}
+                  VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
+                  VITE_MEASUREMENT_ID: ${{ secrets.VITE_MEASUREMENT_ID }}
                   BASE_URL: ${{ github.event.deployment_status.environment_url }}

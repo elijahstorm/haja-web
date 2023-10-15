@@ -7,11 +7,11 @@
 			text: "Email",
 			id: "email_reset",
 			type: "email",
-			icon: "/icon/person.svg"
-		}
+			icon: "/icon/person.svg",
+		},
 	]
 
-	type ResponseInfo = {
+	type ResponseInfo = void | {
 		message?: string
 		error?: string
 	}
@@ -68,9 +68,10 @@
 		{:then response}
 			<div class="flex h-80 justify-center items-center">
 				<p class="text-red-500 py-4 px-4">
-					{response.error
-						? response.error
-						: response.message ?? "Finished processing request"}
+					{response &&
+						(response?.error
+							? response.error
+							: response.message ?? "Finished processing request")}
 				</p>
 			</div>
 		{/await}

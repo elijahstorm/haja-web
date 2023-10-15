@@ -5,7 +5,7 @@ import { pipe } from "$lib/fp-ts"
 
 export const load: PageServerLoad = async ({ params }) => {
 	const prefilteredData = await getUser({
-		id: params.id
+		id: params.id,
 	})
 
 	let user = pipe(prefilteredData, JSON.stringify, JSON.parse)

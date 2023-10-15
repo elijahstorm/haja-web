@@ -14,32 +14,32 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@iconify/svelte": "^3.1.0",
-		"@playwright/test": "^1.31.1",
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.9.1",
+		"@iconify/svelte": "^3.1.4",
+		"@playwright/test": "^1.39.0",
+		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/kit": "^1.25.2",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
-		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/forms": "^0.5.6",
 		"as-toast": "^1.1.0",
-		"autoprefixer": "^10.4.13",
-		"fp-ts": "^2.13.1",
-		"playwright": "^1.31.1",
-		"postcss": "^8.4.21",
-		"prettier": "^2.8.4",
-		"prettier-plugin-svelte": "^2.9.0",
-		"svelte": "^3.55.1",
+		"autoprefixer": "^10.4.16",
+		"fp-ts": "^2.16.1",
+		"playwright": "^1.39.0",
+		"postcss": "^8.4.31",
+		"prettier": "^3.0.3",
+		"prettier-plugin-svelte": "^3.0.3",
+		"svelte": "^4.2.1",
 		"svelte-adapter-firebase": "^0.15.0",
 		"svelte-calendar": "^3.1.6",
-		"svelte-check": "^3.0.4",
+		"svelte-check": "^3.5.2",
 		"svelte-loading-spinners": "0.3.4",
-		"svelte-preprocess": "^5.0.1",
-		"tailwindcss": "^3.2.7",
-		"tslib": "^2.5.0",
-		"typescript": "~4.9.5",
-		"vite": "^4.1.4"
+		"svelte-preprocess": "^5.0.4",
+		"tailwindcss": "^3.3.3",
+		"tslib": "^2.6.2",
+		"typescript": "~5.2.2",
+		"vite": "^4.4.11"
 	},
 	"dependencies": {
-		"firebase": "^9.17.1",
-		"svelte-fa": "^3.0.3"
+		"firebase": "^10.5.0",
+		"svelte-fa": "^3.0.4"
 	}
 }

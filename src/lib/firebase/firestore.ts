@@ -18,7 +18,7 @@ import {
 	type DocumentData,
 	type WhereFilterOp,
 	deleteDoc,
-	FieldPath
+	FieldPath,
 } from "firebase/firestore"
 import type { SendContentConfig } from "$lib/Components/Content/Content"
 import { firebaseApp } from "./firebase"
@@ -36,7 +36,7 @@ export const api: (data: StoreLocation) => string = ({
 	source = null,
 	isTeam = false,
 	type = null,
-	id = null
+	id = null,
 }) => {
 	let api = isTeam ? "teams" : "users"
 
@@ -63,7 +63,7 @@ const clense =
 
 		return {
 			location,
-			content
+			content,
 		}
 	}
 
@@ -76,14 +76,14 @@ export const getDocument: (data: StoreLocation) => Promise<DocumentSnapshot<Docu
 	source = null,
 	isTeam = false,
 	type = null,
-	id
+	id,
 }) => pipe(api({ source, isTeam, type, id }), connect(doc), getDoc)
 
 export const deleteDocument: (data: StoreLocation) => Promise<void> = ({
 	source = null,
 	isTeam = false,
 	type = null,
-	id
+	id,
 }) => pipe(api({ source, isTeam, type, id }), connect(doc), deleteDoc)
 
 export const uploadDocument: (
@@ -97,7 +97,7 @@ export const uploadDocument: (
 	source = null,
 	type = null,
 	isTeam = false,
-	timestamp = "createdOn"
+	timestamp = "createdOn",
 }) =>
 	id === null
 		? addDoc(
@@ -124,7 +124,7 @@ export const updateDocument: (
 	source = null,
 	type = null,
 	isTeam = false,
-	timestamp = "updatedOn"
+	timestamp = "updatedOn",
 }) =>
 	pipe(
 		api({ source, type, isTeam, id }),
@@ -145,7 +145,7 @@ export const storeQuery: (
 	type = null,
 	amount = 50,
 	timestamp = "updatedOn",
-	queries
+	queries,
 }) =>
 	pipe(
 		api({ source, isTeam, type }),

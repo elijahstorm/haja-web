@@ -4,13 +4,10 @@
 	import { lostPassword } from "$lib/firebase/auth"
 	import InfoCard from "$lib/Components/Widgets/Layouts/InfoCard.svelte"
 	import BottomBreakCardInfo from "$lib/Components/Widgets/Layouts/BottomBreakCardInfo.svelte"
-	import { base } from "$app/paths"
 
 	const callback = async (form: HTMLFormElement) => {
 		formSent = lostPassword(form["email"].value)
 		started = true
-
-		return ""
 	}
 
 	let formSent: Promise<{ error?: string }>
@@ -38,18 +35,14 @@
 					text: "Email",
 					id: "email",
 					type: "email",
-					icon: "/icon/person.svg"
-				}
+					icon: "/icon/person.svg",
+				},
 			]}
 		>
 			<div slot="title">Lost Email</div>
 			<div slot="button">Request email</div>
 			<div slot="bottom">
-				<BottomBreakCardInfo
-					text="New to Haja?"
-					actionText="Sign up"
-					href="{base}/signup"
-				/>
+				<BottomBreakCardInfo text="New to Haja?" actionText="Sign up" href="/signup" />
 			</div>
 		</FormInfoRequestCard>
 	{/if}

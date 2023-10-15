@@ -5,9 +5,8 @@
 	import type { TodoContentConfig } from "./TodoContent"
 	import Icon from "@iconify/svelte"
 	import { onMount } from "svelte"
-	import { base } from "$app/paths"
 	import { addToast } from "as-toast"
-	import { fly, scale } from "svelte/transition"
+	import { fly } from "svelte/transition"
 	import { page } from "$app/stores"
 
 	export let todo: TodoContentConfig
@@ -29,7 +28,7 @@
 		"1f99fd",
 		"7ac6ff",
 		"60dfcd",
-		"62ca9c"
+		"62ca9c",
 	] as const
 
 	$: id = todo.id
@@ -41,7 +40,7 @@
 	const cal = () => {
 		const app = new Popover({
 			target: clipboard,
-			props: {}
+			props: {},
 		})
 		app.$destroy()
 	}
@@ -52,15 +51,15 @@
 			type: "todo",
 			id,
 			isTeam,
-			source
+			source,
 		})
 	}
 
 	const share = () => {
-		const value = `${$page.url.origin}${base}/todo/${source}-${isTeam ? 1 : 0}/${id}`
+		const value = `${$page.url.origin}/todo/${source}-${isTeam ? 1 : 0}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
-			props: { value }
+			props: { value },
 		})
 		app.$destroy()
 		addToast("Link copied!")
@@ -74,28 +73,28 @@
 			isTeam,
 			source,
 			content: {
-				color: `ff${color}`
-			}
+				color: `ff${color}`,
+			},
 		})
 	}
 
 	const icons = [
 		{
 			icon: "entypo:edit",
-			action: edit
+			action: edit,
 		},
 		{
 			icon: "ant-design:calendar-filled", // akar-icons:calendar
-			action: cal
+			action: cal,
 		},
 		{
 			icon: "dashicons:trash", // bxs:trash-alt
-			action: del
+			action: del,
 		},
 		{
 			icon: "bi:share-fill",
-			action: share
-		}
+			action: share,
+		},
 	]
 
 	const resize = () => {

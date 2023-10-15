@@ -10,7 +10,7 @@ export interface TeamContentConfig extends ContentConfig {
 }
 
 export const getTeam: (input: { id: string }) => Promise<TeamContentConfig | string> = async ({
-	id
+	id,
 }) => {
 	let doc,
 		error: string | null = null
@@ -33,7 +33,7 @@ export const getTeam: (input: { id: string }) => Promise<TeamContentConfig | str
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			private: data.private,
 			owner: data.owner,
-			users: data.users
+			users: data.users,
 		}
 	}
 

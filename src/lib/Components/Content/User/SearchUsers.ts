@@ -5,7 +5,7 @@ import {
 	excludeResults,
 	performQuery,
 	recommendedQueriesAlgo,
-	searchQueriesAlgo
+	searchQueriesAlgo,
 } from "../Algos/searchAlgos"
 import type { UserContentConfig } from "./UserContent"
 
@@ -20,7 +20,7 @@ export const getRecommendedUsers: (input: {
 			queries: recommendedQueriesAlgo(id),
 			orderBy: "updatedOn",
 			amount,
-			convertDocToConfig
+			convertDocToConfig,
 		}),
 		excludeResults(exclude, (config: UserContentConfig) => config.id)
 	)
@@ -35,7 +35,7 @@ export const getUsersSearch: (input: {
 			queries: searchQueriesAlgo(value),
 			orderBy: "title",
 			amount,
-			convertDocToConfig
+			convertDocToConfig,
 		}),
 		excludeResults(exclude, (config: UserContentConfig) => config.id)
 	)
@@ -51,6 +51,6 @@ const convertDocToConfig = (doc: QueryDocumentSnapshot<DocumentData>): UserConte
 		pronouns: data.pronouns,
 		picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 		private: data.private,
-		verified: data.verified
+		verified: data.verified,
 	}
 }

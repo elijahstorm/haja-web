@@ -6,18 +6,18 @@ export const searchQueriesAlgo = (value: string) =>
 		{
 			type: "private",
 			compare: "==",
-			value: false
+			value: false,
 		},
 		{
 			type: "title",
 			compare: ">=",
-			value
+			value,
 		},
 		{
 			type: "title",
 			compare: "<",
-			value: value + "z"
-		}
+			value: value + "z",
+		},
 	] as FirestoreQuery
 
 export const recommendedQueriesAlgo = (id: string) =>
@@ -25,8 +25,8 @@ export const recommendedQueriesAlgo = (id: string) =>
 		{
 			type: "private",
 			compare: "==",
-			value: false
-		}
+			value: false,
+		},
 	] as FirestoreQuery
 
 export const performQuery: <Config>(input: {
@@ -40,7 +40,7 @@ export const performQuery: <Config>(input: {
 	queries,
 	orderBy,
 	amount,
-	convertDocToConfig
+	convertDocToConfig,
 }) => {
 	let list: QuerySnapshot<DocumentData>
 
@@ -49,7 +49,7 @@ export const performQuery: <Config>(input: {
 			isTeam,
 			amount,
 			timestamp: orderBy,
-			queries
+			queries,
 		})
 	} catch (e) {
 		return e

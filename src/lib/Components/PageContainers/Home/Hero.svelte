@@ -1,7 +1,3 @@
-<script lang="ts">
-	import { base } from "$app/paths"
-</script>
-
 <section class="relative">
 	<div
 		class="bg-header-mobile bg-custom-mobile-header-size absolute w-full h-full bg-no-repeat lg:hidden"
@@ -29,7 +25,7 @@
 				</p>
 				<a
 					class="bg-primary-lime-green px-7 py-3 rounded-full text-neutral-white text-xs bg-gradient-to-r from-primary-lime-green to-primary-bright-cyan hover:button-brightness mb-7 focus:outline-none focus:ring ring-green-400"
-					href="{base}/signup"
+					href="/signup"
 				>
 					Get Started
 				</a>

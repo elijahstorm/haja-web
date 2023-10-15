@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
-	import { base } from "$app/paths"
 	import { deleteDocument, updateDocument, uploadDocument } from "$lib/firebase/firestore"
 	import ImageUploader from "$lib/Components/Widgets/FormWidgets/ImageUploader.svelte"
 	import { addToast } from "as-toast"
@@ -23,19 +22,19 @@
 		title: team.title,
 		caption: team.caption,
 		private: team.private,
-		users: getUpdatedUserList ? getUpdatedUserList() : undefined
+		users: getUpdatedUserList ? getUpdatedUserList() : undefined,
 	})
 
 	export const requestSave = (resolve?: (id: string) => void) =>
 		team.id === ""
 			? uploadDocument({
 					isTeam,
-					content: { ...getContent(), owner: team.owner }
+					content: { ...getContent(), owner: team.owner },
 			  })
 					.then((response) => {
 						if (resolve) resolve(response.id)
 
-						if (browser) goto(`${base}/team/${response.id}`)
+						if (browser) goto(`/team/${response.id}`)
 					})
 					.catch((response) => {
 						alert("error")
@@ -43,7 +42,7 @@
 			: updateDocument({
 					id: team.id,
 					isTeam,
-					content: getContent()
+					content: getContent(),
 			  }).then((response) => {
 					addToast(`Team ${team.title} updated`)
 			  })
@@ -62,14 +61,14 @@
 			id: team.id,
 			isTeam,
 			content: {
-				users
+				users,
 			},
-			timestamp: "updatedOn"
+			timestamp: "updatedOn",
 		}).then((response) => {
 			addToast(`Successfully left ${team.title}`)
 		})
 
-		if (browser) goto(`${base}/`)
+		if (browser) goto("/")
 	}
 
 	const deleteTeam = async () => {
@@ -77,7 +76,7 @@
 
 		await deleteDocument({ id: team.id, isTeam })
 
-		if (browser) goto(`${base}/`)
+		if (browser) goto("/")
 	}
 
 	const alertAction = (action: Function, warning?: string) => () => {

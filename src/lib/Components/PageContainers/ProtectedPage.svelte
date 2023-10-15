@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
-	import { base } from "$app/paths"
 	import { awaitMyId } from "$lib/firebase/auth"
 	import session from "$lib/firebase/session"
 	import Loader from "$lib/Components/Widgets/Helpers/Loader.svelte"
@@ -12,13 +11,13 @@
 		await wait
 
 		if (wait == null && browser) {
-			goto(`${base}/login`)
+			goto("/login")
 		}
 	}
 
 	$: {
 		if ($session.ready && !$session.user) {
-			if (browser) goto(`${base}/login`)
+			if (browser) goto("/login")
 		}
 	}
 

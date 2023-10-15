@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import LoginHeader from "$lib/Components/Auth/LoginHeader.svelte"
 
 	export let logoLink: string = "/"
@@ -7,10 +6,10 @@
 
 <div class="px-8 py-4 bg-stone-100 flex justify-center">
 	<div class="max-w-4xl w-full flex">
-		<a href={base + logoLink}>
+		<a href={logoLink}>
 			<img
 				class="cursor-pointer w-24"
-				src="{base}/images/haja/logo_horizontal_full.png"
+				src="/images/haja/logo_horizontal_full.png"
 				alt="HAJA"
 			/>
 		</a>

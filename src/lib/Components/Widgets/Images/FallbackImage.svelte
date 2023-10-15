@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { base } from "$app/paths"
-
-	export let fallback: string = `${base}/404.png`
+	export let fallback: string = "/404.png"
 	export let src: string = fallback
 	export let alt: string
 	export let cover = false

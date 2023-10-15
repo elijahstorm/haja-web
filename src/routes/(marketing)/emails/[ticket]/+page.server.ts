@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		return { message }
 	} catch (e) {
 		throw error(504, {
-			message: ErrorMessaging(e.code)
+			message: ErrorMessaging(e.code),
 		})
 	}
 }

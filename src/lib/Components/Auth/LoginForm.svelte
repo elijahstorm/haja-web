@@ -3,7 +3,6 @@
 	import { loginWithInfo, loginWithGoogle, loginWithFacebook } from "$lib/firebase/auth"
 	import { fade } from "svelte/transition"
 	import Icon from "@iconify/svelte"
-	import { base } from "$app/paths"
 
 	export let shadow = false
 
@@ -39,7 +38,7 @@
 	<form class:attempted on:submit|preventDefault={submit}>
 		<div class="p-4 mb-20">
 			<div class="flex gap-2 text-sm my-4 sm:hidden">
-				<img class="w-24" src="{base}/images/haja/logo_horizontal_full.png" alt="haja" />
+				<img class="w-24" src="/images/haja/logo_horizontal_full.png" alt="haja" />
 			</div>
 
 			{#if errorReport}
@@ -79,7 +78,7 @@
 					on:click={google}
 					on:keydown={google}
 				>
-					<Icon icon="akar-icons:google-fill" width />
+					<Icon icon="akar-icons:google-fill" />
 				</div>
 				<div
 					class="rounded-full w-7 h-7 border border-gray-500 p-1 cursor-pointer text-lg"
@@ -95,20 +94,20 @@
 					<span> New to Haja? </span>
 					<a
 						class="text-brand-500 no-underline border-b border-b-transparent transition-colors hover:border-b-brand-500"
-						href="{base}/signup">Sign up</a
+						href="/signup">Sign up</a
 					>
 				</p>
 				<p class="mt-4 text-sm">
 					<span> Can't log in? </span>
 					<a
 						class="text-brand-500 no-underline border-b border-b-transparent transition-colors hover:border-b-brand-500"
-						href="{base}/login/help/lost-email">Recover account</a
+						href="/login/help/lost-email">Recover account</a
 					>
 				</p>
 				<!-- Removed because this action is not allowed -->
 				<!-- <p class="mt-4 text-sm">
 					<span> Lost your </span>
-					<a class="text-brand-500 no-underline border-b border-b-transparent transition-colors hover:border-b-brand-500" href="{base}/login/help/forgot-password">password?</a>
+					<a class="text-brand-500 no-underline border-b border-b-transparent transition-colors hover:border-b-brand-500" href="/login/help/forgot-password">password?</a>
 				</p> -->
 			</div>
 		</div>

@@ -1,40 +1,39 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import LoginHeader from "../Auth/LoginHeader.svelte"
 
 	const iconSocialLinks = [
 		{
 			href: "https://github.com/elijahstorm",
-			icon: base + "/icons/github-mark-white.svg",
-			alt: "GitHub"
-		}
+			icon: "/icons/github-mark-white.svg",
+			alt: "GitHub",
+		},
 	]
 
 	const footerLinks = [
 		{
-			href: base + "/download",
-			text: "Download the App"
+			href: "/download",
+			text: "Download the App",
 		},
 		{
-			href: base + "/about",
-			text: "About"
+			href: "/about",
+			text: "About",
 		},
 		{
-			href: base + "/contact",
-			text: "Contact Us"
+			href: "/contact",
+			text: "Contact Us",
 		},
 		{
-			href: base + "/support",
-			text: "Support"
+			href: "/support",
+			text: "Support",
 		},
 		{
-			href: base + "/privacy",
-			text: "Privacy Policy"
+			href: "/privacy",
+			text: "Privacy Policy",
 		},
 		{
 			href: "http://elijahstorm.github.io/",
-			text: "More by Elijah"
-		}
+			text: "More by Elijah",
+		},
 	]
 </script>
 
@@ -50,10 +49,10 @@
 			<div
 				class="flex flex-col justify-between md:col-span-4 lg:justify-self-start lg:col-span-3"
 			>
-				<a class="contents" href="{base}/" target="_blank" rel="noopener noreferrer">
+				<a class="contents" href="/" target="_blank" rel="noopener noreferrer">
 					<img
 						class="mb-7 w-24"
-						src="{base}/images/haja/logo_horizontal_full.png"
+						src="/images/haja/logo_horizontal_full.png"
 						alt="haja logo"
 					/>
 				</a>

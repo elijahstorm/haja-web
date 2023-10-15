@@ -5,9 +5,9 @@ const config = {
 	plugins: [sveltekit()],
 	build: {
 		rollupOptions: {
-			external: ["iconify-icon"]
-		}
-	}
+			external: ["iconify-icon"],
+		},
+	},
 }
 
 export default config

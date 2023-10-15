@@ -10,7 +10,7 @@ export const getTeamList: (input: {
 }) => Promise<TeamContentConfig[] | string> = async ({
 	query = "users",
 	value = awaitMyId(),
-	amount = 10
+	amount = 10,
 }) => {
 	let list: QuerySnapshot<DocumentData>
 
@@ -24,9 +24,9 @@ export const getTeamList: (input: {
 				{
 					type: query,
 					compare: "array-contains",
-					value
-				}
-			]
+					value,
+				},
+			],
 		})
 	} catch (e) {
 		return e
@@ -43,7 +43,7 @@ export const getTeamList: (input: {
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			private: data.private,
 			owner: data.owner,
-			users: data.users
+			users: data.users,
 		}
 	})
 }

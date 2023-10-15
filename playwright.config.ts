@@ -5,7 +5,7 @@ const config: PlaywrightTestConfig = {
 	testDir: "./tests",
 	timeout: 30 * 1000,
 	expect: {
-		timeout: 5000
+		timeout: 5000,
 	},
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
@@ -14,57 +14,57 @@ const config: PlaywrightTestConfig = {
 	reporter: "html",
 	use: {
 		baseURL: "http://localhost:3000",
-		trace: "on-first-retry"
+		trace: "on-first-retry",
 	},
 	projects: [
 		{
 			name: "chromium",
 			use: {
-				...devices["Desktop Chrome"]
-			}
+				...devices["Desktop Chrome"],
+			},
 		},
 
 		{
 			name: "firefox",
 			use: {
-				...devices["Desktop Firefox"]
-			}
+				...devices["Desktop Firefox"],
+			},
 		},
 
 		{
 			name: "webkit",
 			use: {
-				...devices["Desktop Safari"]
-			}
+				...devices["Desktop Safari"],
+			},
 		},
 
 		/* Test against mobile viewports. */
 		{
 			name: "Mobile Chrome",
 			use: {
-				...devices["Pixel 5"]
-			}
+				...devices["Pixel 5"],
+			},
 		},
 		{
 			name: "Mobile Safari",
 			use: {
-				...devices["iPhone 12"]
-			}
+				...devices["iPhone 12"],
+			},
 		},
 
 		/* Test against branded browsers. */
 		{
 			name: "Google Chrome",
 			use: {
-				channel: "chrome"
-			}
-		}
+				channel: "chrome",
+			},
+		},
 	],
 	outputDir: "test-results/",
 	webServer: {
 		command: "pnpm dev --port 3000",
-		port: 3000
-	}
+		port: 3000,
+	},
 }
 
 export default config

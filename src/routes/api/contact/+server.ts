@@ -1,4 +1,3 @@
-import { base } from "$app/paths"
 import { loginWithInfo } from "$lib/firebase/auth"
 import { ErrorMessaging } from "$lib/firebase/errors"
 import { error, json } from "@sveltejs/kit"
@@ -21,7 +20,7 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 
 		const dataFetch = await Promise.all([
 			prepareTicketId(),
-			fetch(`${base}/emails/contact-confirmation.html`)
+			fetch("/emails/contact-confirmation.html"),
 		])
 
 		const ticket = dataFetch[0].id
@@ -33,7 +32,7 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 			email,
 			subject,
 			text,
-			date: formattedDate
+			date: formattedDate,
 		})
 
 		await mailCarrier({ ticket, type, email, subject, text, html })
@@ -47,11 +46,11 @@ export const POST: RequestHandler = async ({ fetch, request }) => {
 				Your ticket ID is #${ticket}.
 				Check your emails for a confirmation message.
 				We will respond as soon as possible.
-			`
+			`,
 		})
 	} catch (e) {
 		throw error(504, {
-			message: ErrorMessaging(e.code)
+			message: ErrorMessaging(e.code),
 		})
 	}
 }

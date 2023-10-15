@@ -11,7 +11,7 @@ export const getTodoList: (input: {
 	source,
 	dateRange = { start: new Date(0), end: new Date() },
 	isTeam = false,
-	amount = 50
+	amount = 50,
 }) => {
 	let list: QuerySnapshot<DocumentData>
 
@@ -26,14 +26,14 @@ export const getTodoList: (input: {
 				{
 					type: "date",
 					compare: ">=",
-					value: dateRange.start
+					value: dateRange.start,
 				},
 				{
 					type: "date",
 					compare: "<",
-					value: dateRange.end
-				}
-			]
+					value: dateRange.end,
+				},
+			],
 		})
 	} catch (e) {
 		return e
@@ -53,7 +53,7 @@ export const getTodoList: (input: {
 					: `#${data.color.substring(2) + data.color.substring(0, 2)}`,
 			date: data.date.toDate(),
 			status: data.status,
-			type: data.type
+			type: data.type,
 		}
 	})
 }

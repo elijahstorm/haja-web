@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LoginHeader from "../Auth/LoginHeader.svelte"
+	import Logo from "../Branding/Logo.svelte"
 
 	const iconSocialLinks = [
 		{
@@ -47,14 +48,10 @@
 			class="text-center grid grid-cols-1 justify-items-center gap-6 md:grid-cols-12 lg:gap-0"
 		>
 			<div
-				class="flex flex-col justify-between md:col-span-4 lg:justify-self-start lg:col-span-3"
+				class="flex flex-col gap-7 pb-1 justify-between md:justify-self-start md:col-span-3"
 			>
 				<a class="contents" href="/" target="_blank" rel="noopener noreferrer">
-					<img
-						class="mb-7 w-24"
-						src="/images/haja/logo_horizontal_full.png"
-						alt="haja logo"
-					/>
+					<Logo width={96} height={50} />
 				</a>
 
 				<div class="flex justify-center md:justify-between items-center gap-4">
@@ -76,7 +73,7 @@
 			</div>
 
 			<div
-				class="grid grid-cols-1 gap-2 py-1 text-white text-sm md:text-left md:justify-self-start md:grid-rows-4 md:col-span-5 lg:grid-rows-3 lg:col-span-5 lg:gap-x-24 lg:grid-flow-col-dense"
+				class="items-end grid grid-cols-1 gap-2 py-1 text-white text-sm md:text-left md:grid-flow-col-dense md:justify-self-start md:grid-rows-3 md:py-0 md:w-full md:col-span-5 lg:gap-x-24 lx:col-span-3"
 			>
 				{#each footerLinks as link (link.href)}
 					<a
@@ -90,12 +87,17 @@
 				{/each}
 			</div>
 
+			<div class="hidden md:block md:col-span-1 lx:col-span-2" />
+
 			<div
-				class="flex flex-col justify-between gap-4 items-center md:items-end md:justify-self-end md:col-span-2 lg:col-span-4"
+				class="flex flex-col justify-between gap-4 items-center md:items-end md:justify-self-end md:col-span-3"
 			>
 				<LoginHeader />
 
-				<p class="text-neutral-grayish-blue text-sm">© Haja. All Rights Reserved</p>
+				<div class="text-neutral-grayish-blue text-xs md:text-sm">
+					<p>© ThunderLite</p>
+					<p>All Rights Reserved</p>
+				</div>
 			</div>
 		</div>
 	</div>

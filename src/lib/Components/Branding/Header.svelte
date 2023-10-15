@@ -5,7 +5,7 @@
 </script>
 
 <div class="px-8 py-4 bg-stone-100 flex justify-center">
-	<div class="max-w-4xl w-full flex">
+	<div class="max-w-4xl w-full flex container">
 		<a href={logoLink}>
 			<img
 				class="cursor-pointer w-24"

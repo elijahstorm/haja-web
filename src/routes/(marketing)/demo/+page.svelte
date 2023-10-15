@@ -14,9 +14,9 @@
 		},
 	]
 
-	let shown = 0,
-		img,
-		style = ""
+	let shown = 0
+	let img: HTMLImageElement
+	let style = ""
 
 	const next = () => {
 		if (shown == images.length - 1) if (browser) goto("/login")
@@ -37,7 +37,7 @@
 
 <svelte:window on:resize={resize} />
 
-<section on:click={next} on:keydown={next}>
+<section on:click={next} on:keydown={next} role="button" aria-pressed="false" tabindex="0">
 	<div class="background">
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>

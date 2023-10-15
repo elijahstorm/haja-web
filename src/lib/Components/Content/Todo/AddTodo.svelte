@@ -39,7 +39,7 @@
 			status: "todo",
 			type: "",
 			date: new Date(),
-			color
+			color,
 		}
 
 		title = ""
@@ -50,7 +50,7 @@
 			source,
 			isTeam,
 			content,
-			type
+			type,
 		}).then((response) => {
 			content.id = response.id
 		})
@@ -63,7 +63,14 @@
 	}
 </script>
 
-<div class="flex gap-4" class:cursor-pointer={!editing} on:click={add} on:keydown={add}>
+<div
+	class="flex gap-4"
+	class:cursor-pointer={!editing}
+	on:click={add}
+	on:keydown={add}
+	role="button"
+	tabindex="0"
+>
 	<div>
 		<Icon {icon} color={style} {width} />
 	</div>
@@ -79,7 +86,7 @@
 		/>
 	{:else}
 		<div class="text-lg my-auto mx-0">
-			<span class="font-bold">Add a new todo now!</span>
+			<span class="font-bold">Add a new todo</span>
 		</div>
 	{/if}
 </div>

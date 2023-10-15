@@ -64,8 +64,6 @@ export const excludeResults =
 		new Promise<Config[]>(async (resolve) => {
 			const results = await query
 
-			console.log(results)
-
 			if (!results || typeof results === "string") return results
 
 			resolve(results.filter((config) => exclude.indexOf(index(config)) === -1))

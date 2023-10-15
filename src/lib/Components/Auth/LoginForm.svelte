@@ -18,9 +18,9 @@
 	$: errorReport = null
 
 	const submit = async (e) => {
+		attempted = true
 		const { error } = await loginWithInfo(email, password)
 		errorReport = error
-		attempted = true
 	}
 
 	const google = async (e) => {
@@ -67,16 +67,28 @@
 				bind:value={password}
 			/>
 
-			<button
-				class="bg-brand-500 text-white text-sm py-3 px-5 my-2 mx-0 border-none w-full rounded-3xl transition hover:opacity-80"
-				type="submit">Login</button
-			>
+			{#if attempted && !errorReport}
+				<button
+					class="bg-brand-500 text-white text-sm py-3 px-5 my-2 mx-0 border-none w-full rounded-3xl transition hover:opacity-80"
+				>
+					Loading...
+				</button>
+			{:else}
+				<button
+					class="bg-brand-500 text-white text-sm py-3 px-5 my-2 mx-0 border-none w-full rounded-3xl transition hover:opacity-80"
+					type="submit"
+				>
+					Login
+				</button>
+			{/if}
 
 			<div class="flex justify-center gap-8 mt-4 mb-8 mx-0">
 				<div
 					class="rounded-full w-7 h-7 border border-gray-500 p-1 cursor-pointer text-lg"
 					on:click={google}
 					on:keydown={google}
+					role="button"
+					tabindex="0"
 				>
 					<Icon icon="akar-icons:google-fill" />
 				</div>
@@ -84,6 +96,8 @@
 					class="rounded-full w-7 h-7 border border-gray-500 p-1 cursor-pointer text-lg"
 					on:click={facebook}
 					on:keydown={facebook}
+					role="button"
+					tabindex="0"
 				>
 					<Icon icon="akar-icons:facebook-fill" />
 				</div>

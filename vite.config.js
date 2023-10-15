@@ -8,6 +8,11 @@ const config = {
 			external: ["iconify-icon"],
 		},
 	},
+	test: {
+		include: ["tests/*unit.(test|spec).[jt]s"],
+		environment: "jsdom",
+		alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
+	},
 }
 
 export default config

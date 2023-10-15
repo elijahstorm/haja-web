@@ -7,7 +7,6 @@
 	import { onMount } from "svelte"
 	import { addToast } from "as-toast"
 	import { fly } from "svelte/transition"
-	import { page } from "$app/stores"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -56,7 +55,7 @@
 	}
 
 	const share = () => {
-		const value = `${$page.url.origin}/todo/${source}-${isTeam ? 1 : 0}/${id}`
+		const value = `/todo/${source}-${isTeam ? 1 : 0}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
 			props: { value },
@@ -98,7 +97,8 @@
 	]
 
 	const resize = () => {
-		smallContent = window.matchMedia("only screen and (max-width: 30em)").matches
+		smallContent =
+			window.matchMedia && window.matchMedia("only screen and (max-width: 30em)").matches
 	}
 
 	onMount(resize)
@@ -109,7 +109,13 @@
 {#if shown}
 	<div class="flex gap-3" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
 		{#each icons as icon}
-			<div class="cursor-pointer" on:click={icon.action} on:keydown={icon.action}>
+			<div
+				class="cursor-pointer"
+				on:click={icon.action}
+				on:keydown={icon.action}
+				role="button"
+				tabindex="0"
+			>
 				{#if icon.action === cal}
 					<div class="remove-defaults">
 						<Datepicker bind:store={updateDate}>
@@ -131,6 +137,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				>
 					{#if `#${color}` === todo.color}
 						<Icon icon="akar-icons:check" color="var(--bg)" />
@@ -145,6 +153,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				/>
 			{/each}
 		</div>
@@ -160,6 +170,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				>
 					{#if `#${color}` === todo.color}
 						<Icon icon="akar-icons:check" color="var(--bg)" />

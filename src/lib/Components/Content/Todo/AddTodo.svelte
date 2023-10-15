@@ -11,7 +11,7 @@
 	export let callback: (todo: TodoContentConfig) => void = (_) => {}
 
 	const width = 30
-	let input
+	let input: HTMLInputElement
 	let editing = false
 	let title: string = ""
 	let color: TodoColor = ""
@@ -21,7 +21,7 @@
 	const type = "todo"
 	const add = () => {
 		editing = true
-		setTimeout(() => input.focus(), 1)
+		setTimeout(() => input && input.focus(), 5)
 	}
 
 	const save = () => {
@@ -68,6 +68,7 @@
 	class:cursor-pointer={!editing}
 	on:click={add}
 	on:keydown={add}
+	data-test-type="add"
 	role="button"
 	tabindex="0"
 >

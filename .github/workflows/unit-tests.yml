@@ -22,8 +22,6 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: "pnpm"
             - name: Install dependencies
-              run: pnpm install
-            - name: Install Playwright browsers
-              run: pnpm exec playwright install
+              run: pnpm i --frozen-lockfile
             - name: Run tests
               run: pnpm test:unit

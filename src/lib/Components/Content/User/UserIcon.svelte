@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import session from "$lib/firebase/session"
 	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
 	import { getUser, type UserContentConfig } from "./UserContent"
@@ -9,7 +8,7 @@
 	export let newTab = false
 
 	$: myId = $session?.user?.uid
-	$: href = user === "fallback" ? "#" : base + (user ? `/user/${user.id}` : "/")
+	$: href = user === "fallback" ? "#" : user ? `/user/${user.id}` : "/"
 	$: style = `width: ${size}rem; height: ${size}rem;`
 </script>
 
@@ -24,18 +23,18 @@
 					<FallbackImage
 						src={user.picture}
 						alt="user profile"
-						fallback="{base}/icon/person.svg"
+						fallback="/icon/person.svg"
 						cover
 					/>
 				{/if}
 			{/await}
 		{:else if user === "fallback"}
-			<FallbackImage alt="user profile" fallback="{base}/icon/person.svg" cover />
+			<FallbackImage alt="user profile" fallback="/icon/person.svg" cover />
 		{:else}
 			<FallbackImage
 				src={user.picture}
 				alt="user profile"
-				fallback="{base}/icon/person.svg"
+				fallback="/icon/person.svg"
 				cover
 			/>
 		{/if}

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import { getUser } from "$lib/Components/Content/User/UserContent"
 	import UserContent from "$lib/Components/Content/User/UserContent.svelte"
 	import ContentWithFooter from "$lib/Components/PageContainers/ContentWithFooter.svelte"
@@ -35,7 +34,7 @@
 					<UserContent {user}>
 						<a
 							class="btn btn-primary text-xs px-3 py-2 flex content-center h-max"
-							href="{base}/team"
+							href="/team"
 						>
 							My Teams
 						</a>
@@ -59,7 +58,7 @@
 						<a
 							slot="action"
 							class="btn btn-primary text-xs px-3 py-2 content-center h-max"
-							href="{base}/user/explore"
+							href="/user/explore"
 						>
 							<span class="inline sm:hidden"> More </span>
 							<span class="hidden sm:inline"> See More </span>
@@ -95,7 +94,7 @@
 						<a
 							slot="action"
 							class="btn btn-primary text-xs px-3 py-2 content-center h-max"
-							href="{base}/team/explore"
+							href="/team/explore"
 						>
 							<span class="inline sm:hidden"> More </span>
 							<span class="hidden sm:inline"> See More </span>
@@ -112,7 +111,7 @@
 						<a
 							slot="action"
 							class="btn btn-primary text-xs px-3 py-2 content-center h-max"
-							href="{base}/team"
+							href="/team"
 						>
 							<span class="inline sm:hidden"> All </span>
 							<span class="hidden sm:inline"> See All My Teams </span>

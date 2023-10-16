@@ -1,4 +1,3 @@
-import { base } from "$app/paths"
 import { getDocument } from "$lib/firebase/firestore"
 import type { ContentConfig } from "$lib/Components/Content/Content"
 
@@ -14,7 +13,7 @@ export interface UserContentConfig extends ContentConfig {
 }
 
 export const getUser: (input: { id: string }) => Promise<UserContentConfig | string> = async ({
-	id
+	id,
 }) => {
 	let doc,
 		error: string | null = null
@@ -36,13 +35,13 @@ export const getUser: (input: { id: string }) => Promise<UserContentConfig | str
 			caption: data.caption?.trim() ?? "",
 			picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
 			background: !data.background
-				? `${base}/placeholders/5183000.jpg`
+				? "/placeholders/5183000.jpg"
 				: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.background}`,
 			email: data.email ?? "",
 			pronouns: data.pronouns ?? "",
 			private: data.private ?? false,
 			verified: data.verified ?? false,
-			following: data.following ?? []
+			following: data.following ?? [],
 		}
 	}
 

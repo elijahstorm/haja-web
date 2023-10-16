@@ -2,7 +2,6 @@
 	import type { TeamContentConfig } from "./TeamContent"
 	import UserIconList from "$lib/Components/Content/User/UserIconList.svelte"
 	import FallbackImage from "$lib/Components/Widgets/Images/FallbackImage.svelte"
-	import { base } from "$app/paths"
 
 	export let team: TeamContentConfig | string
 
@@ -13,13 +12,13 @@
 					title: "",
 					caption: "",
 					picture: img404,
-					users: []
+					users: [],
 			  }
 			: team
 	const src = picture
 </script>
 
-<a href="{base}/team/{typeof team === 'string' ? 'create' : team.id}">
+<a href="/team/{typeof team === 'string' ? 'create' : team.id}">
 	<div
 		class="rounded-3xl overflow-hidden border border-solid border-grey-500 grid grid-c grid-rows-2 justify-between content-between"
 	>

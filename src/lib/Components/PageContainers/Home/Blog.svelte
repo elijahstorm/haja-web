@@ -6,7 +6,7 @@
 			description:
 				"The world is getting smaller and we’re becoming more mobile. So why should you be forced to only receive money in a single …",
 			imgPath: "/images/image-currency.jpg",
-			imgAlt: "multiple bills with different values and currencies"
+			imgAlt: "multiple bills with different values and currencies",
 		},
 		{
 			author: "By Wilson Hutton",
@@ -14,7 +14,7 @@
 			description:
 				"Our simple budgeting feature allows you to separate out your spending and set realistic limits each month. That means you …",
 			imgPath: "/images/image-restaurant.jpg",
-			imgAlt: "someone eating a hamburguer in a restaurant"
+			imgAlt: "someone eating a hamburguer in a restaurant",
 		},
 		{
 			author: "By Wilson Hutton",
@@ -22,7 +22,7 @@
 			description:
 				"We want you to enjoy your travels. This is why we don’t charge any fees on purchases while you’re abroad. We’ll even show you …",
 			imgPath: "/images/image-plane.jpg",
-			imgAlt: "A plane in the sky"
+			imgAlt: "A plane in the sky",
 		},
 		{
 			author: "By Claire Robinson",
@@ -30,8 +30,8 @@
 			description:
 				"After a lot of hard work by the whole team, we’re excited to launch our closed beta. It’s easy to request an invite through the site ...",
 			imgPath: "/images/image-confetti.jpg",
-			imgAlt: "Falling confetti"
-		}
+			imgAlt: "Falling confetti",
+		},
 	]
 </script>
 

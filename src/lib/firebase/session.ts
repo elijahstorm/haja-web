@@ -8,11 +8,11 @@ const session = writable<{
 }>({
 	user: null,
 	ready: false,
-	waitingCreationFlow: false
+	waitingCreationFlow: false,
 })
 
 export default {
 	subscribe: session.subscribe,
 	set: session.set,
-	update: session.update
+	update: session.update,
 }

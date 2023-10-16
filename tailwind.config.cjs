@@ -8,13 +8,13 @@ module.exports = {
 				primary: {
 					"dark-blue": "hsl(233, 26%, 24%)",
 					"lime-green": "#59e5c3",
-					"bright-cyan": "hsl(192, 70%, 51%)"
+					"bright-cyan": "hsl(192, 70%, 51%)",
 				},
 				neutral: {
 					"grayish-blue": "hsl(233, 8%, 62%)",
 					"light-grayish-blue": "hsl(220, 16%, 96%)",
 					"very-light-gray": "hsl(0, 0%, 98%)",
-					white: "hsl(0, 0%, 100%)"
+					white: "hsl(0, 0%, 100%)",
 				},
 				black: "#000000",
 				white: "#f8f9fa",
@@ -28,17 +28,17 @@ module.exports = {
 					600: "#38a3fa",
 					700: "#2499f9",
 					800: "#1090f9",
-					900: "#0986ef"
-				}
+					900: "#0986ef",
+				},
 			},
 			backgroundImage: (theme) => ({
 				"header-desktop": "url('/images/bg-intro-desktop.svg')",
 				"header-mobile": "url('/images/bg-intro-mobile.svg')",
-				"image-mockups": "url('/images/image-mockups.png')"
+				"image-mockups": "url('/images/image-mockups.png')",
 			}),
 			backgroundSize: {
 				"custom-mobile-header-size": "100% 50%",
-				"custom-mobile-mockup-size": "auto 60%"
+				"custom-mobile-mockup-size": "auto 60%",
 			},
 			container: {
 				center: true,
@@ -47,13 +47,13 @@ module.exports = {
 					sm: "2rem",
 					lg: "3rem",
 					xl: "4rem",
-					"2xl": "5rem"
-				}
+					"2xl": "5rem",
+				},
 			},
 			inset: {
-				"-42.6%": "-42.6%"
-			}
-		}
+				"-42.6%": "-42.6%",
+			},
+		},
 	},
-	plugins: [require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio")]
+	plugins: [require("@tailwindcss/forms"), require("@tailwindcss/aspect-ratio")],
 }

@@ -4,7 +4,6 @@
 	import { addToast } from "as-toast"
 	import type { UserContentConfig } from "./UserContent"
 	import ListWithActionAndTitle from "$lib/Components/Widgets/Layouts/ListWithActionAndTitle.svelte"
-	import { base } from "$app/paths"
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
 	import ToggleButton from "$lib/Components/Widgets/FormWidgets/ToggleButton.svelte"
@@ -18,14 +17,14 @@
 	const getContent = () => ({
 		title: user.title,
 		caption: user.caption,
-		private: user.private
+		private: user.private,
 	})
 
 	export const requestSave = () =>
 		updateDocument({
 			id: user.id,
 			isTeam,
-			content: getContent()
+			content: getContent(),
 		}).then((response) => {
 			addToast(`User ${user.title} profile updated`)
 		})
@@ -35,7 +34,7 @@
 
 		await deleteDocument({ id: user.id, isTeam })
 
-		if (browser) goto(`${base}/`)
+		if (browser) goto("/")
 	}
 
 	const alertAction = (action: Function, warning?: string) => () => {

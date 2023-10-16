@@ -10,9 +10,9 @@ const config = {
 			assets: "dist",
 			hostineSite: "data",
 			precompress: false,
-			fallback: "index.html"
-		})
-	}
+			fallback: "index.html",
+		}),
+	},
 }
 
 export default config

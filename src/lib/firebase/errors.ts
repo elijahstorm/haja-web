@@ -246,7 +246,7 @@ export const ErrorMessaging = (code: string) => {
 			"The service is currently unavailable. This is most likely a transient condition and may be corrected by retrying with a backoff.",
 		"data-loss": "Unrecoverable data loss or corruption.",
 		unauthenticated:
-			"The request does not have valid authentication credentials for the operation."
+			"The request does not have valid authentication credentials for the operation.",
 	}
 	return list[code] ?? "unknown error"
 }

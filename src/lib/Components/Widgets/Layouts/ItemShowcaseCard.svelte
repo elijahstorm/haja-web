@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import FallbackImage from "../Images/FallbackImage.svelte"
 
 	export let id: string
@@ -9,10 +8,7 @@
 	export let callToAction: string
 </script>
 
-<a
-	class="flex items-center rounded-lg shadow-lg bg-stone-100 overflow-hidden"
-	href="{base}/team/{id}"
->
+<a class="flex items-center rounded-lg shadow-lg bg-stone-100 overflow-hidden" href="/team/{id}">
 	<div class="w-32 h-32 flex-shrink-1">
 		<FallbackImage src={picture} alt="landscape of {title}" />
 	</div>

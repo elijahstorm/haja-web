@@ -5,7 +5,7 @@ import {
 	excludeResults,
 	performQuery,
 	recommendedQueriesAlgo,
-	searchQueriesAlgo
+	searchQueriesAlgo,
 } from "../Algos/searchAlgos"
 import type { TeamContentConfig } from "./TeamContent"
 
@@ -22,12 +22,12 @@ export const getRecommendedTeams: (input: {
 				{
 					type: "users",
 					compare: "not-in",
-					value: [[myId()]]
-				}
+					value: [[myId()]],
+				},
 			],
 			orderBy: "users",
 			amount,
-			convertDocToConfig
+			convertDocToConfig,
 		}),
 		excludeResults(exclude, (config: TeamContentConfig) => config.id)
 	)
@@ -42,7 +42,7 @@ export const getTeamsSearch: (input: {
 			queries: searchQueriesAlgo(value),
 			orderBy: "title",
 			amount,
-			convertDocToConfig
+			convertDocToConfig,
 		}),
 		excludeResults(exclude, (config: TeamContentConfig) => config.id)
 	)
@@ -58,6 +58,6 @@ const convertDocToConfig = (doc: QueryDocumentSnapshot<DocumentData>): TeamConte
 		users: data.users,
 		owner: data.owner,
 		picture: `${import.meta.env.VITE_STORAGE_URL_PREFIX}${data.picture}`,
-		private: data.private
+		private: data.private,
 	}
 }

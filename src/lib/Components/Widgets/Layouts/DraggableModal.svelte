@@ -1,9 +1,14 @@
+<script context="module" lang="ts">
+	type OpenState = "closed" | "open" | "full"
+	export type UpdateFunction = (change: OpenState) => VoidFunction
+</script>
+
 <script lang="ts">
 	import { browser } from "$app/environment"
 	import { pipe } from "$lib/fp-ts"
 	import { fly, fade } from "svelte/transition"
 
-	let state: "closed" | "open" | "full" = "closed"
+	let state: OpenState = "closed"
 
 	$: {
 		if (browser) {
@@ -48,30 +53,22 @@
 	let firstTouchLocation = 0
 
 	const touchstart = (e: TouchEvent) =>
-		pipe(
-			() => e,
-			convertTouchToClientY,
-			(clientY) => (firstTouchLocation = clientY)
-		)
+		pipe(e, convertTouchToClientY, (clientY) => (firstTouchLocation = clientY))
 
 	const drag = (e: TouchEvent) =>
-		pipe(
-			() => e,
-			convertTouchToClientY,
-			(clientY) => {
-				if (!firstTouchLocation) return
-				if (firstTouchLocation - clientY > 30) {
-					full()
-				} else if (firstTouchLocation - clientY < -30) {
-					if (state === "full") {
-						open()
-						touchstart(e)
-					} else {
-						close()
-					}
+		pipe(e, convertTouchToClientY, (clientY) => {
+			if (!firstTouchLocation) return
+			if (firstTouchLocation - clientY > 30) {
+				full()
+			} else if (firstTouchLocation - clientY < -30) {
+				if (state === "full") {
+					open()
+					touchstart(e)
+				} else {
+					close()
 				}
 			}
-		)
+		})
 </script>
 
 <svelte:window on:keypress={windowkeypress} />
@@ -87,6 +84,8 @@
 		out:fade={{ duration: 350 }}
 		on:click={close}
 		on:keypress={windowkeypress}
+		role="button"
+		tabindex="0"
 	>
 		<div
 			class="card"
@@ -95,12 +94,16 @@
 			out:fly={{ y: 1000, duration: 750 }}
 			on:click|stopPropagation
 			on:keypress|stopPropagation
+			role="button"
+			tabindex="0"
 		>
 			<div
 				class="interaction-header"
 				on:touchstart={touchstart}
 				on:touchmove|preventDefault={drag}
 				on:dblclick|preventDefault={toggle}
+				role="button"
+				tabindex="0"
 			>
 				<slot name="left">
 					<p>&nbsp;</p>

@@ -5,9 +5,14 @@ const config = {
 	plugins: [sveltekit()],
 	build: {
 		rollupOptions: {
-			external: ["iconify-icon"]
-		}
-	}
+			external: ["iconify-icon"],
+		},
+	},
+	test: {
+		include: ["tests/*unit.(test|spec).[jt]s"],
+		environment: "jsdom",
+		alias: [{ find: /^svelte$/, replacement: "svelte/internal" }],
+	},
 }
 
 export default config

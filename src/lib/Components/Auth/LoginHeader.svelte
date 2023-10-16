@@ -4,7 +4,6 @@
 	import session from "$lib/firebase/session"
 	import type { UserInfo } from "firebase/auth"
 	import Icon from "@iconify/svelte"
-	import { base } from "$app/paths"
 
 	let loggedIn: UserInfo
 	$: loggedIn = $session.user
@@ -21,8 +20,8 @@
 			<Icon icon={"fe:logout"} width={16} />
 		</button>
 	{:else}
-		<a class="flex items-center content-center h-max btn btn-primary" href="{base}/login">
-			<span class="pr-2 ">Login</span>
+		<a class="flex items-center content-center h-max btn btn-primary" href="/login">
+			<span class="pr-2">Login</span>
 			<Icon icon={"akar-icons:google-fill"} width={22} />
 		</a>
 	{/if}

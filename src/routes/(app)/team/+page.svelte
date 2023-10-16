@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import TeamList from "$lib/Components/Content/Team/TeamList.svelte"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 	import ProtectedPage from "$lib/Components/PageContainers/ProtectedPage.svelte"
@@ -23,7 +22,7 @@
 				<a
 					slot="action"
 					class="btn btn-primary text-xs pl-2 pr-3 py-2 content-center h-max"
-					href="{base}/team/create"
+					href="/team/create"
 				>
 					+
 					<span class="inline sm:hidden"> New </span>

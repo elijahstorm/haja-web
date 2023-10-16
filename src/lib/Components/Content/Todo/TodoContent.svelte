@@ -18,13 +18,13 @@
 
 	$: timeStr = new Date(todo.date).toLocaleTimeString([], {
 		hour: "2-digit",
-		minute: "2-digit"
+		minute: "2-digit",
 	})
 	$: dateStr = new Date(todo.date).toLocaleDateString([], {
 		weekday: "short",
 		year: "numeric",
 		month: "short",
-		day: "numeric"
+		day: "numeric",
 	})
 	$: icon = todo.status == "done" ? "akar-icons:circle-check-fill" : "akar-icons:circle"
 	$: color = todo.color == "" ? "var(--primary)" : todo.color
@@ -39,8 +39,8 @@
 			isTeam,
 			type: "todo",
 			content: {
-				status
-			}
+				status,
+			},
 		})
 	}
 
@@ -61,8 +61,8 @@
 			isTeam,
 			source,
 			content: {
-				title: input.value
-			}
+				title: input.value,
+			},
 		})
 	}
 
@@ -81,6 +81,8 @@
 			class="relative cursor-pointer"
 			on:click|preventDefault={toggleDone}
 			on:keydown|preventDefault={toggleDone}
+			role="button"
+			tabindex="0"
 		>
 			<Icon {color} {width} {icon} />
 		</div>
@@ -101,6 +103,8 @@
 					class="cursor-pointer text-lg my-auto mx-0 flex flex-col"
 					on:click={toggleShowInlineEditor}
 					on:keydown={toggleShowInlineEditor}
+					role="button"
+					tabindex="0"
 				>
 					<p class="font-bold">{todo.title}</p>
 					{#if todo.caption != ""}

@@ -10,7 +10,7 @@
 
 <FullContentPage entity={user} {background}>
 	<div slot="picture">
-		<UserIcon {user} size={6} />
+		<UserIcon {user} size={10} />
 	</div>
 	<div slot="info">
 		<slot />

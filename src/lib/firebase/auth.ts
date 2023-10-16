@@ -10,7 +10,7 @@ import {
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	updatePassword,
-	type UserCredential
+	type UserCredential,
 } from "firebase/auth"
 import session from "./session"
 import { ErrorMessaging } from "./errors"
@@ -29,12 +29,12 @@ const loginPipe: (
 					message:
 						typeof response === "string"
 							? response
-							: `${response.user.email} logged in.`
+							: `${response.user.email} logged in.`,
 				})
 			})
 			.catch((e) => {
 				resolve({
-					error: ErrorMessaging(e.code)
+					error: ErrorMessaging(e.code),
 				})
 			})
 	})
@@ -79,7 +79,7 @@ export const newUser = (email: string, password: string) =>
 			caption: "Tap on the text, and then press edit to fix it",
 			status: "todo",
 			type: "from_haja",
-			date: new Date(new Date().setSeconds(new Date().getSeconds() - 2))
+			date: new Date(new Date().setSeconds(new Date().getSeconds() - 2)),
 		}
 		const editActionContent: TodoContentConfig = {
 			contentType: "todo",
@@ -88,7 +88,7 @@ export const newUser = (email: string, password: string) =>
 			caption: "You can add a caption to your profile and each team you've created",
 			status: "todo",
 			type: "from_haja",
-			date: new Date(new Date().setSeconds(new Date().getSeconds() - 1))
+			date: new Date(new Date().setSeconds(new Date().getSeconds() - 1)),
 		}
 		const welcomeContent: TodoContentConfig = {
 			contentType: "todo",
@@ -97,7 +97,7 @@ export const newUser = (email: string, password: string) =>
 			caption: "We are glad to help you :)",
 			status: "todo",
 			type: "from_haja",
-			date: new Date()
+			date: new Date(),
 		}
 		const aniversaryContent: TodoContentConfig = {
 			contentType: "todo",
@@ -106,13 +106,13 @@ export const newUser = (email: string, password: string) =>
 			caption: "Thanks for using Haja for 1 year :)",
 			status: "todo",
 			type: "from_haja",
-			date: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+			date: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
 		}
 		const uploadOrderList = [
 			welcomeContent,
 			editActionContent,
 			editTodoPrompt,
-			aniversaryContent
+			aniversaryContent,
 		]
 		const source = await awaitMyId()
 		const isTeam = false
@@ -124,8 +124,8 @@ export const newUser = (email: string, password: string) =>
 			content: {
 				email,
 				private: false,
-				caption: "Edit your profile"
-			}
+				caption: "Edit your profile",
+			},
 		})
 
 		for (let i = 0; i < uploadOrderList.length; i++) {
@@ -134,7 +134,7 @@ export const newUser = (email: string, password: string) =>
 				source,
 				isTeam,
 				content,
-				type
+				type,
 			})
 		}
 
@@ -163,6 +163,6 @@ onAuthStateChanged(auth, (user) =>
 	session.update((session) => ({
 		...session,
 		user,
-		ready: true
+		ready: true,
 	}))
 )

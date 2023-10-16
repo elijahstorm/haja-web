@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { UserContentConfig } from "./UserContent"
 	import UserIcon from "./UserIcon.svelte"
-	import { base } from "$app/paths"
 	import AddFriendButton from "$lib/Components/Widgets/Buttons/AddFriendButton.svelte"
 
 	export let user: UserContentConfig
@@ -12,12 +11,7 @@
 >
 	<UserIcon {user} size={4} newTab />
 
-	<a
-		class="contents"
-		href={base + (user ? `/user/${user.id}` : "/")}
-		target="_blank"
-		rel="noreferrer"
-	>
+	<a class="contents" href={user ? `/user/${user.id}` : "/"} target="_blank" rel="noreferrer">
 		<span class="flex-1 text-xl whitespace-nowrap overflow-hidden text-ellipsis"
 			>{user.title}</span
 		>

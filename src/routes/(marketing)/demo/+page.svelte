@@ -1,26 +1,25 @@
 <script lang="ts">
 	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
-	import { base } from "$app/paths"
 	import { onMount } from "svelte"
 
 	const images = [
 		{
 			src: "/showcase/01-1.jpg",
-			alt: "Share and connect with each other"
+			alt: "Share and connect with each other",
 		},
 		{
 			src: "/showcase/01-2.jpg",
-			alt: "Welcome to HAJA"
-		}
+			alt: "Welcome to HAJA",
+		},
 	]
 
-	let shown = 0,
-		img,
-		style = ""
+	let shown = 0
+	let img: HTMLImageElement
+	let style = ""
 
 	const next = () => {
-		if (shown == images.length - 1) if (browser) goto(`${base}/login`)
+		if (shown == images.length - 1) if (browser) goto("/login")
 
 		shown++
 	}
@@ -38,19 +37,13 @@
 
 <svelte:window on:resize={resize} />
 
-<section on:click={next} on:keydown={next}>
+<section on:click={next} on:keydown={next} role="button" aria-pressed="false" tabindex="0">
 	<div class="background">
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 	</div>
 	{#each images as image, index}
-		<img
-			bind:this={img}
-			{style}
-			class:shown={shown == index}
-			src={base + image.src}
-			alt={image.alt}
-		/>
+		<img bind:this={img} {style} class:shown={shown == index} src={image.src} alt={image.alt} />
 	{/each}
 </section>
 

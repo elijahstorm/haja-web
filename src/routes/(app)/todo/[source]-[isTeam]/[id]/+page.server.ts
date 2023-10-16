@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const prefilteredData = await getTodo({
 		source,
 		isTeam,
-		id
+		id,
 	})
 
 	let todo = pipe(prefilteredData, JSON.stringify, JSON.parse)

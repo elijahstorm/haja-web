@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from "$app/paths"
 	import Casing from "$lib/Components/PageContainers/Casing.svelte"
 </script>
 
@@ -8,7 +7,7 @@
 		<div class="text-center py-2">
 			<a
 				class="text-3xl text-brand-500 font-bold no-underline transition border-transparent border-b-4 hover:border-b-brand-500"
-				href="{base}/login">Let's Do Together — Today!</a
+				href="/login">Let's Do Together — Today!</a
 			>
 		</div>
 

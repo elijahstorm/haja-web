@@ -10,7 +10,7 @@ export const mailCarrier: (email: EmailConfiguration) => Promise<void> = ({
 	email,
 	subject,
 	text,
-	html
+	html,
 }) => pipe(getMessageData({ subject, text, html }), toSender(email, type), sendMail(ticket))
 
 const getMessageData: PrepareMessageData =
@@ -18,13 +18,13 @@ const getMessageData: PrepareMessageData =
 	() => ({
 		subject,
 		text,
-		html
+		html,
 	})
 
 const toSender = (email: string, type: string) => (getData: MessageDataGetter) => ({
 	to: [email, OUR_EMAIL],
 	type,
-	message: getData()
+	message: getData(),
 })
 
 const sendMail = (ticket: string) => (data: { to: any[]; type: string; message: CarrierPayload }) =>

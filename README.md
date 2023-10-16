@@ -17,8 +17,8 @@ cd haja-web
 
 This application requires the following dependencies:
 
-- [Svelte](https://svelte.dev/)
-- [Firebase](https://firebase.google.com/)
+-   [Svelte](https://svelte.dev/)
+-   [Firebase](https://firebase.google.com/)
 
 ## Configuration
 

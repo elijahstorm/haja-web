@@ -5,10 +5,8 @@
 	import type { TodoContentConfig } from "./TodoContent"
 	import Icon from "@iconify/svelte"
 	import { onMount } from "svelte"
-	import { base } from "$app/paths"
 	import { addToast } from "as-toast"
-	import { fly, scale } from "svelte/transition"
-	import { page } from "$app/stores"
+	import { fly } from "svelte/transition"
 
 	export let todo: TodoContentConfig
 	export let isTeam: boolean
@@ -29,7 +27,7 @@
 		"1f99fd",
 		"7ac6ff",
 		"60dfcd",
-		"62ca9c"
+		"62ca9c",
 	] as const
 
 	$: id = todo.id
@@ -41,7 +39,7 @@
 	const cal = () => {
 		const app = new Popover({
 			target: clipboard,
-			props: {}
+			props: {},
 		})
 		app.$destroy()
 	}
@@ -52,15 +50,15 @@
 			type: "todo",
 			id,
 			isTeam,
-			source
+			source,
 		})
 	}
 
 	const share = () => {
-		const value = `${$page.url.origin}${base}/todo/${source}-${isTeam ? 1 : 0}/${id}`
+		const value = `/todo/${source}-${isTeam ? 1 : 0}/${id}`
 		const app = new CopyToClipboard({
 			target: clipboard,
-			props: { value }
+			props: { value },
 		})
 		app.$destroy()
 		addToast("Link copied!")
@@ -74,32 +72,33 @@
 			isTeam,
 			source,
 			content: {
-				color: `ff${color}`
-			}
+				color: `ff${color}`,
+			},
 		})
 	}
 
 	const icons = [
 		{
 			icon: "entypo:edit",
-			action: edit
+			action: edit,
 		},
 		{
 			icon: "ant-design:calendar-filled", // akar-icons:calendar
-			action: cal
+			action: cal,
 		},
 		{
 			icon: "dashicons:trash", // bxs:trash-alt
-			action: del
+			action: del,
 		},
 		{
 			icon: "bi:share-fill",
-			action: share
-		}
+			action: share,
+		},
 	]
 
 	const resize = () => {
-		smallContent = window.matchMedia("only screen and (max-width: 30em)").matches
+		smallContent =
+			window.matchMedia && window.matchMedia("only screen and (max-width: 30em)").matches
 	}
 
 	onMount(resize)
@@ -110,7 +109,13 @@
 {#if shown}
 	<div class="flex gap-3" in:fly={{ y: -50, duration: 300 }} out:fly={{ y: -50, duration: 300 }}>
 		{#each icons as icon}
-			<div class="cursor-pointer" on:click={icon.action} on:keydown={icon.action}>
+			<div
+				class="cursor-pointer"
+				on:click={icon.action}
+				on:keydown={icon.action}
+				role="button"
+				tabindex="0"
+			>
 				{#if icon.action === cal}
 					<div class="remove-defaults">
 						<Datepicker bind:store={updateDate}>
@@ -132,6 +137,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				>
 					{#if `#${color}` === todo.color}
 						<Icon icon="akar-icons:check" color="var(--bg)" />
@@ -146,6 +153,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				/>
 			{/each}
 		</div>
@@ -161,6 +170,8 @@
 					style={`background: #${color};`}
 					on:click={() => changeColor(color)}
 					on:keydown={() => changeColor(color)}
+					role="button"
+					tabindex="0"
 				>
 					{#if `#${color}` === todo.color}
 						<Icon icon="akar-icons:check" color="var(--bg)" />

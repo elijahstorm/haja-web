@@ -55,7 +55,7 @@ export const getTodo: (input: {
 				: `#${data.color.substring(2) + data.color.substring(0, 2)}`,
 			date: data.date.toDate(),
 			status: data.status,
-			type: data.type
+			type: data.type,
 		}
 	}
 
